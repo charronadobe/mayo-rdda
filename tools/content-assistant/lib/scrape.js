@@ -9,7 +9,8 @@
  *
  * The endpoint streams Server-Sent Events. Frame types:
  *   event: progress  data: { "message": "...", "step": "...", "ts": "..." }
- *   event: result     data: { "ok": true, "brandColors": [...], "colors": {...}, "images": [...], "texts": [...] }
+ *   event: result     data: { "ok": true, "brandColors": [...], "colors": {...},
+ *                               "images": [...], "texts": [...] }
  *   event: error      data: { "error": "..." }
  *
  * The browser's built-in EventSource does not support custom headers (we need
@@ -67,7 +68,9 @@ function buildEndpoint(url, params) {
   return `${baseUrl()}${LIVEDEMOS_ASSETS_PATH}?${qs.toString()}`;
 }
 
-export async function* scrapeStream({ url, params, token, signal }) {
+export async function* scrapeStream({
+  url, params, token, signal,
+}) {
   if (!url) throw new Error('scrapeStream: `url` is required');
   if (!token) throw new Error('scrapeStream: `token` (IMS bearer) is required');
 
@@ -111,8 +114,13 @@ export async function* scrapeStream({ url, params, token, signal }) {
         const rn = buffer.indexOf('\r\n\r\n');
         let sepIdx = -1;
         let sepLen = 0;
-        if (nn !== -1 && (rn === -1 || nn < rn)) { sepIdx = nn; sepLen = 2; }
-        else if (rn !== -1) { sepIdx = rn; sepLen = 4; }
+        if (nn !== -1 && (rn === -1 || nn < rn)) {
+          sepIdx = nn;
+          sepLen = 2;
+        } else if (rn !== -1) {
+          sepIdx = rn;
+          sepLen = 4;
+        }
         if (sepIdx === -1) break;
 
         const frame = buffer.slice(0, sepIdx);
@@ -130,11 +138,15 @@ export async function* scrapeStream({ url, params, token, signal }) {
  * Run a full scrape and return the unwrapped payload from the terminal
  * `result` event, yielding `progress` events to `onProgress` along the way.
  */
-export async function runScrape({ url, params, token, signal, onProgress }) {
+export async function runScrape({
+  url, params, token, signal, onProgress,
+}) {
   let lastStatus = '';
   let finalPayload = null;
 
-  for await (const evt of scrapeStream({ url, params, token, signal })) {
+  for await (const evt of scrapeStream({
+    url, params, token, signal,
+  })) {
     const data = (evt.data && typeof evt.data === 'object') ? evt.data : null;
 
     if (evt.event === 'progress') {
@@ -155,10 +167,9 @@ export async function runScrape({ url, params, token, signal, onProgress }) {
     }
   }
 
-  const unwrapItem = (item) =>
-    (item && typeof item === 'object' && item.data && typeof item.data === 'object')
-      ? { ...item.data, origin: item.origin }
-      : item;
+  const unwrapItem = (item) => ((item && typeof item === 'object' && item.data && typeof item.data === 'object')
+    ? { ...item.data, origin: item.origin }
+    : item);
 
   const unwrapColorTree = (node) => {
     if (!node || typeof node !== 'object') return node;
@@ -192,7 +203,9 @@ export async function runScrape({ url, params, token, signal, onProgress }) {
   const colors = (finalPayload && finalPayload.colors && typeof finalPayload.colors === 'object')
     ? unwrapColorTree(finalPayload.colors)
     : null;
-  const rawBrandColors = (finalPayload && Array.isArray(finalPayload.brandColors)) ? finalPayload.brandColors : [];
+  const rawBrandColors = (finalPayload && Array.isArray(finalPayload.brandColors))
+    ? finalPayload.brandColors
+    : [];
   const brandColors = rawBrandColors
     .map((c) => {
       const u = unwrapItem(c);
@@ -202,7 +215,9 @@ export async function runScrape({ url, params, token, signal, onProgress }) {
     })
     .filter((c) => typeof c === 'string' && c);
 
-  return { images, texts, colors, brandColors, status: lastStatus };
+  return {
+    images, texts, colors, brandColors, status: lastStatus,
+  };
 }
 
 /** Group the scraper's flat `texts` array into `{ [component]: string[] }`. */

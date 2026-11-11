@@ -1,4 +1,3 @@
-
 export function getAdobeImsUserDetails() {
   const ims = window.adobeIMS || {};
 
@@ -39,7 +38,6 @@ export async function getClientIP() {
 
 export async function sendAnalyticsData(eVarNEventsData = []) {
   try {
-
     const clientIP = await getClientIP();
     const pageURL = window.location.href;
     const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : '';

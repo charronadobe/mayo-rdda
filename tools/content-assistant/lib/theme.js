@@ -152,12 +152,16 @@ function fromSheet(sheet) {
 // ---------------------------------------------------------------------------
 
 /** Save a scrape result as a new named theme under /themes/{brand}/{brand}-theme.json. */
-export async function saveTheme({ org, repo, token, siteUrl, colors, brandColors }) {
+export async function saveTheme({
+  org, repo, token, siteUrl, colors, brandColors,
+}) {
   const fields = mapScrapeToElements({ siteUrl, colors, brandColors });
   const brand = slugFromUrl(siteUrl);
   const name = `${brand}-theme`;
   const path = `${THEMES_FOLDER}/${brand}/${name}.json`;
-  await putJsonSource({ org, repo, token, path, json: toSheet(fields) });
+  await putJsonSource({
+    org, repo, token, path, json: toSheet(fields),
+  });
   return { path, name, fields };
 }
 
@@ -223,31 +227,43 @@ function buildBrandThemeDoc(brand, fields) {
  * `da-form` block declaring the schema + a `brand-theme` block of color
  * key/value rows), not a raw JSON blob — see buildBrandThemeDoc.
  */
-export async function saveBrandTheme({ org, repo, token, siteUrl, colors, brandColors }) {
+export async function saveBrandTheme({
+  org, repo, token, siteUrl, colors, brandColors,
+}) {
   const fields = mapScrapeToBrandThemeFields({ siteUrl, colors, brandColors });
   const brand = slugFromUrl(siteUrl);
   const path = `${THEMES_ASSETS_FOLDER}/${brand}/${brand}-theme.html`;
   const html = buildBrandThemeDoc(brand, fields);
-  await putHtmlSource({ org, repo, token, path, html });
+  await putHtmlSource({
+    org, repo, token, path, html,
+  });
   return { path, brand, fields };
 }
 
 /** List every saved theme (one per brand subfolder), newest first. */
 export async function listThemes({ org, repo, token }) {
-  const brandFolders = await listSource({ org, repo, token, path: THEMES_FOLDER });
+  const brandFolders = await listSource({
+    org, repo, token, path: THEMES_FOLDER,
+  });
   const themes = [];
   for (const folder of brandFolders) {
     if (!folder || typeof folder.name !== 'string' || folder.ext) continue; // skip stray files, only descend into brand folders
     const folderPath = `${THEMES_FOLDER}/${folder.name}`;
-    // eslint-disable-next-line no-await-in-loop -- small folder, sequential is fine and keeps ordering simple
-    const files = await listSource({ org, repo, token, path: folderPath });
+    // eslint-disable-next-line no-await-in-loop -- small folder; sequential keeps ordering
+    const files = await listSource({
+      org, repo, token, path: folderPath,
+    });
     for (const f of files.filter((e) => e && typeof e.name === 'string' && e.name.endsWith('.json'))) {
       const path = `${folderPath}/${f.name}`;
-      // eslint-disable-next-line no-await-in-loop -- small folder, sequential is fine and keeps ordering simple
-      const sheet = await getSource({ org, repo, token, path });
+      // eslint-disable-next-line no-await-in-loop -- small folder; sequential keeps ordering
+      const sheet = await getSource({
+        org, repo, token, path,
+      });
       if (!sheet) continue;
       const fields = fromSheet(sheet);
-      themes.push({ path, name: f.name.replace(/\.json$/, ''), fields, lastModified: f.lastModified || null });
+      themes.push({
+        path, name: f.name.replace(/\.json$/, ''), fields, lastModified: f.lastModified || null,
+      });
     }
   }
   themes.sort((a, b) => (a.name < b.name ? 1 : -1));
@@ -256,7 +272,9 @@ export async function listThemes({ org, repo, token }) {
 
 /** Read the currently-active, published theme (the one every page renders with). */
 export async function getActiveTheme({ org, repo, token }) {
-  const sheet = await getSource({ org, repo, token, path: THEME_PATH });
+  const sheet = await getSource({
+    org, repo, token, path: THEME_PATH,
+  });
   return sheet ? fromSheet(sheet) : {};
 }
 
@@ -265,7 +283,13 @@ export async function getActiveTheme({ org, repo, token }) {
  * just that one file. Every page's runtime picks it up on next fetch — no
  * per-page writes, no site crawl, no fan-out required.
  */
-export async function applyThemeToSite({ org, repo, token, ref, fields }) {
-  await putJsonSource({ org, repo, token, path: THEME_PATH, json: toSheet(fields) });
-  await publishSource({ org, repo, token, ref, path: THEME_PATH });
+export async function applyThemeToSite({
+  org, repo, token, ref, fields,
+}) {
+  await putJsonSource({
+    org, repo, token, path: THEME_PATH, json: toSheet(fields),
+  });
+  await publishSource({
+    org, repo, token, ref, path: THEME_PATH,
+  });
 }

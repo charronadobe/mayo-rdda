@@ -156,7 +156,9 @@ export function track(action) {
       orgId: context.orgId || '',
       importedBrand: context.importedBrand || '',
     };
-    dispatch({ action, fields, aemHost: context.aemHost || '', ts: new Date().toISOString() });
+    dispatch({
+      action, fields, aemHost: context.aemHost || '', ts: new Date().toISOString(),
+    });
   } catch (err) {
     // eslint-disable-next-line no-console
     console.warn('[analytics] track failed:', err && (err.message || err));
