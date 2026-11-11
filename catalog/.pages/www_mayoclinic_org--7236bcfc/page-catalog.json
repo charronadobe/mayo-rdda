@@ -1,0 +1,460 @@
+{
+  "schemaVersion": 2,
+  "url": "https://www.mayoclinic.org/",
+  "title": "The world's best hospital - Mayo Clinic",
+  "timestamp": "2026-11-11T13:54:51.589Z",
+  "duration": "9.8s",
+  "cleanup": {
+    "elementsRemoved": 0,
+    "types": [],
+    "cookieConsentDismissed": false,
+    "lateConsentOverlaysRemoved": 0,
+    "removed": []
+  },
+  "snapshot": {
+    "html": "page.html",
+    "unresolvedSelectors": []
+  },
+  "images": [
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/mayoclinic/images/logos/mayo-clinic-logo.svg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/pt-visitor-Getty-1419492732-415x275.jpg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2025/03/19/1710753_3980687_0060.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/cont-ed-1676659-3734290-0048-C-415x275.jpg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/mccms-Getty-1082003662-415x275.jpg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/10/23/giving-to-mayo-em100063715-p-195580295-415x275.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/12/28/healing-starts-here-MC11REJU-600x800.jpg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/12/28/world-class%20care-MC1XASH-600x800.jpg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Arizona.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Florida.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Minnesota.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/Mayo%20Clinic%20Health%20System.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2024/04/30/Mayo%20Clinic%20Healthcare%20London%20UK.png",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/mayoclinic/images/icons/giving-charity.svg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/mayoclinic/images/badges/Google_Play_Store_badge_EN.svg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/mayoclinic/images/badges/App_Store_Badge_EN.svg",
+      "type": "img"
+    },
+    {
+      "url": "https://assets.mayoclinic.org/content/dam/media/global/images/2023/06/26/photo_innovation_possible-campaign_2400x800.png",
+      "type": "background"
+    }
+  ],
+  "skeleton": {
+    "signature": "sB(s(s,s),s(s(s(s(,),2x1),2x1B,s,5x1,5x1,3x2,2x1),4x1B),3x3B,s)",
+    "nodeMap": {
+      "r": "#cmp-body",
+      "rc1": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1)",
+      "rc1c1": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.aem-Grid.aem-Grid--12.aem-Grid--default--12:nth-of-type(1)",
+      "rc1c2": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+      "rc2": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(3)",
+      "rc2c1": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1)",
+      "rc2c1c1": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1)",
+      "rc2c1c1c1": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div > div.cmp-hero-card > div:nth-of-type(1)",
+      "rc2c1c1c1c1": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div > div.cmp-hero-card > div:nth-of-type(1) > div.cmp-media.cmp-hero-card__media-fullBleed > div.cmp-media__asset-container.cmp-media__hero-full-bleed",
+      "rc2c1c1c1c2": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div > div.cmp-hero-card > div:nth-of-type(1) > div.cmp-media.cmp-hero-card__media-fullBleed > div.cmp-media__overlay",
+      "rc2c1c1c2": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div > div.cmp-hero-card > div.cmp-hero-card__container",
+      "rc2c1c2": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2)",
+      "rc2c1c3": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(3)",
+      "rc2c1c4": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4)",
+      "rc2c1c5": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(5)",
+      "rc2c1c6": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6)",
+      "rc2c1c7": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7)",
+      "rc2c2": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2)",
+      "rc3": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4)",
+      "rc4": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(5)"
+    },
+    "sections": [
+      {
+        "id": "rc1",
+        "selector": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.aem-Grid.aem-Grid--12.aem-Grid--default--12:nth-of-type(1)",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc2",
+        "selector": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc3",
+        "selector": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1)",
+        "layout": null,
+        "hasBg": false,
+        "hint": "block",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      },
+      {
+        "id": "rc4",
+        "selector": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2)",
+        "layout": "4x1",
+        "hasBg": true,
+        "hint": "block",
+        "background": "#0d0d33",
+        "backgroundImage": null,
+        "colored": true,
+        "paintSelector": "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12 > div.aem-container.cmp-container--background-color-donations.cmp-container--container-padding-12x.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12"
+      },
+      {
+        "id": "rc5",
+        "selector": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4)",
+        "layout": "3x3",
+        "hasBg": true,
+        "hint": "block",
+        "background": "#012d61",
+        "backgroundImage": null,
+        "colored": true,
+        "paintSelector": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12 > nav > div.aem-container.cmp-container--background-color-footer.cmp-container--container-padding-4x.cmp-container--container-padding-bottom-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12.cmp-nav-container"
+      },
+      {
+        "id": "rc6",
+        "selector": "#__next > div.aem-page.page.spa.basicpage > div.aem-container.cmp-container--column-padding-0x.cmp-container--new-component-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(5)",
+        "layout": null,
+        "hasBg": false,
+        "hint": "default-content",
+        "background": "#ffffff",
+        "backgroundImage": null,
+        "colored": false,
+        "paintSelector": null
+      }
+    ],
+    "invalidIgnore": []
+  },
+  "pageLayout": {
+    "box": {
+      "y": 104,
+      "height": 4156.796875
+    },
+    "splits": [
+      {
+        "selector": "div#top-advertisement.aem-container.cmp-container--centered > div.aem-GridColumn.aem-GridColumn--default--2",
+        "sides": [
+          [
+            0,
+            0.18181818181818182
+          ]
+        ],
+        "top": 4076.796875,
+        "bottom": 4212.796875,
+        "cover": 0.03271749957712331,
+        "above": 5
+      }
+    ],
+    "start": {
+      "kind": "text on photo"
+    }
+  },
+  "blocks": [
+    {
+      "id": "2bbb90f0729b",
+      "type": "unknown",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(1) > div > div > div:nth-child(1)",
+      "bounds": {
+        "x": 0,
+        "y": 104,
+        "width": 1440,
+        "height": 617
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "button"
+      },
+      "description": "",
+      "features": {
+        "skeleton": "{button ~}",
+        "variant": "{button~k ~k}",
+        "variantClean": "{button~k ~k}"
+      },
+      "screenshot": "blocks/2bbb90f0729b.jpg",
+      "html": "blocks/2bbb90f0729b.html"
+    },
+    {
+      "id": "1e4c04fb7a90",
+      "type": "default-content",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(1) > div > div > div.cmp-hero-card__container > div > div.cmp-hero-card__headline",
+      "bounds": {
+        "x": 72,
+        "y": 505,
+        "width": 673,
+        "height": 80
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "minimal",
+        "imagePattern": "noimg",
+        "hasGrid": false,
+        "structure": "heading"
+      },
+      "description": "cmp-hero-card-headline",
+      "features": {
+        "skeleton": "T",
+        "variant": "Tw",
+        "variantClean": "Tw"
+      },
+      "screenshot": null,
+      "html": "blocks/1e4c04fb7a90.html"
+    },
+    {
+      "id": "2fc9ad2f6d69",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(2)",
+      "bounds": {
+        "x": 0,
+        "y": 721,
+        "width": 1440,
+        "height": 340
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "link + heading + list + field"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "[(T [T])|(T ~({svg combobox T}))]",
+        "variant": "[(Tk [Tb])|(Tk ~k({svg combobox Tn}))]",
+        "variantClean": "[(Tk [Tk])|(Tk ~k({svg combobox Tk}))]"
+      },
+      "screenshot": "blocks/2fc9ad2f6d69.jpg",
+      "html": "blocks/2fc9ad2f6d69.html"
+    },
+    {
+      "id": "cfc2d4d30b24",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(4)",
+      "bounds": {
+        "x": 0,
+        "y": 1159,
+        "width": 1440,
+        "height": 789
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + text + link + image"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "[T|T*1.25]",
+        "variant": "[Tbk|T*1.25]",
+        "variantClean": "[Tk|T*1.25]"
+      },
+      "screenshot": "blocks/cfc2d4d30b24.jpg",
+      "html": "blocks/cfc2d4d30b24.html"
+    },
+    {
+      "id": "dd27fc7c3d31",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(5)",
+      "bounds": {
+        "x": 0,
+        "y": 1948,
+        "width": 1440,
+        "height": 789
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "image + heading + text + link"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "[T*1.25|T]",
+        "variant": "[T*1.25|Tbk]",
+        "variantClean": "[T*1.25|Tk]"
+      },
+      "screenshot": "blocks/dd27fc7c3d31.jpg",
+      "html": "blocks/dd27fc7c3d31.html"
+    },
+    {
+      "id": "4f070576f86e",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(6)",
+      "bounds": {
+        "x": 0,
+        "y": 2738,
+        "width": 1440,
+        "height": 736
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + text + link + image"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "([T|{~@(~) T}] [{~@(~) T}])",
+        "variant": "([Tbk|{~@(~k) Tw}] [{~@(~k) Tw}])",
+        "variantClean": "([Tk|{~@(~k) Tw}] [{~@(~k) Tw}])"
+      },
+      "screenshot": "blocks/4f070576f86e.jpg",
+      "html": "blocks/4f070576f86e.html"
+    },
+    {
+      "id": "c1e6aa2f4ccf",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(1) > div > div:nth-child(7)",
+      "bounds": {
+        "x": 0,
+        "y": 3474,
+        "width": 1440,
+        "height": 555
+      },
+      "visualChars": {
+        "colorScheme": "light",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "heading + text + list + link"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "[T|[T|svg]*2]",
+        "variant": "[Tk|[Tb|svg]*2]",
+        "variantClean": "[Tk|[Tk|svg]*2]"
+      },
+      "screenshot": "blocks/c1e6aa2f4ccf.jpg",
+      "html": "blocks/c1e6aa2f4ccf.html"
+    },
+    {
+      "id": "ee2e012170bb",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#main-content > div > div:nth-child(2)",
+      "bounds": {
+        "x": 0,
+        "y": 4029,
+        "width": 1440,
+        "height": 232
+      },
+      "visualChars": {
+        "colorScheme": "dark",
+        "density": "moderate",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "image + heading + text + link"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "[T|T*1.5]",
+        "variant": "[T|Tw*1.5]",
+        "variantClean": "[T|Tk*1.5|Tw*1.5]"
+      },
+      "screenshot": "blocks/ee2e012170bb.jpg",
+      "html": "blocks/ee2e012170bb.html"
+    },
+    {
+      "id": "80b25aeef810",
+      "type": "columns",
+      "detectionTier": 1,
+      "selector": "#__next > div > div > div:nth-child(4)",
+      "bounds": {
+        "x": 0,
+        "y": 4261,
+        "width": 1440,
+        "height": 853
+      },
+      "visualChars": {
+        "colorScheme": "dark",
+        "density": "dense",
+        "imagePattern": "noimg",
+        "hasGrid": true,
+        "structure": "list + link + heading + image"
+      },
+      "description": "aem-gridcolumn",
+      "features": {
+        "skeleton": "nav",
+        "variant": "nav",
+        "variantClean": "nav"
+      },
+      "screenshot": "blocks/80b25aeef810.jpg",
+      "html": "blocks/80b25aeef810.html"
+    }
+  ],
+  "globalElements": {
+    "header": {
+      "selector": "div.aem-page.page > div:nth-child(1) > div:nth-child(2)"
+    },
+    "footer": {
+      "selector": "#cmp-footer"
+    },
+    "isFirstCapture": true
+  }
+}

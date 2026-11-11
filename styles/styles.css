@@ -1,3 +1,5 @@
+@import url('brand.css');
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -9,6 +11,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
 /*
  :root {
   --brand-theme-color: #ff0000;
@@ -23,21 +26,23 @@
 
 :root {
   /* colors */
-  --background-color: var(--brand-background-color, #ffffff);
+  --background-color: var(--brand-background-color, #fff);
   --dark-color: var(--brand-dark-color, #131313);
   --light-color: var(--brand-light-color, #dcdcdc);
   --text-color: var(--brand-text-color, #131313);
-  --text-light: var(--brand-light-text-color, #ffffff);
-  --text-disabled:rgb(113, 113, 113);
+  --text-light: var(--brand-light-text-color, #fff);
+  --text-disabled:rgb(113 113 113);
   --link-color: var(--brand-link-color, #131313);
   --link-hover-color: var(--brand-link-hover-color, #ffc719);
   --main-accent-color: var(--brand-theme-color, #ffc719);
-  --dark-color-opacity: rgba(0, 0, 0, 0.55);
-  --light-color-opacity: rgba(255, 255, 255, 0.5);
+  --dark-color-opacity: rgb(0 0 0 / 55%);
+  --light-color-opacity: rgb(255 255 255 / 50%);
+  --link-pressed-color: var(--brand-link-pressed-color, #002443);
+  --focus-color: var(--brand-focus-color, #0057b8);
 
   /* fonts */
-  --body-font-family: 'Adobe Clean', roboto, roboto-fallback, sans-serif;
-  --heading-font-family: 'Adobe Clean Bold', roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: var(--brand-body-font-family);
+  --heading-font-family: var(--brand-heading-font-family);
   --light-font-family: 'Adobe Clean Light', roboto, roboto-fallback, sans-serif;
   --extra-font-family: 'Adobe Clean Extra Bold', roboto, roboto-fallback, sans-serif;
   --black-font-family: 'Adobe Clean Black', roboto, roboto-fallback, sans-serif;
@@ -296,40 +301,51 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-size: var(--brand-body-font-size);
+  line-height: var(--brand-body-line-height);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
 }
 
 body.appear {
   display: block;
 }
+
 body.gray-theme {
   filter: grayscale(100%);
 }
+
 body.red-theme {
-  --link-hover-color: #ff0000;
-  --main-accent-color: #ff0000;
-}
-body.blue-theme {
-  --link-hover-color: #0000ff;
-  --main-accent-color: #0000ff;
-}
-body.green-theme {
-  --link-hover-color: #00ff00;
-  --main-accent-color: #00ff00;
+  --link-hover-color: #f00;
+  --main-accent-color: #f00;
 }
 
+body.blue-theme {
+  --link-hover-color: #00f;
+  --main-accent-color: #00f;
+}
+
+body.green-theme {
+  --link-hover-color: #0f0;
+  --main-accent-color: #0f0;
+}
+
+/* source header is a static white bar (not sticky): 72px mobile, 104px desktop */
 header {
   height: auto;
-  min-height: 90px;
-  position: sticky;
+  min-height: 72px;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   z-index: 111;
+}
+
+@media (width >= 1200px) {
+  header {
+    min-height: 104px;
+  }
 }
 
 header .header,
@@ -348,36 +364,53 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text-color);
   font-family: var(--heading-font-family);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.25;
   scroll-margin: 40px;
 }
 
 h1 {
-  font-size: var(--heading-font-size-xxl);
+  font-size: var(--brand-heading-font-size-xxl);
+  font-weight: 300;
+  line-height: 1.0833;
 }
 
 h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--brand-heading-font-size-xl);
+  line-height: 1.25;
 }
 
 h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: var(--brand-heading-font-size-l);
+  line-height: 1.3333;
 }
 
 h4 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--brand-heading-font-size-m);
 }
 
 h5 {
-  font-size: var(--heading-font-size-s);
+  font-size: var(--brand-heading-font-size-s);
 }
 
 h6 {
-  font-size: var(--heading-font-size-xs);
+  font-size: var(--brand-heading-font-size-xs);
+}
+
+@media (width >= 600px) {
+  h2 {
+    line-height: 1.1;
+  }
+}
+
+@media (width >= 1200px) {
+  h1 {
+    line-height: 1.0526;
+  }
 }
 
 p,
@@ -386,8 +419,13 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+strong,
+b {
+  font-weight: 700;
 }
 
 code,
@@ -422,76 +460,32 @@ button {
   font: inherit;
 }
 
-/* links */
-/* buttons */
-a, a:any-link, a.button:any-link,
-button {
-  display: inline-block;
-  padding: 0;
-  background-color: transparent;
+/* links (source: .cmp-text__rich-content a) */
+a:any-link {
   color: var(--link-color);
-  text-decoration: none;
-  outline: none;
-  border: none;
-  border-radius: 0;
-  font-size: 16px;
-  font-family: var(--heading-font-family);
-  line-height: 20px;
-  font-weight: 500;
-  text-align: left;
+  text-decoration: underline;
   overflow-wrap: break-word;
-  cursor: pointer;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-/* buttons */
-p.button-wrapper {
-  margin: 12px 0;
+a:active {
+  color: var(--link-pressed-color);
 }
 
-a::after, a.button::after {
-  font-family: 'Font Awesome 5 Solid';
-  content: "\f105";
-  color: var(--link-color);
-  font-size: 16px;
-  font-weight: 100;
-  width: 15px;
-  height: 20px;
-  float: right;
-  margin-left: 0;
-  margin-top: 0;
-  border: none;
-  border-radius: 0;
-  padding: 1px 10px;
+button {
   cursor: pointer;
 }
 
-a.button[aria-disabled="true"],
-button.button:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
-}
-a:hover,
-a:focus,
-a.button:hover,
-a.button:focus {
-  color: var(--link-hover-color);
-  text-decoration: underline;
-  cursor: pointer;
-}
-a:hover::after,
-a:focus::after,
-a.button:hover::after,
-a.button:focus::after {
-  color: var(--link-hover-color);
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed var(--focus-color);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 button:disabled,
@@ -499,26 +493,84 @@ button:disabled:hover {
   color: var(--text-disabled);
   cursor: unset;
 }
-button:disabled::after,
-button:disabled:hover::after {
-  color: var(--text-disabled);
-  cursor: unset;
+
+/* EDS button reset */
+main .button-container {
+  display: inline;
 }
 
-a.button.primary,
+main a.button:any-link {
+  background: none;
+  border: none;
+  border-radius: 0;
+  color: var(--link-color);
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  white-space: normal;
+}
+
+/* buttons */
+p.button-wrapper {
+  margin: 24px 0 0;
+}
+
+a.button[aria-disabled="true"],
+button.button:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* pill button, secondary (source: .cmp-button__inner--type-pill.--color-secondary) */
+main a.button.primary:any-link,
 button.button.primary {
-  border-color: var(--text-color);
-  background-color: var(--text-color);
-  color: var(--background-color);
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 12px 24px;
+  border: 2px solid var(--link-color);
+  border-radius: var(--brand-pill-radius);
+  background-color: transparent;
+  color: var(--link-color);
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
-a.button.primary:hover,
-a.button.primary:focus-visible,
-button.button.primary:hover,
-button.button.primary:focus-visible {
-  border-color: var(--dark-color);
-  background-color: var(--dark-color);
-  color: var(--light-color);
+main a.button.primary:hover,
+button.button.primary:hover {
+  border-color: var(--link-hover-color);
+  color: var(--link-hover-color);
+  text-decoration: none;
+}
+
+main a.button.primary:active,
+button.button.primary:active {
+  border-color: var(--link-pressed-color);
+  color: var(--link-pressed-color);
+}
+
+/* the same pill on a dark section is solid (source: --type-pill.--color-primary) */
+main .section.dark a.button.primary:any-link {
+  padding: 12px 24px;
+  border: 0;
+  background-color: var(--link-color);
+  color: var(--text-light);
+}
+
+main .section.dark a.button.primary:hover {
+  background-color: var(--link-hover-color);
+  color: var(--text-light);
+}
+
+main .section.dark a.button.primary:active {
+  background-color: var(--link-pressed-color);
 }
 
 a.button.primary[aria-disabled="true"],
@@ -586,6 +638,12 @@ button.button.accent:disabled:focus-visible {
   color: var(--dark-color);
 }
 
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 main img {
   max-width: 100%;
   width: auto;
@@ -605,127 +663,86 @@ main img {
 
 
 
-/* Image Hover Effect Shine - start */
-main picture {
-  display: block;
-	position: relative;
-  overflow: hidden;
-}
-main picture::before {
-	position: absolute;
-	top: 0;
-	left: -75%;
-	z-index: 111;
-	display: block;
-	content: '';
-	width: 50%;
-	height: 100%;
-	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
-	-webkit-transform: skewX(-25deg);
-	transform: skewX(-25deg);
-}
-main picture:hover::before {
-	-webkit-animation: shine .75s;
-	animation: shine .75s;
-}
-@-webkit-keyframes shine {
-	100% {
-		left: 125%;
-	}
-}
-@keyframes shine {
-	100% {
-		left: 125%;
-	}
-}
-/* Image Hover Effect Shine - end */
-
-
-
-
-
-
-/* Parallax effect - Start */
+/* page frame: no parallax/scroll container, the document scrolls normally */
 html {
   overflow-x: hidden;
 }
 
-body {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-perspective: 1px;
-  perspective: 1px;
+main picture {
+  display: block;
 }
 
-main {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-
-/* Parallax only the hero itself, so other blocks in the same section scroll normally. */
-main .hero-container {
-  transform-style: preserve-3d;
-  padding: 0;
-}
-
-main .hero-container > .hero-wrapper {
-  -webkit-transform: translateZ(-1px) scale(2);
-  transform: translateZ(-1px) scale(2);
-}
-main .cards-container {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-.adobe-ue-edit header, .adobe-ue-preview header {
-  position: initial;
-}
-.adobe-ue-edit body, .adobe-ue-preview body {
-  height: initial;
-  perspective: initial;
-  overflow: initial;
-}
-.adobe-ue-edit main, .adobe-ue-preview main {
-  min-height: 100px;
-}
-.adobe-ue-edit main .hero-container, .adobe-ue-preview main .hero-container {
-  margin: initial !important;
-  transform: initial;
-}
-
-.adobe-ue-edit main .hero-container > .hero-wrapper,
-.adobe-ue-preview main .hero-container > .hero-wrapper {
-  transform: initial;
-}
-.adobe-ue-edit main .cards-container, .adobe-ue-preview main .cards-container {
-  transform: initial;
-}
-/* Parallax effect - End */
-
-
-
-/* sections */
+/* sections (source: 1296px content column, 64px bottom spacing on desktop) */
 main > .section {
-  margin: 40px 0;
-  min-height: 50px;
+  margin: 0;
+  padding: 0 0 var(--brand-section-spacing);
+  min-height: 0;
 }
 
 main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+  max-width: calc(var(--brand-content-max-width) + (2 * var(--brand-page-gutter)));
+  margin: 0 auto;
+  padding: 0 var(--brand-page-gutter);
 }
 
 main > .section:first-of-type {
   margin-top: 0;
 }
 
+main .default-content-wrapper > :last-child {
+  margin-bottom: 0;
+}
+
+/* dark band (source: .cmp-container--background-color-donations) */
+main > .section.dark {
+  margin-bottom: var(--brand-section-spacing);
+  padding: 48px 0;
+  background-color: var(--dark-color);
+  color: var(--text-light);
+}
+
+/* a dark band that ends the page sits flush against the footer */
+main > .section.dark:last-child {
+  margin-bottom: 0;
+}
+
+main > .section.dark h1,
+main > .section.dark h2,
+main > .section.dark h3,
+main > .section.dark h4,
+main > .section.dark h5,
+main > .section.dark h6,
+main > .section.dark p {
+  color: var(--text-light);
+}
+
+main > .section.dark a:any-link:not(.button) {
+  color: var(--text-light);
+}
+
+main > .section.dark a:hover:not(.button) {
+  color: var(--brand-link-inverse-hover-color);
+}
+
+/* split: default content sits beside the block (source: 1/3 + 2/3 columns, 36px gutter) */
 @media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
+  main > .section.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    column-gap: 36px;
+    align-items: start;
+    max-width: calc(var(--brand-content-max-width) + (2 * var(--brand-page-gutter)));
+    margin-inline: auto;
+    padding-inline: var(--brand-page-gutter);
+  }
+
+  main > .section.split > div {
+    max-width: none;
+    margin: 0;
+    padding: 0;
   }
 }
+
 
 /* section metadata */
 main .section.light,
@@ -845,6 +862,7 @@ main .section[data-sec-full-width="true"] {
   width: 100%;
   max-width: 100%;
 }
+
 main > .section[data-sec-full-width="true"] > div {
   max-width: 100%;
   margin: 0;
@@ -856,14 +874,17 @@ main > .section[data-sec-full-width="true"] > div {
 main .section.bg-default {
   background-color: var(--background-color);
 }
+
 main .section.bg-theme {  
   background-color: var(--main-accent-color);
   color: var(--text-color);
 }
+
 main .section.bg-dark {
   background-color: var(--dark-color);
   color: var(--text-light); 
 }
+
 main .section.bg-light {
   background-color: var(--light-color);
   color: var(--text-color);
@@ -873,13 +894,12 @@ main .section.bg-light {
 
 
 /* Responsive styles- start */
-@media (max-width: 1024px) {
+@media (width <= 1024px) {
   :root {
     /* Adjust font sizes for mobile */
     --body-font-size-m: 18px;
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
-    
     --heading-font-size-xxl: 40px;
     --heading-font-size-xl: 34px; 
     --heading-font-size-l: 28px;
@@ -896,19 +916,15 @@ main .section.bg-light {
     --spacing-xlarge: 2.5rem;
   }
 
-  main .section {
-    padding: 0;
-  }
 
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   :root {
     /* Further reduce sizes for small mobile */
     --body-font-size-m: 16px;
     --body-font-size-s: 14px;
     --body-font-size-xs: 12px;
-    
     --heading-font-size-xxl: 32px;
     --heading-font-size-xl: 28px;
     --heading-font-size-l: 24px;
@@ -927,11 +943,6 @@ main .section.bg-light {
 
 }
 
-/* Ensure images are responsive */
-img {
-  max-width: 100%;
-  height: auto;
-}
 
 /* Make tables responsive */
 table {
@@ -941,7 +952,7 @@ table {
 }
 
 /* Ensure proper box sizing */
-*, *:before, *:after {
+*, *::before, *::after {
   box-sizing: border-box;
 }
 

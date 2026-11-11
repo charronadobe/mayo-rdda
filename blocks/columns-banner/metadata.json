@@ -1,0 +1,31 @@
+{
+  "variantName": "columns-banner",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Full-width single-row band with heading, paragraph and a CTA side by side; stacks on mobile. Pair with a dark section style for the navy band",
+    "description": "Dark navy (#0d0d33) full-width band; white serif H2 left, white paragraph middle, solid blue pill button 'Advance Research' right, in one row."
+  },
+  "contentPattern": {
+    "structure": "H2 heading | Paragraph | CTA link",
+    "description": "Fixed set of different content side by side in one row (visual tree layout 4x1, hint block). No existing columns variants in blocks/; Single row: heading, paragraph and button inline in a full-width band",
+    "blockContent": "Three items in a row: H2 'From research to reality, faster', paragraph, CTA 'Advance Research'",
+    "table": [
+      [
+        "Columns Banner"
+      ],
+      [
+        "H2 heading",
+        "Paragraph",
+        "CTA link"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-banner"
+  ],
+  "usage": "Full-width single-row band with heading, paragraph and a CTA side by side; stacks on mobile. Pair with a dark section style for the navy band.",
+  "reuseGuidance": "Use for a one-row promo/CTA band. One row with three cells: heading, paragraph, CTA link. Set section metadata style \"dark\" for the colored band.",
+  "sourceUrl": "https://www.mayoclinic.org/"
+}

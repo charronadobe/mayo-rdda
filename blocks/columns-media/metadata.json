@@ -1,0 +1,30 @@
+{
+  "variantName": "columns-media",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Text column beside a tall portrait image; the authored cell order decides which side the image is on",
+    "description": "Text left (H2, bold subheadings as paragraphs, body, inline link, outlined pill button), tall portrait photo right; generous vertical spacing. | Mirror of previous band: portrait photo left, text right (H2, paragraph, outlined pill button 'International services')."
+  },
+  "contentPattern": {
+    "structure": "Text: H2, paragraphs, link, CTA | Portrait image",
+    "description": "Fixed pair of different content (text and image) side by side that never wraps into a grid. No existing columns variants in blocks/; Two columns: text block beside a tall portrait image, order alternates | Fixed image/text pair side by side. No existing columns variants in blocks/; Same image/text 50-50 pattern as s3q1, image first",
+    "blockContent": "Two side-by-side columns: text (H2 'Healing starts here', two bold lead-ins with paragraphs, link, CTA 'Why choose Mayo Clinic') and portrait image | Two side-by-side columns: portrait image and text (H2, paragraph, CTA)",
+    "table": [
+      [
+        "Columns Media"
+      ],
+      [
+        "Text: H2, paragraphs, link, CTA",
+        "Portrait image"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-media"
+  ],
+  "usage": "Text column beside a tall portrait image; the authored cell order decides which side the image is on.",
+  "reuseGuidance": "Use for a fixed text/image pair. Put the image in the first cell to show it on the left, or in the second cell for the right. On mobile the image stacks above the text.",
+  "sourceUrl": "https://www.mayoclinic.org/"
+}

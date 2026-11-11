@@ -1,0 +1,118 @@
+/* columns-media: text beside a tall 3:4 portrait image (source: .cmp-story-card--tall) */
+
+/* mobile: text first, then the image full-bleed across the page gutters */
+.columns-media .columns-media-row {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.columns-media .columns-media-row + .columns-media-row {
+  margin-top: 40px;
+}
+
+.columns-media .columns-media-text-col {
+  order: 0;
+  padding-right: 12px;
+  color: rgb(8 8 8);
+}
+
+.columns-media .columns-media-img-col {
+  order: 1;
+  margin: 0 calc(-1 * var(--brand-page-gutter));
+}
+
+.columns-media .columns-media-text-col h2 {
+  margin: 0;
+  padding-bottom: 16px;
+  font-family: mayo-display, Georgia, serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+  color: rgb(8 8 8);
+}
+
+.columns-media .columns-media-text-col p {
+  margin: 0 0 12px;
+  font-family: mayo-sans, Arial, "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  color: rgb(8 8 8);
+}
+
+/* bold lead-in paragraphs sit directly on top of their body text */
+.columns-media .columns-media-text-col p:has(> strong:only-child):not(.button-wrapper) {
+  margin-bottom: 0;
+}
+
+.columns-media .columns-media-text-col > :last-child {
+  margin-bottom: 0;
+}
+
+/* CTA pill: 32px below the copy (pill itself comes from global styles) */
+.columns-media .columns-media-text-col p.button-wrapper {
+  margin-top: 32px;
+}
+
+.columns-media .columns-media-img-col picture,
+.columns-media .columns-media-img-col img {
+  display: block;
+  width: 100%;
+}
+
+.columns-media .columns-media-img-col img {
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background-color: rgb(235 235 235);
+}
+
+@media (width >= 600px) {
+  .columns-media .columns-media-text-col h2 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+}
+
+/* desktop: 12-column grid, text spans 4 columns, image 5, one empty column at
+   each edge and between them; the text is centered against the image */
+@media (width >= 900px) {
+  .columns-media .columns-media-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 0 24px;
+    align-items: center;
+  }
+
+  .columns-media .columns-media-row + .columns-media-row {
+    margin-top: 64px;
+  }
+
+  .columns-media .columns-media-text-col {
+    grid-row: 1;
+    grid-column: 2 / span 4;
+  }
+
+  .columns-media .columns-media-img-col {
+    grid-row: 1;
+    grid-column: 7 / span 5;
+    margin: 0;
+  }
+
+  /* image authored first: mirror the layout */
+  .columns-media .columns-media-img-first .columns-media-img-col {
+    grid-column: 2 / span 5;
+  }
+
+  .columns-media .columns-media-img-first .columns-media-text-col {
+    grid-column: 8 / span 4;
+  }
+
+  .columns-media .columns-media-text-col p {
+    margin-bottom: 20px;
+  }
+
+  .columns-media .columns-media-img-col img {
+    border-radius: 8px;
+  }
+}

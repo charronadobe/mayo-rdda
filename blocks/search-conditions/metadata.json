@@ -1,0 +1,38 @@
+{
+  "variantName": "search-conditions",
+  "baseBlock": "search",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Labelled pill-shaped search input that submits to a search results page, with optional type-ahead suggestions from a JSON index",
+    "description": "Two-column band: left H2 plus A-Z letters rendered as small outlined circles; right a labelled pill-shaped search input with magnifier icon. Divider (hr) below."
+  },
+  "contentPattern": {
+    "structure": "Label text, e.g. Search diseases & conditions; then Link to the search results page; then Optional: link to a JSON index for suggestions; then Optional: placeholder text",
+    "description": "Interactive search input component; cannot be authored as default content. No existing search variants in blocks/; Single labelled pill search input with type-ahead, no results list on page",
+    "blockContent": "Search diseases & conditions input with type-ahead suggestions",
+    "table": [
+      [
+        "Search Conditions"
+      ],
+      [
+        "Label text, e.g. Search diseases & conditions"
+      ],
+      [
+        "Link to the search results page"
+      ],
+      [
+        "Optional: link to a JSON index for suggestions"
+      ],
+      [
+        "Optional: placeholder text"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "search-conditions"
+  ],
+  "usage": "Labelled pill-shaped search input that submits to a search results page, with optional type-ahead suggestions from a JSON index.",
+  "reuseGuidance": "Use for a standalone topic search field (no on-page result list). Row: label text. Row: link to the search results page (query sent as ?q=). Optional row: link to a JSON index (title + path) for suggestions. Optional row: placeholder text.",
+  "sourceUrl": "https://www.mayoclinic.org/"
+}

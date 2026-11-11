@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/",
+  "path": "index",
+  "timestamp": "2026-11-11T14:13:29.557Z",
+  "title": "The world's best hospital - Mayo Clinic",
+  "template": "home",
+  "blocks": [
+    "hero-video",
+    "search-conditions",
+    "columns-media",
+    "columns-media",
+    "cards-overlay",
+    "cards-link-list",
+    "columns-banner"
+  ],
+  "importScript": "1adb0c97033c"
+}

@@ -1,0 +1,34 @@
+{
+  "variantName": "cards-overlay",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Grid of photo cards with the linked title and subtitle overlaid on a dark gradient at the bottom of the image; the whole card is clickable",
+    "description": "Intro (H2, paragraph, outlined pill button) occupies first grid cell; five location cards fill a 3-column grid, each a photo with bottom dark gradient and white serif title with chevron plus subtitle overlaid."
+  },
+  "contentPattern": {
+    "structure": "Image | Linked H3 title, subtitle; then Image | Linked H3 title, subtitle",
+    "description": "Repeating look-alike items that each link to a detail page and wrap in a grid. No existing cards variants in blocks/; Photo cards with dark gradient and title/subtitle overlaid at bottom",
+    "blockContent": "Five location cards: image, linked H3 title (e.g. 'Mayo Clinic in Arizona'), location subtitle",
+    "table": [
+      [
+        "Cards Overlay"
+      ],
+      [
+        "Image",
+        "Linked H3 title, subtitle"
+      ],
+      [
+        "Image",
+        "Linked H3 title, subtitle"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-overlay"
+  ],
+  "usage": "Grid of photo cards with the linked title and subtitle overlaid on a dark gradient at the bottom of the image; the whole card is clickable.",
+  "reuseGuidance": "Use for linked location/destination cards. One row per card: image cell, then body cell with a linked heading (H3) and a short subtitle. Put any intro heading/CTA as default content before the block.",
+  "sourceUrl": "https://www.mayoclinic.org/"
+}
