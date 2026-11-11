@@ -6,8 +6,11 @@ const isDesktop = window.matchMedia('(width >= 1200px)');
  * @returns {Promise<Element|null>} a container holding the fragment's section divs
  */
 async function fetchNav() {
-  let resp = await fetch('/content/nav.plain.html');
-  if (!resp.ok) resp = await fetch('/nav.plain.html');
+  // local preview pages live under /content; DA/EDS serves the fragment at the site root.
+  // Asking for the right one first avoids a 404 in the console on every page.
+  const local = window.location.pathname.startsWith('/content/');
+  let resp = local ? await fetch('/content/nav.plain.html') : await fetch('/nav.plain.html');
+  if (!resp.ok) resp = local ? await fetch('/nav.plain.html') : await fetch('/content/nav.plain.html');
   if (!resp.ok) return null;
   const html = await resp.text();
   const container = document.createElement('div');

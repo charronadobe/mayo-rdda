@@ -3,8 +3,11 @@
  * @returns {Promise<Element|null>} a container holding the fragment's section divs
  */
 async function fetchFooter() {
-  let resp = await fetch('/content/footer.plain.html');
-  if (!resp.ok) resp = await fetch('/footer.plain.html');
+  // local preview pages live under /content; DA/EDS serves the fragment at the site root.
+  // Asking for the right one first avoids a 404 in the console on every page.
+  const local = window.location.pathname.startsWith('/content/');
+  let resp = local ? await fetch('/content/footer.plain.html') : await fetch('/footer.plain.html');
+  if (!resp.ok) resp = local ? await fetch('/footer.plain.html') : await fetch('/content/footer.plain.html');
   if (!resp.ok) return null;
   const container = document.createElement('div');
   container.innerHTML = await resp.text();
