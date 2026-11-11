@@ -10,11 +10,17 @@ import { TEXTS_PATH } from '../config.js';
 
 /** Read the merged, grouped-by-component texts object. `{}` on first run. */
 export async function readTexts({ org, repo, token }) {
-  const json = await getSource({ org, repo, token, path: TEXTS_PATH });
+  const json = await getSource({
+    org, repo, token, path: TEXTS_PATH,
+  });
   return (json && typeof json === 'object' && !Array.isArray(json)) ? json : {};
 }
 
 /** Overwrite the stored texts object. Caller merges client-side before calling. */
-export async function writeTexts({ org, repo, token, texts }) {
-  await putJsonSource({ org, repo, token, path: TEXTS_PATH, json: texts });
+export async function writeTexts({
+  org, repo, token, texts,
+}) {
+  await putJsonSource({
+    org, repo, token, path: TEXTS_PATH, json: texts,
+  });
 }

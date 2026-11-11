@@ -1,0 +1,60 @@
+/* Mayo Clinic brand tokens, extracted from https://www.mayoclinic.org/ */
+:root {
+  /* fonts */
+  --brand-body-font-family: mayo-sans, arial, 'Helvetica Neue', sans-serif;
+  --brand-heading-font-family: mayo-display, georgia, serif;
+  --brand-serif-font-family: mayo-serif, georgia, serif;
+
+  /* colors */
+  --brand-background-color: #fff;
+  --brand-text-color: #080808;
+  --brand-text-secondary-color: #686868;
+  --brand-light-text-color: #fff;
+  --brand-link-color: #0057b8;
+  --brand-link-hover-color: #1371d5;
+  --brand-link-pressed-color: #002443;
+  --brand-link-inverse-hover-color: #e1f0ff;
+  --brand-dark-color: #0d0d33;
+  --brand-light-color: #f2f2f2;
+  --brand-theme-color: #0057b8;
+  --brand-focus-color: #0057b8;
+
+  /* spacing */
+  --brand-content-max-width: 1296px;
+  --brand-page-gutter: 20px;
+  --brand-section-spacing: 40px;
+  --brand-nav-height: 61px;
+
+  /* heading sizes (mobile) */
+  --brand-heading-font-size-xxl: 48px;
+  --brand-heading-font-size-xl: 32px;
+  --brand-heading-font-size-l: 24px;
+  --brand-heading-font-size-m: 20px;
+  --brand-heading-font-size-s: 18px;
+  --brand-heading-font-size-xs: 16px;
+
+  /* body */
+  --brand-body-font-size: 20px;
+  --brand-body-line-height: 28px;
+  --brand-pill-radius: 24px;
+}
+
+@media (width >= 600px) {
+  :root {
+    --brand-heading-font-size-xl: 40px;
+  }
+}
+
+@media (width >= 900px) {
+  :root {
+    --brand-page-gutter: 48px;
+    --brand-section-spacing: 64px;
+  }
+}
+
+@media (width >= 1200px) {
+  :root {
+    --brand-page-gutter: 72px;
+    --brand-heading-font-size-xxl: 76px;
+  }
+}

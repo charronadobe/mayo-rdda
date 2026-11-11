@@ -1,0 +1,12 @@
+{
+  "type": "da",
+  "sites": {
+    "mayo-rdda": {
+      "previewOrg": "charronadobe",
+      "previewSite": "mayo-rdda",
+      "contentHostUrl": "https://content.da.live/charronadobe/mayo-rdda/",
+      "libraryUrl": "https://main--mayo-rdda--charronadobe.aem.page",
+      "botProtected": true
+    }
+  }
+}

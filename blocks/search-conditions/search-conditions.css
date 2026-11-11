@@ -1,0 +1,187 @@
+/* stylelint-disable no-descending-specificity -- section-scoped letter links precede suggestion styles */
+
+/* section: A-Z letters (default content) beside the search, source .cmp-search band */
+main > .section.search-conditions-container {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+main > .section.search-conditions-container > div {
+  padding-inline: 28px;
+}
+
+/* source alphabet heading: mayo-display 32px/40px, 12px below */
+main .section.search-conditions-container .default-content-wrapper h2 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+main .section.search-conditions-container .default-content-wrapper ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 48px);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main .section.search-conditions-container .default-content-wrapper li {
+  margin: 0;
+}
+
+main .section.search-conditions-container .default-content-wrapper ul a:any-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+  border: 1px solid currentcolor;
+  border-radius: 1000px;
+  color: var(--brand-link-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  text-decoration: none;
+}
+
+main .section.search-conditions-container .default-content-wrapper ul a:hover {
+  color: var(--brand-link-hover-color);
+}
+
+main .section.search-conditions-container .default-content-wrapper ul a:active {
+  color: var(--brand-link-pressed-color);
+}
+
+/* block */
+.search-conditions {
+  padding-bottom: 16px;
+  color: var(--brand-text-color);
+}
+
+.search-conditions .search-conditions-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.search-conditions .search-conditions-label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22.4px;
+  color: var(--brand-text-color);
+}
+
+.search-conditions .search-conditions-hint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.search-conditions .search-conditions-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.search-conditions .search-conditions-box .icon-search {
+  position: absolute;
+  left: 17px;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.search-conditions .search-conditions-box .icon-search img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.search-conditions .search-conditions-input {
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  padding: 0 16px 0 48px;
+  box-sizing: border-box;
+  border: 1px solid var(--brand-text-color);
+  border-radius: 1000px;
+  background: transparent;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 16px;
+  line-height: 16px;
+  appearance: none;
+}
+
+.search-conditions .search-conditions-input::placeholder {
+  color: var(--brand-text-secondary-color);
+  opacity: 1;
+}
+
+.search-conditions .search-conditions-input:focus-visible {
+  outline: 2px solid var(--brand-focus-color);
+  outline-offset: 2px;
+}
+
+.search-conditions .search-conditions-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin: 4px 0 0;
+  padding: 8px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.search-conditions .search-conditions-suggestions[hidden] {
+  display: none;
+}
+
+.search-conditions .search-conditions-suggestions a {
+  display: block;
+  padding: 8px 16px;
+  color: var(--brand-text-color);
+}
+
+.search-conditions .search-conditions-suggestions [aria-selected='true'] a {
+  background: rgb(0 0 0 / 6%);
+}
+
+@media (width >= 900px) {
+  /* source: alphabet 628px + 32px gap + search 636px in the 1296px column */
+  main > .section.split.search-conditions-container {
+    grid-template-columns: minmax(0, 157fr) minmax(0, 159fr);
+    column-gap: 32px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  main > .section.split.search-conditions-container > div {
+    padding-inline: 0;
+  }
+
+  .search-conditions {
+    padding-bottom: 0;
+  }
+
+  .search-conditions .search-conditions-label {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .search-conditions .search-conditions-input {
+    font-size: 20px;
+    line-height: 20px;
+  }
+}

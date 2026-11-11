@@ -148,7 +148,9 @@ export async function fetchStructuredContent({ org, repo, path }) {
   return normalizeStructuredContent(json, path, org, repo);
 }
 
-export async function listStructuredContent({ org, repo, token, folders }) {
+export async function listStructuredContent({
+  org, repo, token, folders,
+}) {
   const folderList = (folders && folders.length)
     ? folders
     : await fetchStructuredFolders({ org, repo, token });
@@ -159,7 +161,9 @@ export async function listStructuredContent({ org, repo, token, folders }) {
   async function visit(path, folderRoot, editorBase, depth = 0) {
     if (depth > 6 || seen.has(path)) return;
     seen.add(path);
-    const entries = await listSource({ org, repo, token, path });
+    const entries = await listSource({
+      org, repo, token, path,
+    });
     const pending = [];
     for (const entry of entries) {
       const nextPath = childPath(path, entry, org, repo);

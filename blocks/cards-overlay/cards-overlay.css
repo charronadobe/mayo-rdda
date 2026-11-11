@@ -1,0 +1,174 @@
+/* source: .cmp-column-control__layoutType--ThreeColumn (cells padded 8px mobile / 12px desktop) */
+.cards-overlay {
+  --cards-overlay-cell: 8px;
+
+  margin-inline: calc(-1 * var(--cards-overlay-cell));
+  color: var(--brand-text-color);
+}
+
+.cards-overlay > ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* source: .cmp-image-video-card */
+.cards-overlay .cards-overlay-card {
+  position: relative;
+  padding: var(--cards-overlay-cell);
+}
+
+.cards-overlay .cards-overlay-card-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.cards-overlay .cards-overlay-card-image p {
+  margin: 0;
+}
+
+.cards-overlay .cards-overlay-card-image picture,
+.cards-overlay .cards-overlay-card-image img {
+  display: block;
+  width: 100%;
+}
+
+.cards-overlay .cards-overlay-card-image img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* source: .cmp-media__overlay */
+.cards-overlay .cards-overlay-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(0 0 0 / 0%) 40%, rgb(0 0 0 / 64%) 100%);
+  pointer-events: none;
+}
+
+/* source: .cmp-image-video-card__content-container */
+.cards-overlay .cards-overlay-card-body {
+  position: absolute;
+  inset: auto var(--cards-overlay-cell) var(--cards-overlay-cell);
+  z-index: 1;
+  padding: 0 24px 16px;
+  color: rgb(255 255 255);
+}
+
+/* source: .cmp-title__text--headline-serif-medium */
+.cards-overlay .cards-overlay-card-body h3 {
+  margin: 0 0 4px;
+  color: rgb(255 255 255);
+  font-family: var(--brand-heading-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3333;
+}
+
+/* source: .cmp-image-video-card__description */
+.cards-overlay .cards-overlay-card-body p {
+  margin: 0 0 8px;
+  color: rgb(255 255 255);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  line-height: 22.4px;
+}
+
+.cards-overlay .cards-overlay-card-body a:any-link {
+  color: rgb(255 255 255);
+  text-decoration: none;
+}
+
+.cards-overlay .cards-overlay-card-body a:hover {
+  color: rgb(255 255 255);
+  text-decoration: underline;
+}
+
+/* intro (default content) above the block: source cells add 8px below the intro */
+main .default-content-wrapper + .cards-overlay-wrapper > .cards-overlay {
+  margin-top: var(--cards-overlay-cell);
+}
+
+/* whole card clickable */
+.cards-overlay .cards-overlay-card-link::before {
+  content: '';
+  position: absolute;
+  inset: var(--cards-overlay-cell);
+  border-radius: 8px;
+}
+
+/* source: .cmp-icon.icon__chevron-right.cmp-icon--size-16
+   zero net advance keeps the chevron on the last word's line (source: .cmp-title__no-break);
+   it overhangs into the body's 24px end padding */
+.cards-overlay .cards-overlay-card-link::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-inline: 0.25em calc(-0.25em - 16px);
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5.707 13.707L4.293 12.293 8.586 8 4.293 3.707 5.707 2.293 11.414 8 5.707 13.707z'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+}
+
+@media (width >= 600px) {
+  .cards-overlay > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 900px) {
+  .cards-overlay {
+    --cards-overlay-cell: 12px;
+
+    margin: calc(-1 * var(--cards-overlay-cell));
+  }
+
+  .cards-overlay > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cards-overlay .cards-overlay-card-body p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  /*
+   * Source puts the intro text card in the first cell of the 3-column grid.
+   * Stack the intro and the block in one grid cell; the intro takes the first
+   * card-sized cell and the cards start in column 2.
+   */
+  main > .section.cards-overlay-container:has(> .default-content-wrapper) {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+
+  main > .section.cards-overlay-container:has(> .default-content-wrapper) > .default-content-wrapper,
+  main > .section.cards-overlay-container:has(> .default-content-wrapper) > .cards-overlay-wrapper {
+    grid-area: 1 / 1;
+  }
+
+  main > .section.cards-overlay-container:has(> .default-content-wrapper) > .default-content-wrapper {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    width: calc((100% - 48px) / 3);
+    aspect-ratio: 4 / 3;
+    padding-inline-end: 12px;
+  }
+
+  main > .section.cards-overlay-container:has(> .default-content-wrapper) > .cards-overlay-wrapper > .cards-overlay {
+    margin-top: calc(-1 * var(--cards-overlay-cell));
+  }
+
+  main > .section.cards-overlay-container:has(> .default-content-wrapper) .cards-overlay > ul > li:first-child {
+    grid-column-start: 2;
+  }
+}

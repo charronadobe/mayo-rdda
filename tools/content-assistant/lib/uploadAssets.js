@@ -50,7 +50,9 @@ async function invokeAction(url, body) {
  * @yields {object} per-image result — { sourceUrl, ok, path?, error?, fileName? }
  */
 export async function* uploadAssetsInBatches(sourceUrls, ctx) {
-  const { imsToken, authorUrl, orgId, targetFolderPath, siteUrl } = ctx || {};
+  const {
+    imsToken, authorUrl, orgId, targetFolderPath, siteUrl,
+  } = ctx || {};
   if (!UPLOAD_TO_DAM_ACTION_URL) throw new Error('uploadAssetsInBatches: UPLOAD_TO_DAM_ACTION_URL not configured');
   if (!imsToken) throw new Error('uploadAssetsInBatches: missing imsToken');
   if (!authorUrl) throw new Error('uploadAssetsInBatches: missing authorUrl');

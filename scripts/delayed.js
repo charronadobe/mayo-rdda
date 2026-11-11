@@ -17,14 +17,18 @@ function loadAT() {
  */
 function embedCustomLibraries() {
   const externalLibs = getMetadata('js-files');
-  const libsArray = externalLibs?.split(',').map((url) => url.trim());
+  // skip empty entries: getMetadata returns '' when the page has no js-files,
+  // and loading an empty URL fails with an unhandled error
+  const libsArray = (externalLibs || '').split(',').map((url) => url.trim()).filter(Boolean);
 
   libsArray.forEach((url) => {
-    loadScript(`${url}`);
+    loadScript(`${url}`).catch(() => {});
   });
 }
 
 if (!window.location.hostname.includes('localhost')) {
-  loadAT();
+  // Adobe Target is opt-in per page ("target" metadata = on): the bundled at.js points at a
+  // demo client and its requests fail on this site until a real Target account is configured
+  if (getMetadata('target').toLowerCase() === 'on') loadAT();
   embedCustomLibraries();
 }

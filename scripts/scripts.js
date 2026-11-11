@@ -19,6 +19,7 @@ import {
   formatDate,
   PATH_PREFIX,
 } from './utils.js';
+import { getAdobeImsUserDetails } from './utils/analytics.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -197,7 +198,11 @@ async function getThemeUrl() {
   const match = window.location.hostname.match(/^.*?--([a-z0-9-]+)--([a-z0-9-]+)\.aem\.(?:page|live)$/i);
   if (!match) return null; // localhost or a custom domain
   const [, repo, org] = match;
-  const config = await fetchPlaceholders('/config');
+  // opt-in: only pages whose "theme-config" metadata names a placeholders folder (e.g. /config)
+  // look up a theme, so sites without one don't request a missing file on every page
+  const configPath = getMetadata('theme-config');
+  if (!configPath) return null;
+  const config = await fetchPlaceholders(configPath.replace(/\/$/, ''));
   if (!config.theme) return null;
   return `https://da-sc.adobeaem.workers.dev/live/${org}/${repo}${config.theme}`;
 }
@@ -265,7 +270,7 @@ function buildAutoBlocks(main) {
  * Decorates formatted links to style them as buttons.
  * @param {HTMLElement} main The main container element
  */
-function decorateButtons(main) {
+export function decorateButtons(main) {
   main.querySelectorAll('p a[href]').forEach((a) => {
     a.title = a.title || a.textContent;
     const p = a.closest('p');

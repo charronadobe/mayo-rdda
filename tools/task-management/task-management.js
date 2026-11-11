@@ -539,9 +539,13 @@ const TASK_ACTIONS = [
   // wfAction = Workfront work-action verb (from the native "Work On It" call).
   // Start is confirmed (acceptWork); Complete/Reject verbs are TBD — capture the
   // "Mark as Done" / reject requests and fill them in to switch off the fallback.
-  { key: 'INP', label: 'Start', icon: 'play', wfAction: 'acceptWork' },
+  {
+    key: 'INP', label: 'Start', icon: 'play', wfAction: 'acceptWork',
+  },
   { key: 'CPL', label: 'Complete', icon: 'check' },
-  { key: 'REJ', label: 'Reject', icon: 'close', variant: 'secondary' },
+  {
+    key: 'REJ', label: 'Reject', icon: 'close', variant: 'secondary',
+  },
 ];
 
 // Statuses from which each action is still available. Anything else → disabled.
@@ -1005,9 +1009,9 @@ class RefDemoTaskManagement extends LitElement {
         <div class="task-management-actions">
           <sl-button class="secondary" @click=${this.close}>No</sl-button>
           <sl-button ?disabled=${!this._serviceUrl} @click=${async () => {
-            await this.sendAnalyticsForReview();
-            this.run();
-          }}>Yes</sl-button>
+  await this.sendAnalyticsForReview();
+  this.run();
+}}>Yes</sl-button>
         </div>
       </div>`;
   }
@@ -1329,7 +1333,7 @@ class RefDemoTaskManagement extends LitElement {
       { key: 'eVar16', value: 'da-task-management' },
       { key: 'pageName', value: 'DATaskManagementUsageInfo' },
     ];
-  
+
     try {
       if (typeof sendAnalyticsData === 'function') {
         await sendAnalyticsData(analyticsTaskmanagementData);
@@ -1342,7 +1346,7 @@ class RefDemoTaskManagement extends LitElement {
       console.error('Task management analytics failed:', e);
     }
   }
-  
+
   render() {
     if (this._allowed === undefined) return nothing; // gate not resolved yet
     if (!this._allowed) return this.renderNoAccess();

@@ -65,7 +65,7 @@ export async function loadGenTags(path, token) {
   const { html } = await fetchDoc(path, token);
   const baseOpts = getOpts(token, 'POST');
   const opts = { ...baseOpts, body: JSON.stringify({ html }) };
-  const resp = await fetch(`https://da-etc.adobeaem.workers.dev/tags`, opts);
+  const resp = await fetch('https://da-etc.adobeaem.workers.dev/tags', opts);
   if (!resp.ok) return [];
   const { tags } = await resp.json();
   return tags;

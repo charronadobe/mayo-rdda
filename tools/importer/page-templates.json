@@ -1,0 +1,153 @@
+{
+  "templates": [
+    {
+      "name": "home",
+      "urls": [
+        "https://www.mayoclinic.org/"
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/",
+      "description": "Mayo Clinic homepage: video hero, conditions finder with search, story cards, locations cards, featured care area links and donation banner",
+      "blocks": [
+        {
+          "name": "hero-video",
+          "instances": [
+            ".cmp-hero-card"
+          ]
+        },
+        {
+          "name": "search-conditions",
+          "instances": [
+            "#main-content .cmp-search"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            ".cmp-story-card"
+          ]
+        },
+        {
+          "name": "cards-overlay",
+          "instances": [
+            ".cmp-column-control__layoutType--ThreeColumn .cmp-column-control__container"
+          ]
+        },
+        {
+          "name": "cards-link-list",
+          "instances": [
+            ".cmp-link-list"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "urlPattern": "/",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Hero",
+          "selector": [
+            "#main-content .cmp-hero-card",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1)"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-video"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s2",
+          "name": "Find diseases and conditions",
+          "selector": [
+            "#main-content .cmp-container--background-color-primary",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2)"
+          ],
+          "style": "split",
+          "blocks": [
+            "search-conditions"
+          ],
+          "defaultContent": [
+            ".cmp-alphabet-facet"
+          ]
+        },
+        {
+          "id": "s3",
+          "name": "Healing starts here",
+          "selector": [
+            ".cmp-yspace:has(.cmp-story-card__text-card-container--left)",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(4)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s4",
+          "name": "World-class care for global patients",
+          "selector": [
+            ".cmp-yspace:has(.cmp-story-card__text-card-container--right)",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(5)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s5",
+          "name": "Locations",
+          "selector": [
+            ".cmp-yspace:has(.cmp-column-control__layoutType--ThreeColumn)",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(6)"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-overlay"
+          ],
+          "defaultContent": [
+            ".cmp-column-control__layoutType--ThreeColumn .cmp-text-card"
+          ]
+        },
+        {
+          "id": "s6",
+          "name": "Featured care areas",
+          "selector": [
+            ".cmp-yspace:has(.cmp-column-control__layoutType--MosaicSmall)",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(1) > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(7)"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-column-control__layoutType--MosaicSmall .cmp-text-card"
+          ]
+        },
+        {
+          "id": "s7",
+          "name": "Donation banner",
+          "selector": [
+            ".cmp-container--background-color-donations",
+            "#main-content > div.aem-container.cmp-container--column-padding-0x.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.aem-GridColumn.aem-GridColumn--default--12:nth-of-type(2)"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

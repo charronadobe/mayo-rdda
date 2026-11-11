@@ -29,10 +29,6 @@ const logWarn = (...args) => console.warn('[Promotion]', ...args);
 // eslint-disable-next-line no-console
 const logError = (...args) => console.error('[Promotion]', ...args);
 
-function isAuthorEnvironment() {
-  return window?.location?.origin?.includes('author') ?? false;
-}
-
 /* ────────────────────────────────────────────
  * Normalise Target offer JSON into the same
  * CF item shape used by AEM GraphQL
@@ -412,7 +408,7 @@ export default async function decorate(block) {
 
   block.innerHTML = '';
 
-  const isAuthor = window.location.href.indexOf("/da-block-collection/docs/library/blocks/promotion") > -1;
+  const isAuthor = window.location.href.indexOf('/da-block-collection/docs/library/blocks/promotion') > -1;
   const hostname = getMetadata('hostname');
   const aemAuthorUrl = getMetadata('authorurl') || '';
   const aemPublishUrl = hostname?.replace('author', 'publish')?.replace(/\/$/, '') || '';
@@ -421,19 +417,19 @@ export default async function decorate(block) {
     isAuthor, hostname, aemAuthorUrl, aemPublishUrl,
   });
 
-  //if (!contentPath) {
-    //logWarn('No content path configured');
-    if (isAuthor) {
-      block.innerHTML = `<div class="promotion-card promotion-placeholder">
+  // if (!contentPath) {
+  // logWarn('No content path configured');
+  if (isAuthor) {
+    block.innerHTML = `<div class="promotion-card promotion-placeholder">
         <div class="promotion-content">
           <p class="promotion-subtitle">Adobe Target Personalization</p>
           <h3 class="promotion-title">Promotion Block</h3>
           <p class="promotion-description">This is the default promotion text. At runtime, Adobe Target will replace this with a personalized offer as per your audience and offer configuration. (Default mbox is: <strong>${mboxName}</strong>).</p>
         </div>
       </div>`;
-    }
-    //return;
-  //}
+  }
+  // return;
+  // }
 
   try {
     const cfItem = await fetchContentFragment(

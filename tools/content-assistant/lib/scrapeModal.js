@@ -31,7 +31,8 @@ export function openScrapeModal({ token, mode, onComplete }) {
   const overlay = document.createElement('div');
   overlay.className = 'dp-modal-overlay';
 
-  const title = mode === 'texts' ? 'Import Texts' : mode === 'theme' ? 'Import Theme' : 'Import Images';
+  const titles = { texts: 'Import Texts', theme: 'Import Theme' };
+  const title = titles[mode] || 'Import Images';
   overlay.innerHTML = `
     <div class="dp-modal">
       <h3>${title}</h3>

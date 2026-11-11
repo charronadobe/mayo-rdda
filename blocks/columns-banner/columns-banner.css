@@ -1,0 +1,93 @@
+/* source: #top-advertisement — aem grid, 8px column padding on mobile, 12px on desktop */
+.columns-banner {
+  margin: 0 -20px;
+  padding: 0 16px;
+}
+
+.columns-banner .columns-banner-row {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-banner .columns-banner-col {
+  padding: 8px;
+  min-width: 0;
+}
+
+.columns-banner .columns-banner-col > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.columns-banner h2 {
+  margin: 0;
+  font-family: mayo-display, Georgia, serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 50px;
+  color: rgb(255 255 255);
+}
+
+.columns-banner p {
+  margin: 0;
+  font-family: mayo-sans, Arial, "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  line-height: 28px;
+  color: rgb(255 255 255);
+}
+
+/* source button is full column width (cmp-button__inner--width-full) */
+main .columns-banner .columns-banner-cta a.button:any-link {
+  display: block;
+  width: 100%;
+}
+
+/* tablet: keep the 8px column padding but align with the 48px page gutter */
+@media (width >= 600px) {
+  .columns-banner {
+    margin: 0 -8px;
+    padding: 0;
+  }
+}
+
+@media (width >= 900px) {
+  .columns-banner {
+    margin: 0 -12px;
+    padding: 0;
+  }
+
+  .columns-banner .columns-banner-row {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .columns-banner .columns-banner-col {
+    padding: 12px;
+  }
+
+  .columns-banner .columns-banner-heading {
+    grid-column: 1 / span 4;
+  }
+
+  .columns-banner .columns-banner-text {
+    grid-column: span 5;
+  }
+
+  .columns-banner .columns-banner-cta {
+    grid-column: span 3;
+  }
+}
+
+/* x-large: heading, text and button each take 3 of 12 columns after the
+   2-column icon slot of the source (icon not migrated) */
+@media (width >= 1200px) {
+  .columns-banner .columns-banner-heading {
+    grid-column: 3 / span 3;
+  }
+
+  .columns-banner .columns-banner-text,
+  .columns-banner .columns-banner-cta {
+    grid-column: span 3;
+  }
+}

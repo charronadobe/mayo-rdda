@@ -1,0 +1,32 @@
+{
+  "variantName": "cards-link-list",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Text-only list of link rows with a bottom border and chevron, flowing into two columns on wider screens",
+    "description": "Left H2 and paragraph; right a two-column list of 13 bordered link rows in blue text with right chevron."
+  },
+  "contentPattern": {
+    "structure": "Link to detail page; then Link to detail page",
+    "description": "List whose items each link to a detail page is dynamic, so it is Cards (text only, no images). No existing cards variants in blocks/; Text-only link rows with bottom border and chevron, two columns",
+    "blockContent": "13 care-area links (Bone marrow transplant ... Testicular cancer), each linking to its care-at-mayo-clinic detail page",
+    "table": [
+      [
+        "Cards Link List"
+      ],
+      [
+        "Link to detail page"
+      ],
+      [
+        "Link to detail page"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-link-list"
+  ],
+  "usage": "Text-only list of link rows with a bottom border and chevron, flowing into two columns on wider screens.",
+  "reuseGuidance": "Use for a list of links to detail pages (care areas, topics). One row per link, a single cell holding the link and optionally a short description.",
+  "sourceUrl": "https://www.mayoclinic.org/"
+}

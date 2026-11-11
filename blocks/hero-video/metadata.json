@@ -1,0 +1,32 @@
+{
+  "variantName": "hero-video",
+  "baseBlock": "hero",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Top-of-page hero with a full-bleed looping background video (muted, with a play/pause control) and overlaid H1, text link and CTA button",
+    "description": "Full-bleed background video (play/pause control) with dark overlay; serif H1 'Transforming your care' in white, text link with chevron and white outlined pill button."
+  },
+  "contentPattern": {
+    "structure": "Video link (.mp4) and optional poster image; then H1 heading, optional paragraph, text link, CTA button",
+    "description": "Prominent full-bleed media with headline and CTAs at the top of page; the photo/video background belongs to the hero block, so the section is not colored. No existing hero variants in blocks/; Full-bleed background video with play control, overlay text and CTAs",
+    "blockContent": "Hero: background video, H1, text link 'Learn how we drive innovation', button 'Request appointment'",
+    "table": [
+      [
+        "Hero Video"
+      ],
+      [
+        "Video link (.mp4) and optional poster image"
+      ],
+      [
+        "H1 heading, optional paragraph, text link, CTA button"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "hero-video"
+  ],
+  "usage": "Top-of-page hero with a full-bleed looping background video (muted, with a play/pause control) and overlaid H1, text link and CTA button.",
+  "reuseGuidance": "Use for any page-opening hero whose background is a video. For a still-image hero use the base hero block. Row 1: video link (.mp4/.webm) and optional poster picture. Row 2: H1, optional text, links/buttons.",
+  "sourceUrl": "https://www.mayoclinic.org/"
+}
