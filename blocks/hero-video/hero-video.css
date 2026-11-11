@@ -41,6 +41,16 @@ main > .section > .hero-video-wrapper {
   object-fit: cover;
 }
 
+/* the video stays transparent over the poster until it is playing */
+.hero-video .hero-video-media video {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero-video .hero-video-media video.is-ready {
+  opacity: 1;
+}
+
 /* content column (source: .cmp-hero-card__content) */
 .hero-video .hero-video-content {
   display: grid;
@@ -131,6 +141,10 @@ main > .section > .hero-video-wrapper {
   background-color: rgb(0 0 0 / 56%);
   color: var(--brand-light-text-color);
   cursor: pointer;
+}
+
+.hero-video .hero-video-toggle[hidden] {
+  display: none;
 }
 
 .hero-video .hero-video-toggle::before {

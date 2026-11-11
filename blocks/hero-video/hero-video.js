@@ -32,8 +32,11 @@ function buildToggle(video) {
   };
 
   button.addEventListener('click', () => {
-    if (video.paused) video.play().catch(() => {});
-    else video.pause();
+    if (video.paused) {
+      // eslint-disable-next-line no-use-before-define
+      attachSource(video);
+      video.play().catch(() => {});
+    } else video.pause();
   });
   video.addEventListener('play', setState);
   video.addEventListener('pause', setState);
@@ -41,7 +44,23 @@ function buildToggle(video) {
   return button;
 }
 
-function buildVideo(href, poster) {
+/**
+ * Adds the video source on first use, so the video only downloads when it is needed.
+ */
+function attachSource(video) {
+  if (video.querySelector('source')) return;
+  const source = document.createElement('source');
+  source.src = video.dataset.src;
+  source.type = videoType(video.dataset.src);
+  video.append(source);
+  video.load();
+}
+
+/**
+ * Builds the background video without a source or poster: the poster picture underneath is
+ * the LCP image, and the video fades in over it once it is actually playing.
+ */
+function buildVideo(href) {
   const video = document.createElement('video');
   video.muted = true;
   video.loop = true;
@@ -49,15 +68,33 @@ function buildVideo(href, poster) {
   video.setAttribute('muted', '');
   video.setAttribute('loop', '');
   video.setAttribute('playsinline', '');
-  video.setAttribute('preload', 'metadata');
+  video.setAttribute('preload', 'none');
   video.setAttribute('aria-hidden', 'true');
-  if (poster) video.poster = poster;
-
-  const source = document.createElement('source');
-  source.src = href;
-  source.type = videoType(href);
-  video.append(source);
+  video.dataset.src = href;
+  video.addEventListener('playing', () => video.classList.add('is-ready'), { once: true });
   return video;
+}
+
+/**
+ * Starts the video after the page has loaded (outside the LCP window), unless the
+ * visitor prefers reduced motion or has data saver on.
+ */
+function autoplayAllowed() {
+  const saveData = navigator.connection && navigator.connection.saveData;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return !saveData && !reduceMotion;
+}
+
+function startWhenIdle(video) {
+  if (!autoplayAllowed()) return;
+  const start = () => setTimeout(() => {
+    if (video.dataset.userPaused) return;
+    attachSource(video);
+    video.setAttribute('autoplay', '');
+    video.play().catch(() => {});
+  }, 3000);
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start, { once: true });
 }
 
 /**
@@ -93,13 +130,18 @@ export default function decorate(block) {
 
   if (picture) {
     picture.classList.add('hero-video-poster');
+    const img = picture.querySelector('img');
+    if (img) {
+      // the poster is the largest paint: fetch it first
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+    }
     media.append(picture);
   }
 
   let video = null;
   if (videoHref) {
-    const posterImg = picture?.querySelector('img');
-    video = buildVideo(videoHref, posterImg?.currentSrc || posterImg?.src);
+    video = buildVideo(videoHref);
     media.append(video);
     block.classList.add('has-video');
   }
@@ -119,12 +161,16 @@ export default function decorate(block) {
   block.append(media, content);
 
   if (video) {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const toggle = buildToggle(video);
+    toggle.addEventListener('click', () => {
+      if (video.paused) video.dataset.userPaused = 'true';
+      else delete video.dataset.userPaused;
+    });
+    // without autoplay the visitor gets a Play button; otherwise the control appears
+    // once the video is actually playing (a missing or expired video keeps the poster)
+    toggle.hidden = autoplayAllowed();
+    video.addEventListener('playing', () => { toggle.hidden = false; }, { once: true });
     block.append(toggle);
-    if (!reduceMotion) {
-      video.setAttribute('autoplay', '');
-      video.play().catch(() => {});
-    }
+    startWhenIdle(video);
   }
 }
