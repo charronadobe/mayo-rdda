@@ -1,0 +1,163 @@
+.structured-teaser {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+  gap: 28px;
+  align-items: center;
+  background: var(--light-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.structured-teaser-media picture,
+.structured-teaser-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.structured-teaser-media img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.structured-teaser-body {
+  padding: 24px 28px 24px 0;
+}
+
+/* Variant: image on the right (authored as "structured-teaser (right)"). */
+.structured-teaser.right {
+  grid-template-columns: minmax(0, 1.1fr) minmax(220px, 0.9fr);
+}
+
+.structured-teaser.right .structured-teaser-media {
+  order: 2;
+}
+
+.structured-teaser.right .structured-teaser-body {
+  order: 1;
+  padding: 24px 0 24px 28px;
+}
+
+/* Variant: image on top, text below (authored as "structured-teaser (top)"). */
+.structured-teaser.top {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.structured-teaser.top .structured-teaser-body {
+  padding: 24px 28px;
+}
+
+/* Variant: hero — image as a full-bleed background with the text/CTA overlaid
+   (authored as "structured-teaser (hero)"). */
+.structured-teaser.teaser-hero {
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-template-areas: "stack";
+  align-items: stretch;
+  min-height: 420px;
+}
+
+.structured-teaser.teaser-hero .structured-teaser-media,
+.structured-teaser.teaser-hero .structured-teaser-body {
+  grid-area: stack;
+}
+
+/* The image covers the block instead of setting its height, so a full-width
+   hero stays banner-sized rather than following the image's aspect ratio. */
+.structured-teaser.teaser-hero .structured-teaser-media {
+  position: absolute;
+  inset: 0;
+}
+
+.structured-teaser.teaser-hero .structured-teaser-media picture,
+.structured-teaser.teaser-hero .structured-teaser-media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+.structured-teaser.teaser-hero .structured-teaser-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 40%);
+}
+
+.structured-teaser.teaser-hero .structured-teaser-body {
+  position: relative;
+  z-index: 1;
+  place-self: center;
+  max-width: 720px;
+  padding: 40px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 50%);
+}
+
+.structured-teaser.teaser-hero .structured-teaser-body .button-container {
+  margin-top: 20px;
+}
+
+/* The site's base button is an unpadded text link with a chevron; on the hero
+   make the CTA read as a solid button sitting on top of the image. */
+.structured-teaser.teaser-hero .structured-teaser-body .button.primary {
+  padding: 12px 28px;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #111;
+  font-weight: 700;
+  text-shadow: none;
+  overflow: visible;
+}
+
+.structured-teaser.teaser-hero .structured-teaser-body .button.primary::after {
+  display: none;
+}
+
+.structured-teaser-body h2 {
+  margin: 0 0 12px;
+}
+
+.structured-teaser-body p {
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+/* Full width by default, like sec-full-width: true; authors can opt out with
+   Section Metadata "sec-full-width | false". */
+main > .section:not([data-sec-full-width="false"]) > .structured-teaser-wrapper {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main > .section:not([data-sec-full-width="false"]) > .structured-teaser-wrapper .structured-teaser {
+  border-radius: 0;
+}
+
+@media (width <= 700px) {
+  .structured-teaser,
+  .structured-teaser.right {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .structured-teaser-body,
+  .structured-teaser.right .structured-teaser-body {
+    padding: 22px;
+  }
+
+  .structured-teaser.right .structured-teaser-media {
+    order: 0;
+  }
+
+  .structured-teaser.right .structured-teaser-body {
+    order: 0;
+  }
+
+  .structured-teaser.teaser-hero {
+    min-height: 320px;
+  }
+}
