@@ -1,0 +1,49 @@
+{
+  "variantName": "cards-action",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Action tiles with title, text and one chevron CTA link; text-only tiles sit two per row, tiles with an image span the full width with the image on the right or behind the text",
+    "description": "White tiles with soft shadow and small radius: tile 1 full width with text left and photo right fading in from white; tiles 2-3 half width text only; tile 4 full width photo background with dark left gradient and white text. Bold sans title, body text, blue text link with chevron at the bottom."
+  },
+  "contentPattern": {
+    "structure": "One row per tile, two cells. Text-only: (empty) | H2 title, paragraph, CTA link. Image right: H2 title, paragraph, CTA link | Image. Image background: Image | H2 title, paragraph, CTA link",
+    "description": "Repeating look-alike tiles that wrap in a grid. Tile layout comes from the cells: no image gives a half-width text tile; an image cell after the body puts the image on the right; an image cell before the body fills the tile behind the text. The last link in the body is the CTA.",
+    "blockContent": "Four action tiles: 'Symptom Checker' (image right), 'Clinical trials', 'Connect to support groups' (text only), 'The right answers, the first time' (background image)",
+    "table": [
+      [
+        "Cards Action"
+      ],
+      [
+        "H2 title, paragraph, CTA link",
+        "Image"
+      ],
+      [
+        "",
+        "H2 title, paragraph, CTA link"
+      ],
+      [
+        "",
+        "H2 title, paragraph, CTA link"
+      ],
+      [
+        "Image",
+        "H2 title, paragraph, CTA link"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-action"
+  ],
+  "usage": {
+    "description": "Action tiles with one CTA each; optional image on the right or as background.",
+    "pagesUsing": [
+      "/diseases-conditions"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-12T00:00:00.000Z"
+  },
+  "reuseGuidance": "Use for task/action tiles that each lead to one destination. One row per tile with a body cell (H2, paragraph, link) and an image cell: leave the image cell empty for a half-width text tile, put the image after the body for image-right, before the body for a background image.",
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions"
+}

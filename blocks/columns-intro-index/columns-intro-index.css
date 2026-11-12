@@ -1,0 +1,118 @@
+/* structural layout only; visual design comes in the design pass */
+.columns-intro-index .columns-intro-index-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columns-intro-index .columns-intro-index-col {
+  min-width: 0;
+}
+
+.columns-intro-index .columns-intro-index-intro > :first-child {
+  margin-top: 0;
+}
+
+/* index label stays a heading for assistive tech, the toggle is the visible label */
+.columns-intro-index .columns-intro-index-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.columns-intro-index .columns-intro-index-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.columns-intro-index .columns-intro-index-toggle::after {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.columns-intro-index .columns-intro-index-toggle[aria-expanded="true"]::after {
+  transform: rotate(-135deg);
+}
+
+.columns-intro-index .columns-intro-index-letters {
+  display: none;
+  grid-template-columns: repeat(auto-fill, 40px);
+  gap: 8px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.columns-intro-index .columns-intro-index-index.is-open .columns-intro-index-letters {
+  display: grid;
+}
+
+.columns-intro-index .columns-intro-index-letters li {
+  margin: 0;
+}
+
+.columns-intro-index .columns-intro-index-letter:any-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+@media (width >= 600px) {
+  .columns-intro-index .columns-intro-index-letters {
+    grid-template-columns: repeat(9, 40px);
+  }
+}
+
+@media (width >= 900px) {
+  .columns-intro-index .columns-intro-index-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .columns-intro-index .columns-intro-index-intro {
+    flex: 1 1 50%;
+  }
+
+  .columns-intro-index .columns-intro-index-index {
+    flex: 0 1 auto;
+  }
+
+  /* the full index is always visible on desktop */
+  .columns-intro-index .columns-intro-index-toggle {
+    display: none;
+  }
+
+  .columns-intro-index .columns-intro-index-letters,
+  .columns-intro-index .columns-intro-index-index.is-open .columns-intro-index-letters {
+    display: grid;
+    margin: 0;
+  }
+}

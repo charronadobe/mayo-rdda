@@ -1,0 +1,37 @@
+{
+  "variantName": "columns-intro-index",
+  "baseBlock": "columns",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Page intro beside an A-Z index of circular letter links; on small screens the index collapses behind a toggle. Pair with section style \"blue-gradient\" for the blue band",
+    "description": "Full-width blue gradient band (#0057b8 to deep navy). Left: white serif H1 and white sans paragraph. Right: 26 letter links (A-P, R-Z, #) as translucent-blue circles with white bold letters, 9 per row."
+  },
+  "contentPattern": {
+    "structure": "H1 heading, paragraph | H2 label, list of letter links",
+    "description": "One row, two fixed cells side by side (intro left, A-Z index right). The H2 in the index cell is kept as a visually hidden heading and also labels the mobile toggle button.",
+    "blockContent": "Left: H1 'Diseases & Conditions' + paragraph 'Easy-to-understand answers about diseases and conditions'; right: H2 'Find diseases & conditions by first letter' + list of 26 links to /diseases-conditions/index?letter=X",
+    "table": [
+      [
+        "Columns Intro Index"
+      ],
+      [
+        "H1 heading, paragraph",
+        "H2 label, bulleted list of letter links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "columns-intro-index"
+  ],
+  "usage": {
+    "description": "Page intro beside an A-Z letter index.",
+    "pagesUsing": [
+      "/diseases-conditions"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-12T00:00:00.000Z"
+  },
+  "reuseGuidance": "Use for an index landing page intro with an alphabet browse. One row, two cells: first cell H1 + paragraph, second cell H2 label + bulleted list of one link per letter. Set section metadata style \"blue-gradient\" for the colored band.",
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions"
+}

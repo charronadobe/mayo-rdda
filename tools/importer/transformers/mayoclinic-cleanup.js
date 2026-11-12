@@ -26,6 +26,10 @@ export default function transform(hookName, element, payload) {
       '.cmp-separator',
       // Decorative chevron icons (inline data-URI SVGs) inside A-Z letter links
       '.cmp-alphabet-facet .cmp-icon',
+      // Breadcrumb: navigation chrome generated from the page path (diseases-conditions)
+      '.cmp-breadcrumb',
+      // Empty right-hand aside column (no text or media)
+      '#main-content aside',
     ]);
   }
 

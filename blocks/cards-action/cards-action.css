@@ -1,0 +1,148 @@
+/* structural layout only; visual design comes in the design pass */
+.cards-action > ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-action .cards-action-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cards-action .cards-action-card-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.cards-action .cards-action-card-body > :first-child {
+  margin-top: 0;
+}
+
+/* CTA sits at the bottom of the tile */
+.cards-action .cards-action-card-cta-wrapper {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.cards-action .cards-action-card-cta::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-inline-start: 8px;
+  border-top: 2px solid currentcolor;
+  border-right: 2px solid currentcolor;
+  transform: translateY(-1px) rotate(45deg);
+}
+
+.cards-action .cards-action-card-image {
+  overflow: hidden;
+}
+
+.cards-action .cards-action-card-image p {
+  height: 100%;
+  margin: 0;
+}
+
+.cards-action .cards-action-card-image picture,
+.cards-action .cards-action-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cards-action .cards-action-card-image img {
+  object-fit: cover;
+}
+
+/* image on the right: stacks above the text on mobile */
+.cards-action .cards-action-card-media .cards-action-card-image {
+  order: -1;
+  aspect-ratio: 16 / 9;
+}
+
+/* image behind the text, with a scrim so the text stays legible */
+.cards-action .cards-action-card-background .cards-action-card-image {
+  position: absolute;
+  inset: 0;
+}
+
+.cards-action .cards-action-card-background .cards-action-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 80%) 0%, rgb(0 0 0 / 0%) 70%);
+}
+
+.cards-action .cards-action-card-background .cards-action-card-body {
+  justify-content: center;
+  min-height: 320px;
+  color: rgb(255 255 255);
+}
+
+.cards-action .cards-action-card-background .cards-action-card-body :is(h1, h2, h3, h4, h5, h6, p, a) {
+  color: inherit;
+}
+
+@media (width >= 600px) {
+  .cards-action > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cards-action .cards-action-card-media,
+  .cards-action .cards-action-card-background {
+    grid-column: 1 / -1;
+  }
+
+  .cards-action .cards-action-card-media {
+    flex-direction: row;
+  }
+
+  .cards-action .cards-action-card-media .cards-action-card-body {
+    flex: 1 1 50%;
+    min-height: 240px;
+  }
+
+  .cards-action .cards-action-card-media .cards-action-card-image {
+    position: relative;
+    flex: 1 1 50%;
+    order: 0;
+    aspect-ratio: auto;
+  }
+
+  /* the text sets the tile height; the photo fills its half */
+  .cards-action .cards-action-card-media .cards-action-card-image picture {
+    position: absolute;
+    inset: 0;
+  }
+
+  .cards-action .cards-action-card-background .cards-action-card-body {
+    max-width: 50%;
+    min-height: 400px;
+  }
+}
+
+@media (width >= 900px) {
+  .cards-action > ul {
+    gap: 24px;
+  }
+
+  .cards-action .cards-action-card-text .cards-action-card-body {
+    min-height: 240px;
+  }
+
+  .cards-action .cards-action-card-background .cards-action-card-body {
+    max-width: 40%;
+    min-height: 480px;
+  }
+}
