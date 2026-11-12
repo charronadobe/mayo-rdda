@@ -701,8 +701,14 @@ main > .section.dark {
   color: var(--text-light);
 }
 
+/* a section left empty (e.g. one that only held page metadata) takes no space */
+main > .section:empty {
+  display: none;
+}
+
 /* a dark band that ends the page sits flush against the footer */
-main > .section.dark:last-child {
+main > .section.dark:last-child,
+main > .section.dark:has(+ .section:empty:last-child) {
   margin-bottom: 0;
 }
 

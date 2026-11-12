@@ -250,7 +250,8 @@ export default {
 
     executeTransformers('afterTransform', main, payload);
 
-    main.appendChild(document.createElement('hr'));
+    // page metadata goes into the last content section: a section of its own renders as an
+    // empty section (extra white space above the footer) once Edge Delivery strips the block
     WebImporter.rules.createMetadata(main, document);
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
