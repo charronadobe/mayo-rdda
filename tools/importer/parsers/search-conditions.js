@@ -7,7 +7,9 @@
  * Rows (one cell each): label text; link to the search results page; placeholder text.
  * The source component does not expose its action URL in the DOM, so the
  * diseases & conditions search results page is used.
+ * The results page only exists on mayoclinic.org, so the link is made absolute.
  */
+const SOURCE_ORIGIN = 'https://www.mayoclinic.org';
 const RESULTS_PATH = '/diseases-conditions/search-results';
 
 export default function parse(element, { document, params }) {
@@ -30,9 +32,9 @@ export default function parse(element, { document, params }) {
   // Results page link (form action / data attribute if present, else known results page)
   const form = element.querySelector('form[action]');
   const host = element.querySelector('mc-search');
-  const action = (form && form.getAttribute('action'))
+  const action = new URL((form && form.getAttribute('action'))
     || (host && (host.getAttribute('action') || host.getAttribute('data-action')))
-    || RESULTS_PATH;
+    || RESULTS_PATH, SOURCE_ORIGIN).href;
   const linkP = document.createElement('p');
   const a = document.createElement('a');
   a.href = action;

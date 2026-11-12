@@ -87,6 +87,7 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/search-conditions.js
+  var SOURCE_ORIGIN = "https://www.mayoclinic.org";
   var RESULTS_PATH = "/diseases-conditions/search-results";
   function parse2(element, { document: document2, params }) {
     const cells = [];
@@ -104,7 +105,7 @@ var CustomImportScript = (() => {
     }
     const form = element.querySelector("form[action]");
     const host = element.querySelector("mc-search");
-    const action = form && form.getAttribute("action") || host && (host.getAttribute("action") || host.getAttribute("data-action")) || RESULTS_PATH;
+    const action = new URL(form && form.getAttribute("action") || host && (host.getAttribute("action") || host.getAttribute("data-action")) || RESULTS_PATH, SOURCE_ORIGIN).href;
     const linkP = document2.createElement("p");
     const a = document2.createElement("a");
     a.href = action;
@@ -303,7 +304,11 @@ var CustomImportScript = (() => {
         // Decorative horizontal rule between sections (would create a stray section break)
         ".cmp-separator",
         // Decorative chevron icons (inline data-URI SVGs) inside A-Z letter links
-        ".cmp-alphabet-facet .cmp-icon"
+        ".cmp-alphabet-facet .cmp-icon",
+        // Breadcrumb: navigation chrome generated from the page path (diseases-conditions)
+        ".cmp-breadcrumb",
+        // Empty right-hand aside column (no text or media)
+        "#main-content aside"
       ]);
     }
     if (hookName === "afterTransform") {
@@ -322,6 +327,12 @@ var CustomImportScript = (() => {
         "noscript",
         "link"
       ]);
+      element.querySelectorAll('a[href^="/diseases-conditions/index"], a[href^="/diseases-conditions/search-results"]').forEach((a) => {
+        const href = a.getAttribute("href");
+        const absolute = `https://www.mayoclinic.org${href}`;
+        a.setAttribute("href", absolute);
+        if (a.textContent.trim() === href) a.textContent = absolute;
+      });
       element.querySelectorAll("[onclick], [data-track], [data-analytics], [data-cmp-data-layer]").forEach((el) => {
         el.removeAttribute("onclick");
         el.removeAttribute("data-track");

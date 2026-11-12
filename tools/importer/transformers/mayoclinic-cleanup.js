@@ -50,6 +50,15 @@ export default function transform(hookName, element, payload) {
       'link',
     ]);
 
+    // The A-Z index and search results pages only exist on mayoclinic.org:
+    // make links to them absolute (e.g. the homepage letter list)
+    element.querySelectorAll('a[href^="/diseases-conditions/index"], a[href^="/diseases-conditions/search-results"]').forEach((a) => {
+      const href = a.getAttribute('href');
+      const absolute = `https://www.mayoclinic.org${href}`;
+      a.setAttribute('href', absolute);
+      if (a.textContent.trim() === href) a.textContent = absolute;
+    });
+
     // Strip tracking / framework attributes
     element.querySelectorAll('[onclick], [data-track], [data-analytics], [data-cmp-data-layer]').forEach((el) => {
       el.removeAttribute('onclick');

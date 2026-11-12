@@ -13,8 +13,12 @@
  *  - The search box (.cmp-search, filled in by script on the live page) is
  *    authored as a link to the results page; the block turns it into a search field.
  *  - Letter links contain a decorative chevron icon; only the letter text is
- *    kept. hrefs are copied verbatim so "letter=%23" stays percent-encoded.
+ *    kept. hrefs keep their path and query ("letter=%23" stays percent-encoded).
+ *  - The A-Z index and search results pages only exist on mayoclinic.org, so
+ *    those links are made absolute.
  */
+const SOURCE_ORIGIN = 'https://www.mayoclinic.org';
+
 export default function parse(element, { document, params }) {
   // Cell 1: title + intro text
   const introCell = [];
@@ -34,7 +38,7 @@ export default function parse(element, { document, params }) {
   if (element.querySelector('.cmp-search')) {
     const p = document.createElement('p');
     const a = document.createElement('a');
-    a.setAttribute('href', '/diseases-conditions/search-results');
+    a.setAttribute('href', `${SOURCE_ORIGIN}/diseases-conditions/search-results`);
     a.textContent = 'Search diseases & conditions';
     p.append(a);
     introCell.push(p);
@@ -56,7 +60,7 @@ export default function parse(element, { document, params }) {
     if (!text) return;
     const li = document.createElement('li');
     const a = document.createElement('a');
-    a.setAttribute('href', link.getAttribute('href'));
+    a.setAttribute('href', new URL(link.getAttribute('href'), SOURCE_ORIGIN).href);
     a.textContent = text;
     li.append(a);
     ul.append(li);

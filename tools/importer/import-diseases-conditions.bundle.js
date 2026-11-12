@@ -42,6 +42,7 @@ var CustomImportScript = (() => {
   });
 
   // tools/importer/parsers/columns-intro-index.js
+  var SOURCE_ORIGIN = "https://www.mayoclinic.org";
   function parse(element, { document: document2, params }) {
     const introCell = [];
     const h1 = element.querySelector(".cmp-title h1");
@@ -58,7 +59,7 @@ var CustomImportScript = (() => {
     if (element.querySelector(".cmp-search")) {
       const p = document2.createElement("p");
       const a = document2.createElement("a");
-      a.setAttribute("href", "/diseases-conditions/search-results");
+      a.setAttribute("href", `${SOURCE_ORIGIN}/diseases-conditions/search-results`);
       a.textContent = "Search diseases & conditions";
       p.append(a);
       introCell.push(p);
@@ -78,7 +79,7 @@ var CustomImportScript = (() => {
       if (!text) return;
       const li = document2.createElement("li");
       const a = document2.createElement("a");
-      a.setAttribute("href", link.getAttribute("href"));
+      a.setAttribute("href", new URL(link.getAttribute("href"), SOURCE_ORIGIN).href);
       a.textContent = text;
       li.append(a);
       ul.append(li);
@@ -224,6 +225,12 @@ var CustomImportScript = (() => {
         "noscript",
         "link"
       ]);
+      element.querySelectorAll('a[href^="/diseases-conditions/index"], a[href^="/diseases-conditions/search-results"]').forEach((a) => {
+        const href = a.getAttribute("href");
+        const absolute = `https://www.mayoclinic.org${href}`;
+        a.setAttribute("href", absolute);
+        if (a.textContent.trim() === href) a.textContent = absolute;
+      });
       element.querySelectorAll("[onclick], [data-track], [data-analytics], [data-cmp-data-layer]").forEach((el) => {
         el.removeAttribute("onclick");
         el.removeAttribute("data-track");
