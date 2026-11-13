@@ -20,5 +20,6 @@ helix-importer-ui
 .codex/
 .continue/
 .aider*
+.agents/
 migration-work/navigation-validation/
 migration-work/footer-validation/
