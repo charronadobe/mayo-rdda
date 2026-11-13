@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/common-warts/symptoms-causes/syc-20371125",
+  "path": "health-library/diseases-conditions/common-warts/symptoms-causes/syc-20371125",
+  "timestamp": "2026-11-13T13:39:35.625Z",
+  "title": "Common warts - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

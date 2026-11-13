@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/peripheral-artery-disease/symptoms-causes/syc-20350557",
+  "path": "health-library/diseases-conditions/peripheral-artery-disease/symptoms-causes/syc-20350557",
+  "timestamp": "2026-11-13T13:39:59.097Z",
+  "title": "Peripheral artery disease (PAD) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

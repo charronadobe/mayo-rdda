@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/fatty-liver-disease-masld/symptoms-causes/syc-20354567",
+  "path": "health-library/diseases-conditions/fatty-liver-disease-masld/symptoms-causes",
+  "timestamp": "2026-11-13T14:06:14.866Z",
+  "title": "Fatty liver disease (MASLD) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

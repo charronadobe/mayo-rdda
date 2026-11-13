@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-side-nav",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Section nav for the sibling pages of a condition (Symptoms & causes, Diagnosis & treatment, Doctors & departments, Care at Mayo Clinic)",
+    "description": "Bold condition title, then single-column rows separated by thin rules; the current page is bold plain text with an arrow, siblings are blue links. Sticky left rail beside the article in a split section on desktop; on mobile it sits above the article and repeats after it."
+  },
+  "contentPattern": {
+    "structure": "Title row (plain text); current page row (plain text); one row per sibling page link",
+    "description": "The source tab row is a list of links to sibling pages, not tab panels, so it is Cards with one cell per row. The first row without a link is the title; any later row without a link (or a link to the current URL) is the current page and gets aria-current=\"page\".",
+    "blockContent": "Atrial fibrillation; Symptoms and causes (current); Diagnosis and treatment; Doctors and departments; Care at Mayo Clinic",
+    "table": [
+      [
+        "Cards Side Nav"
+      ],
+      [
+        "Condition title (plain text)"
+      ],
+      [
+        "Current page label (plain text, no link)"
+      ],
+      [
+        "Link to sibling page"
+      ],
+      [
+        "Link to sibling page"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-side-nav"
+  ],
+  "usage": "Left-rail nav between the pages of one condition. Put it first in a section whose Section Metadata style is \"split\"; the article default content and blocks that follow fill the right column.",
+  "reuseGuidance": "Use for any set of sibling pages about one topic. Author one copy only: the code repeats it after the article on mobile. Keep the current page as plain text.",
+  "sectionMetadata": {
+    "style": "split"
+  },
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions/atrial-fibrillation/symptoms-causes/syc-20350624"
+}

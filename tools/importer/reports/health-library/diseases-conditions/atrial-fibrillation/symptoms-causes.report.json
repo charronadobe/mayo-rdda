@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/atrial-fibrillation/symptoms-causes/syc-20350624",
+  "path": "health-library/diseases-conditions/atrial-fibrillation/symptoms-causes",
+  "timestamp": "2026-11-13T14:04:37.776Z",
+  "title": "Atrial fibrillation - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

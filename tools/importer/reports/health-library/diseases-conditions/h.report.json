@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=H",
   "path": "health-library/diseases-conditions/h",
-  "timestamp": "2026-11-12T23:09:35.393Z",
+  "timestamp": "2026-11-13T14:12:25.360Z",
   "title": "Diseases and Conditions that Start with H - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "7b9cdd0685a5"
+  "importScript": "4d044bd987ad"
 }

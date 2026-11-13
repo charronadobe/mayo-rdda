@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/zenkers-diverticulum/symptoms-causes/syc-20568839",
+  "path": "health-library/diseases-conditions/zenkers-diverticulum/symptoms-causes/syc-20568839",
+  "timestamp": "2026-11-13T13:40:17.182Z",
+  "title": "Zenker's diverticulum - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "accordion-toggle",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

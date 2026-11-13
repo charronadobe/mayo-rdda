@@ -1,0 +1,71 @@
+/* source: .cmp-expando (Show references / Show transcript) */
+.accordion-toggle {
+  margin: 24px 0;
+  color: var(--brand-text-color);
+}
+
+.accordion-toggle .accordion-toggle-item + .accordion-toggle-item {
+  margin-top: 16px;
+}
+
+.accordion-toggle .accordion-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--brand-link-color);
+  font-size: var(--brand-heading-font-size-xs);
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion-toggle .accordion-toggle-label::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-toggle .accordion-toggle-label > span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.accordion-toggle .accordion-toggle-label:hover {
+  color: var(--brand-link-hover-color);
+}
+
+.accordion-toggle .accordion-toggle-label:focus-visible {
+  outline: 2px solid var(--brand-focus-color);
+  outline-offset: 2px;
+}
+
+/* chevron, points down when closed and up when open */
+.accordion-toggle .accordion-toggle-label::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-top: -4px;
+  border: solid currentcolor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.accordion-toggle .accordion-toggle-item[open] .accordion-toggle-label::after {
+  margin-top: 4px;
+  transform: rotate(-135deg);
+}
+
+.accordion-toggle .accordion-toggle-body {
+  padding: 8px 0 0;
+  font-size: var(--brand-heading-font-size-xs);
+  line-height: 1.5;
+}
+
+.accordion-toggle .accordion-toggle-body > :first-child {
+  margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-toggle .accordion-toggle-label::after {
+    transition: none;
+  }
+}

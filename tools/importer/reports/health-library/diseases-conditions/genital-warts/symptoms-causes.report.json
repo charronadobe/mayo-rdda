@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/genital-warts/symptoms-causes/syc-20355234",
+  "path": "health-library/diseases-conditions/genital-warts/symptoms-causes",
+  "timestamp": "2026-11-13T14:07:07.272Z",
+  "title": "Genital warts - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/alpha-1-antitrypsin-deficiency/symptoms-causes/syc-20588790",
+  "path": "health-library/diseases-conditions/alpha-1-antitrypsin-deficiency/symptoms-causes",
+  "timestamp": "2026-11-13T14:04:40.785Z",
+  "title": "Alpha-1-antitrypsin deficiency - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

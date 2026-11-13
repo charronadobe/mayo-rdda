@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/sacroiliitis/symptoms-causes/syc-20350747",
+  "path": "health-library/diseases-conditions/sacroiliitis/symptoms-causes/syc-20350747",
+  "timestamp": "2026-11-13T13:40:06.729Z",
+  "title": "Sacroiliitis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

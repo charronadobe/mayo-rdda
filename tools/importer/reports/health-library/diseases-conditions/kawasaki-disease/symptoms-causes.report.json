@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/kawasaki-disease/symptoms-causes/syc-20354598",
+  "path": "health-library/diseases-conditions/kawasaki-disease/symptoms-causes",
+  "timestamp": "2026-11-13T14:05:43.466Z",
+  "title": "Kawasaki disease - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

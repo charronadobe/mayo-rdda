@@ -1,0 +1,33 @@
+{
+  "variantName": "video-inline",
+  "baseBlock": "video",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "In-article 16:9 video in the text column",
+    "description": "Poster image with a centred round blue play button. YouTube videos play inline; Mayo-hosted (Kaltura) videos open on mayoclinic.org. The H3 title and a \"Show transcript\" accordion-toggle follow as separate content."
+  },
+  "contentPattern": {
+    "structure": "One cell: optional poster image + video link",
+    "description": "YouTube: author https://www.youtube.com/watch?v=ID; with a poster the iframe loads on click, without one it loads near the viewport. Kaltura: signed player links expire, so author the stable thumbnail as the poster plus a link to the source page on mayoclinic.org; the poster links out. A direct .mp4/.webm link plays in a native player.",
+    "blockContent": "In-article video (poster with play button, or YouTube iframe), then an H3 video title and a Show transcript expander",
+    "table": [
+      [
+        "Video Inline"
+      ],
+      [
+        "Optional poster image + video link"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "video-inline"
+  ],
+  "usage": "Video embedded in article body text, followed by a default-content H3 title and an accordion-toggle transcript.",
+  "reuseGuidance": "Use for in-article videos. Keep hero-video for full-bleed background video in a hero band.",
+  "sectionMetadata": {
+    "style": "split"
+  },
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions/irritable-bowel-syndrome/symptoms-causes/syc-20360016",
+  "userDecision": "Mayo-hosted (Kaltura) videos: author the stable thumbnail as the poster plus a link that opens the video on mayoclinic.org (signed links expire). YouTube videos play inline."
+}

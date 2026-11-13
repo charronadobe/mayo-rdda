@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/peptic-ulcer/symptoms-causes/syc-20354223",
+  "path": "health-library/diseases-conditions/peptic-ulcer/symptoms-causes",
+  "timestamp": "2026-11-13T14:06:57.469Z",
+  "title": "Peptic ulcer - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

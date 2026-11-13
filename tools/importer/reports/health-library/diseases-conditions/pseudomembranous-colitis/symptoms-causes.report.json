@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/pseudomembranous-colitis/symptoms-causes/syc-20351434",
+  "path": "health-library/diseases-conditions/pseudomembranous-colitis/symptoms-causes",
+  "timestamp": "2026-11-13T14:04:55.323Z",
+  "title": "Pseudomembranous colitis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

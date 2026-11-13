@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/swine-flu/symptoms-causes/syc-20378103",
+  "path": "health-library/diseases-conditions/swine-flu/symptoms-causes/syc-20378103",
+  "timestamp": "2026-11-13T13:40:09.153Z",
+  "title": "H1N1 flu (swine flu) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

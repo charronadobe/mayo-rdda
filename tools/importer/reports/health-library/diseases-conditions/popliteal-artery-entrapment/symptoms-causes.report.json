@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/popliteal-artery-entrapment/symptoms-causes/syc-20465211",
+  "path": "health-library/diseases-conditions/popliteal-artery-entrapment/symptoms-causes",
+  "timestamp": "2026-11-13T14:06:31.976Z",
+  "title": "Popliteal artery entrapment syndrome - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

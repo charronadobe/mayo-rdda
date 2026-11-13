@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/canker-sore/symptoms-causes/syc-20370615",
+  "path": "health-library/diseases-conditions/canker-sore/symptoms-causes/syc-20370615",
+  "timestamp": "2026-11-13T13:39:32.865Z",
+  "title": "Canker sore - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

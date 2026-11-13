@@ -1,0 +1,33 @@
+{
+  "variantName": "cards-thumb-list",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "News story list (News from Mayo Clinic): small square thumbnail beside a linked title",
+    "description": "Stacked rows; a rounded square thumbnail on the left and an underlined blue story title on the right. The whole row is clickable."
+  },
+  "contentPattern": {
+    "structure": "One row per story: image | link",
+    "description": "Look-alike story items whose count varies by page, so Cards. The H2 above stays default content. The thumbnail is decorative (the title names the story).",
+    "blockContent": "4 newsnetwork.mayoclinic.org stories with thumbnails",
+    "table": [
+      [
+        "Cards Thumb List"
+      ],
+      [
+        "Square thumbnail image",
+        "Link to news story"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-thumb-list"
+  ],
+  "usage": "News or story list under a default-content H2.",
+  "reuseGuidance": "Use for a compact list of linked items each with a small thumbnail. For image tiles in a grid use cards-overlay or cards-action.",
+  "sectionMetadata": {
+    "style": "split"
+  },
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions/atrial-fibrillation/symptoms-causes/syc-20350624"
+}

@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/dry-skin/symptoms-causes/syc-20353885",
+  "path": "health-library/diseases-conditions/dry-skin/symptoms-causes",
+  "timestamp": "2026-11-13T14:07:13.295Z",
+  "title": "Dry skin - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

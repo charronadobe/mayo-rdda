@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/dandruff/symptoms-causes/syc-20353850",
+  "path": "health-library/diseases-conditions/dandruff/symptoms-causes",
+  "timestamp": "2026-11-13T14:04:58.153Z",
+  "title": "Dandruff - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

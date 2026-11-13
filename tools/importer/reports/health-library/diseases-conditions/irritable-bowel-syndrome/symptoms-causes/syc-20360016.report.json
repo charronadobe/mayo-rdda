@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/irritable-bowel-syndrome/symptoms-causes/syc-20360016",
+  "path": "health-library/diseases-conditions/irritable-bowel-syndrome/symptoms-causes/syc-20360016",
+  "timestamp": "2026-11-13T13:39:46.429Z",
+  "title": "Irritable bowel syndrome - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

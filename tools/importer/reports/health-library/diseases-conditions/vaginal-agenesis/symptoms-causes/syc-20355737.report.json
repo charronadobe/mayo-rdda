@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/vaginal-agenesis/symptoms-causes/syc-20355737",
+  "path": "health-library/diseases-conditions/vaginal-agenesis/symptoms-causes/syc-20355737",
+  "timestamp": "2026-11-13T13:40:11.412Z",
+  "title": "Vaginal agenesis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

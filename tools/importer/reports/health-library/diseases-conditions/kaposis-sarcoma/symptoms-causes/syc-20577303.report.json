@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/kaposis-sarcoma/symptoms-causes/syc-20577303",
+  "path": "health-library/diseases-conditions/kaposis-sarcoma/symptoms-causes/syc-20577303",
+  "timestamp": "2026-11-13T13:39:49.135Z",
+  "title": "Kaposi sarcoma - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

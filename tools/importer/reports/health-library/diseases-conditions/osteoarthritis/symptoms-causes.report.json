@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/osteoarthritis/symptoms-causes/syc-20351925",
+  "path": "health-library/diseases-conditions/osteoarthritis/symptoms-causes",
+  "timestamp": "2026-11-13T14:06:22.190Z",
+  "title": "Osteoarthritis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "32c7c77c1cf0"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/baby-acne/symptoms-causes/syc-20369880",
+  "path": "health-library/diseases-conditions/baby-acne/symptoms-causes/syc-20369880",
+  "timestamp": "2026-11-13T13:39:31.012Z",
+  "title": "Baby acne - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

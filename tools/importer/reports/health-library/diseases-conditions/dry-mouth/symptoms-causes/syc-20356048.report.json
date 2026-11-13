@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/dry-mouth/symptoms-causes/syc-20356048",
+  "path": "health-library/diseases-conditions/dry-mouth/symptoms-causes/syc-20356048",
+  "timestamp": "2026-11-13T13:39:37.993Z",
+  "title": "Dry mouth - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

@@ -1,0 +1,33 @@
+{
+  "variantName": "accordion-toggle",
+  "baseBlock": "accordion",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Single collapsed text disclosure for secondary article content (references, video transcript)",
+    "description": "Underlined blue \"Show references\" / \"Show transcript\" label with a chevron; opens to reveal the body text below. No borders or panel background."
+  },
+  "contentPattern": {
+    "structure": "One row: label | body (paragraphs or list)",
+    "description": "Source JS expando becomes a native details/summary, collapsed by default. The label is shown verbatim, so author the full visible text (\"Show references\", \"Show transcript\"). Extra rows render as extra toggles.",
+    "blockContent": "Show references | medical citation paragraphs",
+    "table": [
+      [
+        "Accordion Toggle"
+      ],
+      [
+        "Label (Show references / Show transcript)",
+        "Body: paragraphs or list"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "accordion-toggle"
+  ],
+  "usage": "One collapsible item after the article (references) or after an in-article video (transcript).",
+  "reuseGuidance": "Use for a single show/hide text toggle. For a bordered multi-item FAQ use the base accordion block.",
+  "sectionMetadata": {
+    "style": "split"
+  },
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions/atrial-fibrillation/symptoms-causes/syc-20350624"
+}

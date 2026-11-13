@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/lactose-intolerance/symptoms-causes/syc-20374232",
+  "path": "health-library/diseases-conditions/lactose-intolerance/symptoms-causes/syc-20374232",
+  "timestamp": "2026-11-13T13:39:51.564Z",
+  "title": "Lactose intolerance - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}

@@ -1,0 +1,35 @@
+{
+  "variantName": "cards-show-more",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Related link list (Related content, Associated procedures, Products & services) collapsed after 6 items",
+    "description": "Single column of underlined blue links; when there are more than 6, the rest are hidden behind a \"Show N more\" text button with a chevron, which toggles to \"Show less\"."
+  },
+  "contentPattern": {
+    "structure": "One row per link to a detail page",
+    "description": "The list length varies per page and every item links to a detail page, so it is Cards with one cell per row. The H2 above it stays default content. Author every item, including those hidden behind \"Show N more\"; the code collapses after 6.",
+    "blockContent": "Related content links (e.g. Atrial fibrillation ablation, Holter monitor ...)",
+    "table": [
+      [
+        "Cards Show More"
+      ],
+      [
+        "Link to detail page"
+      ],
+      [
+        "Link to detail page"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-show-more"
+  ],
+  "usage": "List of related links under a default-content H2 in the condition article.",
+  "reuseGuidance": "Use for a plain list of links whose length varies. For bordered link rows in two columns use cards-link-list.",
+  "sectionMetadata": {
+    "style": "split"
+  },
+  "sourceUrl": "https://www.mayoclinic.org/diseases-conditions/atrial-fibrillation/symptoms-causes/syc-20350624"
+}

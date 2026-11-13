@@ -1,0 +1,97 @@
+/* source: condition page tab row (.cmp-tabs) shown as a left rail */
+.cards-side-nav {
+  margin: 0 0 24px;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+}
+
+.cards-side-nav nav > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-side-nav .cards-side-nav-title {
+  margin: 0;
+  padding: 0 0 12px;
+  font-size: var(--brand-heading-font-size-xs);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cards-side-nav .cards-side-nav-item {
+  border-top: 1px solid #d6d6d6;
+}
+
+.cards-side-nav .cards-side-nav-item:last-child {
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.cards-side-nav a.cards-side-nav-link:any-link,
+.cards-side-nav .cards-side-nav-current {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 0;
+  box-sizing: border-box;
+  font-size: var(--brand-heading-font-size-xs);
+  line-height: 1.25;
+}
+
+.cards-side-nav a.cards-side-nav-link:any-link {
+  color: var(--brand-link-color);
+  text-decoration: none;
+}
+
+.cards-side-nav a.cards-side-nav-link:hover {
+  color: var(--brand-link-hover-color);
+  text-decoration: underline;
+}
+
+.cards-side-nav .cards-side-nav-current {
+  font-weight: 700;
+}
+
+/* current page arrow */
+.cards-side-nav .cards-side-nav-current::before {
+  content: '';
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8.707 2.293 7.293 3.707 10.586 7H2v2h8.586l-3.293 3.293 1.414 1.414L14.414 8z'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+}
+
+/* mobile copy after the article */
+.cards-side-nav-repeat .cards-side-nav {
+  margin-top: 40px;
+}
+
+@media (width >= 900px) {
+  /* left rail beside the article column */
+  main > .section.split.cards-side-nav-container {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+    column-gap: 48px;
+  }
+
+  main > .section.split.cards-side-nav-container > div {
+    grid-column: 2;
+    max-width: 800px;
+  }
+
+  main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper {
+    grid-column: 1;
+    grid-row: 1 / span var(--cards-side-nav-rows, 99);
+    align-self: stretch;
+  }
+
+  main > .section.split.cards-side-nav-container > .cards-side-nav-repeat {
+    display: none;
+  }
+
+  .cards-side-nav {
+    position: sticky;
+    top: calc(var(--brand-nav-height) + 24px);
+  }
+}

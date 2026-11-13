@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/rabies/symptoms-causes/syc-20351821",
+  "path": "health-library/diseases-conditions/rabies/symptoms-causes/syc-20351821",
+  "timestamp": "2026-11-13T13:40:03.847Z",
+  "title": "Rabies - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "d695b802aef1"
+}
