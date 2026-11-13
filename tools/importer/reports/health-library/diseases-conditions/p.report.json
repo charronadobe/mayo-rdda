@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=P",
+  "path": "health-library/diseases-conditions/p",
+  "timestamp": "2026-11-12T23:10:13.136Z",
+  "title": "Diseases and Conditions that Start with P - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

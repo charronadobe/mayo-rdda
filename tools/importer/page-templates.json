@@ -215,6 +215,92 @@
           "defaultContent": []
         }
       ]
+    },
+    {
+      "name": "diseases-conditions-index",
+      "urls": [
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=A",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=B",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=C",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=D",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=E",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=F",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=G",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=H",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=I",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=J",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=K",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=L",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=M",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=N",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=O",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=P",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=R",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=S",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=T",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=U",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=V",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=W",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=X",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=Y",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=Z",
+        "https://www.mayoclinic.org/diseases-conditions/index?letter=%23"
+      ],
+      "description": "Diseases & conditions A-Z index: one page per first letter listing the conditions that start with it",
+      "blocks": [
+        {
+          "name": "columns-intro-index",
+          "instances": [
+            "#cmp-dc-banner .cmp-container--centered"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Page intro and A-Z index",
+          "selector": [
+            "#cmp-dc-banner"
+          ],
+          "style": "blue-gradient",
+          "blocks": [
+            "columns-intro-index"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s2",
+          "name": "Conditions starting with the letter",
+          "selector": [
+            ".cmp-azresults",
+            "#cmp-skip-to-main__content"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-azresults .cmp-result-letters h2",
+            ".cmp-azresults ul"
+          ]
+        },
+        {
+          "id": "s3",
+          "name": "Donation banner",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ]
     }
   ],
   "metadata": {

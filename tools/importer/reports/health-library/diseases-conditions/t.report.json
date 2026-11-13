@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=T",
+  "path": "health-library/diseases-conditions/t",
+  "timestamp": "2026-11-12T23:10:28.475Z",
+  "title": "Diseases and Conditions that Start with T - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

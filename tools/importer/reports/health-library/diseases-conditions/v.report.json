@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=V",
+  "path": "health-library/diseases-conditions/v",
+  "timestamp": "2026-11-12T23:10:39.044Z",
+  "title": "Diseases and Conditions that Start with V - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

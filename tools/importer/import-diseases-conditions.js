@@ -182,10 +182,11 @@ export default {
       WebImporter.rules.adjustImageUrls(element, url, params.originalURL);
     });
 
+    // The page lives in the health-library folder (/health-library/diseases-conditions)
     const rawPath = new URL(params.originalURL).pathname
       .replace(/\/$/, '')
       .replace(/\.html?$/, '');
-    const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
+    const path = WebImporter.FileUtils.sanitizePath(`/health-library${rawPath}`);
 
     return [{
       element: main,

@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=D",
+  "path": "health-library/diseases-conditions/d",
+  "timestamp": "2026-11-12T23:09:16.519Z",
+  "title": "Diseases and Conditions that Start with D - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

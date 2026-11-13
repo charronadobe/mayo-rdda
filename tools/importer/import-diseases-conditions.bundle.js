@@ -43,6 +43,13 @@ var CustomImportScript = (() => {
 
   // tools/importer/parsers/columns-intro-index.js
   var SOURCE_ORIGIN = "https://www.mayoclinic.org";
+  var LETTER_PAGES = "/health-library/diseases-conditions";
+  function letterPagePath(href) {
+    const url = new URL(href, SOURCE_ORIGIN);
+    const letter = (url.searchParams.get("letter") || "").trim().toLowerCase();
+    if (!/\/diseases-conditions\/index$/.test(url.pathname) || !letter) return url.href;
+    return `${LETTER_PAGES}/${/^[a-z]$/.test(letter) ? letter : "other"}`;
+  }
   function parse(element, { document: document2, params }) {
     const introCell = [];
     const h1 = element.querySelector(".cmp-title h1");
@@ -79,7 +86,7 @@ var CustomImportScript = (() => {
       if (!text) return;
       const li = document2.createElement("li");
       const a = document2.createElement("a");
-      a.setAttribute("href", new URL(link.getAttribute("href"), SOURCE_ORIGIN).href);
+      a.setAttribute("href", letterPagePath(link.getAttribute("href")));
       a.textContent = text;
       li.append(a);
       ul.append(li);
@@ -206,8 +213,17 @@ var CustomImportScript = (() => {
         // Breadcrumb: navigation chrome generated from the page path (diseases-conditions)
         ".cmp-breadcrumb",
         // Empty right-hand aside column (no text or media)
-        "#main-content aside"
+        "#main-content aside",
+        // A-Z index pages: advertisement wrapper and the advertising disclaimer
+        // ("Mayo Clinic does not endorse...", Advertising & Sponsorship links)
+        // that sit next to the aside in the right-hand column
+        ".cmp-advertisement__wrapper",
+        "#advertising-disclaimer"
       ]);
+      element.querySelectorAll(".cmp-azresults a.cmp-back-to-top").forEach((a) => {
+        const wrapper = a.closest(".cmp-link") || a;
+        wrapper.remove();
+      });
     }
     if (hookName === "afterTransform") {
       WebImporter.DOMUtils.remove(element, [
@@ -230,6 +246,60 @@ var CustomImportScript = (() => {
         const absolute = `https://www.mayoclinic.org${href}`;
         a.setAttribute("href", absolute);
         if (a.textContent.trim() === href) a.textContent = absolute;
+      });
+      element.querySelectorAll('a[href*="/diseases-conditions/index?letter="]').forEach((a) => {
+        const url = new URL(a.getAttribute("href"), "https://www.mayoclinic.org");
+        if (url.hostname !== "www.mayoclinic.org" || url.pathname !== "/diseases-conditions/index") return;
+        const letter = (url.searchParams.get("letter") || "").trim().toLowerCase();
+        if (!letter) return;
+        a.setAttribute("href", `/health-library/diseases-conditions/${/^[a-z]$/.test(letter) ? letter : "other"}`);
+      });
+      element.querySelectorAll(".cmp-azresults").forEach((az) => {
+        const doc = az.ownerDocument;
+        az.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((a) => {
+          const href = a.getAttribute("href");
+          const absolute = `https://www.mayoclinic.org${href}`;
+          a.setAttribute("href", absolute);
+          if (a.textContent.trim() === href) a.textContent = absolute;
+        });
+        az.querySelectorAll(".cmp-result-letters").forEach((wrap) => {
+          const h2 = wrap.querySelector("h2");
+          if (!h2) {
+            wrap.remove();
+            return;
+          }
+          const heading = doc.createElement("h2");
+          heading.textContent = h2.textContent.trim();
+          wrap.replaceWith(heading);
+        });
+        az.querySelectorAll("ul > li").forEach((li) => {
+          const cleanLink = (a2) => {
+            const link = doc.createElement("a");
+            link.setAttribute("href", a2.getAttribute("href"));
+            link.textContent = a2.textContent.trim();
+            return link;
+          };
+          const alias = li.querySelector(".cmp-results-with-primary-name");
+          if (alias) {
+            const label = alias.querySelector(".cmp-results-with-primary-name__label");
+            const a2 = alias.querySelector("a[href]");
+            li.textContent = "";
+            if (label) li.append(doc.createTextNode(label.textContent.trim()));
+            if (a2) {
+              if (label) li.append(doc.createElement("br"));
+              li.append(doc.createTextNode("See "), cleanLink(a2));
+            }
+            return;
+          }
+          const a = li.querySelector("a[href]");
+          if (a) {
+            li.textContent = "";
+            li.append(cleanLink(a));
+          }
+        });
+        az.querySelectorAll("ul, li").forEach((el) => {
+          [...el.attributes].forEach((attr) => el.removeAttribute(attr.name));
+        });
       });
       element.querySelectorAll("[onclick], [data-track], [data-analytics], [data-cmp-data-layer]").forEach((el) => {
         el.removeAttribute("onclick");
@@ -477,7 +547,7 @@ var CustomImportScript = (() => {
         WebImporter.rules.adjustImageUrls(element, url, params.originalURL);
       });
       const rawPath = new URL(params.originalURL).pathname.replace(/\/$/, "").replace(/\.html?$/, "");
-      const path = WebImporter.FileUtils.sanitizePath(rawPath === "" ? "/index" : rawPath);
+      const path = WebImporter.FileUtils.sanitizePath(`/health-library${rawPath}`);
       return [{
         element: main,
         path,

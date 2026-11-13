@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=R",
+  "path": "health-library/diseases-conditions/r",
+  "timestamp": "2026-11-12T23:10:18.158Z",
+  "title": "Diseases and Conditions that Start with R - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

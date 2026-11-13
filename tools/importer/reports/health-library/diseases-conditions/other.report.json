@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=%23",
+  "path": "health-library/diseases-conditions/other",
+  "timestamp": "2026-11-12T23:11:01.202Z",
+  "title": "Diseases and Conditions that Start with # - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

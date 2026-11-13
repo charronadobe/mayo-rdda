@@ -27,10 +27,11 @@
   "usage": {
     "description": "Page intro beside an A-Z letter index.",
     "pagesUsing": [
-      "/diseases-conditions"
+      "/diseases-conditions",
+      "/diseases-conditions/index"
     ],
-    "reuseCount": 1,
-    "lastUsed": "2026-11-12T00:00:00.000Z"
+    "reuseCount": 2,
+    "lastUsed": "2026-11-12T22:53:42.243Z"
   },
   "reuseGuidance": "Use for an index landing page intro with an alphabet browse. One row, two cells: first cell H1 + paragraph, second cell H2 label + bulleted list of one link per letter. Set section metadata style \"blue-gradient\" for the colored band.",
   "sourceUrl": "https://www.mayoclinic.org/diseases-conditions"

@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions",
+  "path": "health-library/diseases-conditions",
+  "timestamp": "2026-11-12T23:08:33.162Z",
+  "title": "Medical Diseases & Conditions - Mayo Clinic",
+  "template": "diseases-conditions",
+  "blocks": [
+    "columns-intro-index",
+    "cards-action",
+    "columns-banner"
+  ],
+  "importScript": "8cb1371f14ec"
+}

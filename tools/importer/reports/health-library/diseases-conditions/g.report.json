@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=G",
+  "path": "health-library/diseases-conditions/g",
+  "timestamp": "2026-11-12T23:09:30.135Z",
+  "title": "Diseases and Conditions that Start with G - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "7b9cdd0685a5"
+}

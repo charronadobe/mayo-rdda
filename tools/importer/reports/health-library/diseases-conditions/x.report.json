@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=X",
+  "path": "health-library/diseases-conditions/x",
+  "timestamp": "2026-11-12T23:12:16.757Z",
+  "title": "Diseases and Conditions that Start with X - Mayo Clinic",
+  "template": "diseases-conditions-index",
+  "blocks": [
+    "columns-intro-index",
+    "columns-banner"
+  ],
+  "importScript": "db7c68809b60"
+}
