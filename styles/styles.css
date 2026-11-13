@@ -820,7 +820,7 @@ main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > 
   display: flex;
   flex-wrap: wrap;
   gap: 16px 24px;
-  margin: 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 }

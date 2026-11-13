@@ -1,6 +1,7 @@
 /* source: .cmp-expando (Show references / Show transcript) */
 .accordion-toggle {
-  margin: 24px 0;
+  margin: 0;
+  padding: 32px 0;
   color: var(--brand-text-color);
 }
 
@@ -8,13 +9,16 @@
   margin-top: 16px;
 }
 
+/* label: grey, underlined, a small plus/minus icon before it (source: .cmp-expando__button) */
 .accordion-toggle .accordion-toggle-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  color: var(--brand-link-color);
-  font-size: var(--brand-heading-font-size-xs);
+  gap: 5px;
+  padding: 5px 0;
+  color: #595959;
+  font-family: var(--brand-body-font-family);
+  font-size: 16px;
+  line-height: 20px;
   cursor: pointer;
   list-style: none;
 }
@@ -25,11 +29,10 @@
 
 .accordion-toggle .accordion-toggle-label > span {
   text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .accordion-toggle .accordion-toggle-label:hover {
-  color: var(--brand-link-hover-color);
+  color: var(--brand-text-color);
 }
 
 .accordion-toggle .accordion-toggle-label:focus-visible {
@@ -37,35 +40,49 @@
   outline-offset: 2px;
 }
 
-/* chevron, points down when closed and up when open */
+/* chevron after the label: down when closed, up when open (source: .cmp-expando__button-icon) */
 .accordion-toggle .accordion-toggle-label::after {
   content: '';
-  width: 6px;
-  height: 6px;
-  margin-top: -4px;
-  border: solid currentcolor;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  flex: 0 0 12px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--brand-text-color);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M1.5 3.75 6 8.25l4.5-4.5' fill='none' stroke='black' stroke-width='2'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
   transition: transform 0.2s;
 }
 
 .accordion-toggle .accordion-toggle-item[open] .accordion-toggle-label::after {
-  margin-top: 4px;
-  transform: rotate(-135deg);
-}
-
-.accordion-toggle .accordion-toggle-body {
-  padding: 8px 0 0;
-  font-size: var(--brand-heading-font-size-xs);
-  line-height: 1.5;
-}
-
-.accordion-toggle .accordion-toggle-body > :first-child {
-  margin-top: 0;
+  transform: rotate(180deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .accordion-toggle .accordion-toggle-label::after {
     transition: none;
   }
+}
+
+/* revealed text: references list or transcript (source: .reference-list) */
+.accordion-toggle .accordion-toggle-body {
+  margin-top: 24px;
+  font-family: var(--brand-body-font-family);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.accordion-toggle .accordion-toggle-body > :first-child {
+  margin-top: 0;
+}
+
+.accordion-toggle .accordion-toggle-body ol {
+  margin: 16px 0;
+  padding-left: 32px;
+}
+
+.accordion-toggle .accordion-toggle-body ol li {
+  padding-left: 12px;
+  line-height: 20px;
+}
+
+.accordion-toggle .accordion-toggle-body ol li + li {
+  margin-top: 12px;
 }

@@ -1,6 +1,8 @@
 /* source: .cmp-news-and-patient-stories (News from Mayo Clinic) */
 .cards-thumb-list {
-  margin: 16px 0 32px;
+  margin: 0 0 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #808080;
   color: var(--brand-text-color);
 }
 
@@ -10,15 +12,14 @@
   list-style: none;
 }
 
+/* every story, the first too, sits 24px below the one before (source: li margin-top) */
 .cards-thumb-list .cards-thumb-list-item {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
-}
-
-.cards-thumb-list .cards-thumb-list-item + .cards-thumb-list-item {
-  margin-top: 16px;
+  gap: 24px;
+  max-width: 432px;
+  margin-top: 24px;
 }
 
 .cards-thumb-list .cards-thumb-list-image {
@@ -26,7 +27,7 @@
   width: 72px;
   aspect-ratio: 1;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .cards-thumb-list .cards-thumb-list-image picture,
@@ -53,14 +54,15 @@
 
 .cards-thumb-list a.cards-thumb-list-link:any-link {
   color: var(--brand-link-color);
-  font-size: var(--brand-heading-font-size-xs);
-  line-height: 1.5;
+  font-family: var(--brand-body-font-family);
+  font-size: 16px;
+  line-height: 24px;
   text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .cards-thumb-list a.cards-thumb-list-link:hover {
   color: var(--brand-link-hover-color);
+  text-decoration: none;
 }
 
 /* stretch the title link over the whole item so the thumbnail is clickable too */
@@ -68,11 +70,4 @@
   content: '';
   position: absolute;
   inset: 0;
-}
-
-@media (width >= 600px) {
-  .cards-thumb-list .cards-thumb-list-image {
-    flex-basis: 96px;
-    width: 96px;
-  }
 }

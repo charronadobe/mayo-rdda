@@ -27,6 +27,38 @@ function plainLink(a) {
   return a;
 }
 
+let instance = 0;
+
+/**
+ * Small screens (below the desktop rail): the nav collapses behind a button showing the title
+ * and "Menu" (source: .cmp-level-two-navigation__menu-toggle). CSS hides the button on desktop.
+ */
+function addToggle(nav, title) {
+  const ul = nav.querySelector('ul');
+  if (!ul) return;
+  instance += 1;
+  ul.id = ul.id || `cards-side-nav-list-${instance}`;
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'cards-side-nav-toggle';
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-controls', ul.id);
+  const label = document.createElement('span');
+  label.className = 'cards-side-nav-toggle-title';
+  label.textContent = title || 'Pages';
+  const state = document.createElement('span');
+  state.className = 'cards-side-nav-toggle-state';
+  state.textContent = 'Menu';
+  button.append(label, state);
+  button.addEventListener('click', () => {
+    const open = button.getAttribute('aria-expanded') !== 'true';
+    button.setAttribute('aria-expanded', String(open));
+    state.textContent = open ? 'Close' : 'Menu';
+    nav.classList.toggle('is-open', open);
+  });
+  nav.prepend(button);
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
   const nav = document.createElement('nav');
@@ -69,13 +101,18 @@ export default function decorate(block) {
   // desktop: the nav spans every row of the split section (see CSS)
   const wrapper = block.parentElement;
   const section = block.closest('.section');
-  if (!section || !wrapper || wrapper.parentElement !== section) return;
-  section.style.setProperty('--cards-side-nav-rows', section.children.length + 1);
+  if (section && wrapper && wrapper.parentElement === section) {
+    section.style.setProperty('--cards-side-nav-rows', section.children.length + 1);
 
-  // mobile: repeat the nav after the article (hidden on desktop)
-  const repeat = wrapper.cloneNode(true);
-  repeat.classList.add('cards-side-nav-repeat');
-  const repeatNav = repeat.querySelector('nav');
-  repeatNav.setAttribute('aria-label', `${nav.getAttribute('aria-label')} (end of article)`);
-  section.append(repeat);
+    // the source repeats the nav, always expanded, at the end of the article
+    const repeat = wrapper.cloneNode(true);
+    repeat.classList.add('cards-side-nav-repeat');
+    const repeatBlock = repeat.querySelector('.cards-side-nav');
+    if (repeatBlock) repeatBlock.dataset.blockStatus = 'loaded';
+    const repeatNav = repeat.querySelector('nav');
+    repeatNav.setAttribute('aria-label', `${nav.getAttribute('aria-label')} (end of article)`);
+    section.append(repeat);
+  }
+
+  addToggle(nav, title);
 }

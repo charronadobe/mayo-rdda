@@ -1,13 +1,16 @@
 /* source: in-article video player (Kaltura poster or YouTube iframe) */
 .video-inline {
-  margin: 24px 0 8px;
+  margin: 0;
+  padding-top: 32px;
 }
 
+/* 16:9 poster with rounded corners (source: .cmp-video__poster) */
 .video-inline .video-inline-media {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+  border-radius: 8px;
   background-color: var(--brand-light-color);
 }
 
@@ -54,32 +57,29 @@
   background-color: #000;
 }
 
-/* round play button centred on the poster */
+/* white round play button in the bottom-left corner (source: .cmp-poster__content-play-icon) */
 .video-inline .video-inline-play {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  bottom: 24px;
+  left: 24px;
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background-color: var(--brand-link-color);
-  transform: translate(-50%, -50%);
+  background-color: var(--brand-light-text-color);
   transition: background-color 0.2s;
 }
 
+/* outlined play triangle (source) */
 .video-inline .video-inline-play::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  border-style: solid;
-  border-width: 12px 0 12px 20px;
-  border-color: transparent transparent transparent var(--brand-light-text-color);
-  transform: translate(-35%, -50%);
+  inset: 0;
+  background-color: var(--brand-text-color);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M25 21.5v21l17-10.5z' fill='none' stroke='black' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") center / 64px 64px no-repeat;
 }
 
 .video-inline .video-inline-poster:hover .video-inline-play {
-  background-color: var(--brand-link-hover-color);
+  background-color: var(--brand-light-color);
 }
 
 .video-inline.video-inline-text a:any-link {
@@ -87,11 +87,27 @@
   text-decoration: underline;
 }
 
-@media (width >= 900px) {
-  .video-inline .video-inline-play {
-    width: 80px;
-    height: 80px;
-  }
+/* the video title right after the player (source: .cmp-video .cmp-title h3) */
+main .video-inline-wrapper + .default-content-wrapper > h3:first-child {
+  margin: 0;
+  padding: 40px 0 0;
+  color: #595959;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* the transcript toggle under that title sits closer (source: .cmp-video__expando) */
+main .video-inline-wrapper + .default-content-wrapper:has(> h3:only-child) + .accordion-toggle-wrapper .accordion-toggle {
+  padding: 16px 0 0;
+}
+
+/* "Show transcript" is a blue link with a blue chevron (source) */
+main .video-inline-wrapper + .default-content-wrapper:has(> h3:only-child) + .accordion-toggle-wrapper .accordion-toggle-label {
+  color: var(--brand-link-color);
+}
+
+main .video-inline-wrapper + .default-content-wrapper:has(> h3:only-child) + .accordion-toggle-wrapper .accordion-toggle-label::after {
+  background-color: var(--brand-link-color);
 }
 
 @media (prefers-reduced-motion: reduce) {
