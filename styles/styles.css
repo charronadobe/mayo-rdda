@@ -730,6 +730,32 @@ main > .section.dark a:hover:not(.button) {
   color: var(--brand-link-inverse-hover-color);
 }
 
+/* blue gradient band (source: #cmp-dc-banner, diseases & conditions intro) */
+main > .section.blue-gradient {
+  margin-bottom: var(--brand-section-spacing);
+  padding: 48px 0;
+  background: radial-gradient(79.75% 134.25% at 95.71% 100%, #000b6b 0%, var(--brand-theme-color) 100%);
+  color: var(--text-light);
+}
+
+main > .section.blue-gradient h1,
+main > .section.blue-gradient h2,
+main > .section.blue-gradient h3,
+main > .section.blue-gradient p {
+  color: var(--text-light);
+}
+
+main > .section.blue-gradient h1 {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+/* low specificity so blocks in the band (e.g. the current A-Z letter) can set their own colours */
+main > .section.blue-gradient :where(a:any-link:not(.button)) {
+  color: var(--text-light);
+}
+
 /* split: default content sits beside the block (source: 1/3 + 2/3 columns, 36px gutter) */
 @media (width >= 900px) {
   main > .section.split {

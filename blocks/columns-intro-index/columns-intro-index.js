@@ -30,7 +30,11 @@ async function decorateSearch(cell) {
   a.textContent = link.href;
   linkCell.append(a);
   linkRow.append(linkCell);
-  search.append(labelRow, linkRow);
+  // placeholder text inside the field (source: "Search")
+  const placeholderRow = document.createElement('div');
+  placeholderRow.append(document.createElement('div'));
+  placeholderRow.firstChild.textContent = 'Search';
+  search.append(labelRow, linkRow, placeholderRow);
   link.closest('p').replaceWith(search);
   const [{ default: decorateSearchBlock }] = await Promise.all([
     import('../search-conditions/search-conditions.js'),
@@ -72,9 +76,16 @@ export default async function decorate(block) {
   if (!list) return;
   list.classList.add('columns-intro-index-letters');
   list.id = list.id || `columns-intro-index-letters-${instance}`;
+  // the letter of the page being viewed is marked as current (local previews add a path prefix)
+  const pagePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '');
   list.querySelectorAll('a[href]').forEach((a) => {
     a.classList.add('columns-intro-index-letter');
     a.classList.remove('button');
+    const url = new URL(a.href, window.location.href);
+    const linkPath = url.pathname.replace(/\.html$/, '').replace(/\/$/, '');
+    if (url.origin === window.location.origin && linkPath && pagePath.endsWith(linkPath)) {
+      a.setAttribute('aria-current', 'page');
+    }
   });
 
   const label = indexCell.querySelector('h1, h2, h3, h4, h5, h6');

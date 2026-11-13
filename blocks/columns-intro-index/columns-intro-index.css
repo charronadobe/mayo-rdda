@@ -13,7 +13,32 @@
   margin-top: 0;
 }
 
-/* index label stays a heading for assistive tech, the toggle is the visible label */
+/* search field on the blue band: white pill, white label (source: #cmp-dc-banner .cmp-search) */
+.columns-intro-index .columns-intro-index-search {
+  margin-top: 48px;
+  color: var(--text-light);
+}
+
+.columns-intro-index .columns-intro-index-search .search-conditions-label {
+  color: var(--text-light);
+}
+
+.columns-intro-index .columns-intro-index-search .search-conditions-input {
+  height: 48px;
+  border: 0;
+  background: var(--text-light);
+  color: var(--brand-text-color);
+}
+
+/* index label stays a heading for assistive tech; on small screens the toggle is the visible label */
+.columns-intro-index .columns-intro-index-label,
+.columns-intro-index .columns-intro-index-toggle {
+  font-family: var(--heading-font-family);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
 .columns-intro-index .columns-intro-index-label {
   position: absolute;
   width: 1px;
@@ -37,7 +62,6 @@
   border: 0;
   background: none;
   color: inherit;
-  font: inherit;
   text-align: start;
   cursor: pointer;
 }
@@ -57,9 +81,11 @@
   transform: rotate(-135deg);
 }
 
+/* source: 5 letters per row on mobile, spread across the column */
 .columns-intro-index .columns-intro-index-letters {
   display: none;
-  grid-template-columns: repeat(auto-fill, 40px);
+  grid-template-columns: repeat(5, 48px);
+  justify-content: space-between;
   gap: 8px;
   margin: 8px 0 0;
   padding: 0;
@@ -74,19 +100,37 @@
   margin: 0;
 }
 
+/* letter circles (source: .cmp-button__inner--type-alphabetFacet) */
 .columns-intro-index .columns-intro-index-letter:any-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
+  background-color: rgb(255 255 255 / 10%);
+  color: var(--text-light);
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
   text-decoration: none;
+}
+
+.columns-intro-index .columns-intro-index-letter:hover {
+  background-color: rgb(255 255 255 / 20%);
+}
+
+/* the letter of the page being viewed (source: ..._selected) */
+.columns-intro-index .columns-intro-index-letter[aria-current='page'] {
+  background-color: var(--text-light);
+  color: var(--brand-theme-color);
 }
 
 @media (width >= 600px) {
   .columns-intro-index .columns-intro-index-letters {
-    grid-template-columns: repeat(9, 40px);
+    grid-template-columns: repeat(9, 48px);
+    justify-content: start;
   }
 }
 
@@ -97,17 +141,28 @@
     justify-content: space-between;
   }
 
+  /* source: 636px intro and 518px index columns in a 1296px row */
   .columns-intro-index .columns-intro-index-intro {
-    flex: 1 1 50%;
+    flex: 0 1 636px;
   }
 
   .columns-intro-index .columns-intro-index-index {
-    flex: 0 1 auto;
+    flex: 0 1 518px;
   }
 
-  /* the full index is always visible on desktop */
+  /* the full index is always visible on desktop, under its heading */
   .columns-intro-index .columns-intro-index-toggle {
     display: none;
+  }
+
+  .columns-intro-index .columns-intro-index-label {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0 0 12px;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
   }
 
   .columns-intro-index .columns-intro-index-letters,
