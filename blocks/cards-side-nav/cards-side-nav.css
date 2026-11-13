@@ -68,30 +68,93 @@
   margin-top: 40px;
 }
 
+/*
+ * condition page layout (source: .cmp-column-control__layoutType--ThreeColumnWithL2AndAd)
+ * mobile: 12px container margin + 8px column padding; the article column is
+ * 83.33% wide with 8% side margins from 600px, 50% wide (left aligned, the
+ * source's ad column is not migrated) from 900px, and from 1200px sits beside
+ * the nav rail: 16.67% rail | 8% gap | 41.67% article inside a 1320px container.
+ */
+main > .section.split.cards-side-nav-container {
+  padding-top: 16px;
+  padding-inline: 12px;
+}
+
+main > .section.split.cards-side-nav-container > div {
+  box-sizing: border-box;
+  max-width: none;
+  margin: 0;
+  padding-inline: 8px;
+}
+
+main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper:not(.cards-side-nav-repeat) {
+  padding-block: 8px;
+}
+
+main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper + div {
+  padding-top: 8px;
+}
+
+@media (width >= 600px) {
+  main > .section.split.cards-side-nav-container > div:not(.cards-side-nav-wrapper),
+  main > .section.split.cards-side-nav-container > .cards-side-nav-repeat {
+    width: 83.3333%;
+    margin-inline: 8%;
+  }
+}
+
 @media (width >= 900px) {
-  /* left rail beside the article column */
   main > .section.split.cards-side-nav-container {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    column-gap: 48px;
+    display: block;
+    max-width: none;
+    padding-top: 24px;
+    padding-inline: 20px;
   }
 
   main > .section.split.cards-side-nav-container > div {
-    grid-column: 2;
-    max-width: 800px;
+    padding-inline: 12px;
   }
 
-  main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper {
+  main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper:not(.cards-side-nav-repeat) {
+    padding-block: 12px;
+  }
+
+  main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper + div {
+    padding-top: 12px;
+  }
+
+  main > .section.split.cards-side-nav-container > div:not(.cards-side-nav-wrapper),
+  main > .section.split.cards-side-nav-container > .cards-side-nav-repeat {
+    width: 50%;
+    margin-inline: 0 8%;
+  }
+}
+
+@media (width >= 1200px) {
+  /* left rail beside the article column */
+  main > .section.split.cards-side-nav-container {
+    display: grid;
+    grid-template-columns: 16.6667% 8% 41.6667%;
+    column-gap: 0;
+    align-items: start;
+    max-width: 1360px;
+    margin-inline: auto;
+  }
+
+  main > .section.split.cards-side-nav-container > div:not(.cards-side-nav-wrapper),
+  main > .section.split.cards-side-nav-container > .cards-side-nav-repeat {
+    grid-column: 3;
+    width: auto;
+    margin: 0;
+  }
+
+  main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper:not(.cards-side-nav-repeat) {
     grid-column: 1;
     grid-row: 1 / span var(--cards-side-nav-rows, 99);
-    align-self: stretch;
+    align-self: start;
   }
 
-  main > .section.split.cards-side-nav-container > .cards-side-nav-repeat {
-    display: none;
-  }
-
-  .cards-side-nav {
-    position: sticky;
-    top: calc(var(--brand-nav-height) + 24px);
+  main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper + div {
+    padding-top: 0;
   }
 }

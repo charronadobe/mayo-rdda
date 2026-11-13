@@ -14,7 +14,10 @@ export default function parse(element, { document, params }) {
   const mediaCell = [];
   const source = element.querySelector('video source[src], video[src]');
   const videoSrc = source ? source.getAttribute('src') : '';
-  if (videoSrc) {
+  // Mayo's Kaltura video links are signed and expire within days (and the workspace Sync can't
+  // upload pages that reference them), so they are left out; the poster image is kept.
+  const expiring = /cfvod\.kaltura\.com/.test(videoSrc) && /[?&](Policy|Signature)=/.test(videoSrc);
+  if (videoSrc && !expiring) {
     const p = document.createElement('p');
     const a = document.createElement('a');
     a.href = videoSrc;

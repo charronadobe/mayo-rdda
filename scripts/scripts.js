@@ -306,6 +306,22 @@ export function decorateButtons(main) {
 }
 
 /**
+ * Wraps the part of a page title after its first line break (e.g. a condition page's
+ * "Symptoms and causes") so it can be styled as a second title line.
+ * @param {HTMLElement} main The main container element
+ */
+export function decorateTitleLines(main) {
+  main.querySelectorAll('h1').forEach((h1) => {
+    const br = h1.querySelector(':scope > br');
+    if (!br || h1.querySelector('.title-second-line')) return;
+    const second = document.createElement('span');
+    second.className = 'title-second-line';
+    while (br.nextSibling) second.append(br.nextSibling);
+    if (second.textContent.trim()) br.after(second);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -317,6 +333,7 @@ export function decorateMain(main) {
   decorateBlocks(main);
   decorateDMImages(main);
   decorateButtons(main);
+  decorateTitleLines(main);
 }
 
 async function renderWBDataLayer() {

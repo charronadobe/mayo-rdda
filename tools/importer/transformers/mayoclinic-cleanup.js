@@ -332,9 +332,17 @@ function cleanConditionAfter(root) {
 // New images found by an import must be downloaded and uploaded to that folder before publishing.
 const DA_MEDIA = 'https://content.da.live/charronadobe/mayo-rdda/media/mayoclinic';
 
+// Kaltura video thumbnails are hosted in DA too (media/thumbnails/kaltura-<entry id>.jpg): the
+// workspace Sync can't copy images from Kaltura.
+const DA_KALTURA = 'https://content.da.live/charronadobe/mayo-rdda/media/thumbnails';
+
 function daMediaUrl(src) {
   let url;
   try { url = new URL(src, 'https://www.mayoclinic.org'); } catch (e) { return null; }
+  if (/(^|\.)kaltura\.com$/.test(url.hostname)) {
+    const entry = (url.pathname.match(/\/entry_id\/([^/]+)/) || [])[1];
+    return entry ? `${DA_KALTURA}/kaltura-${entry.toLowerCase().replace(/[^a-z0-9_-]/g, '-')}.jpg` : null;
+  }
   if (url.hostname !== 'www.mayoclinic.org') return null;
   const name = decodeURIComponent(url.pathname.split('/').pop() || '').toLowerCase().replace(/[^a-z0-9._-]/g, '-');
   return name ? `${DA_MEDIA}/${name}` : null;
