@@ -327,8 +327,30 @@ function cleanConditionAfter(root) {
   });
 }
 
+// Images on www.mayoclinic.org can't be fetched by Edge Delivery (bot protection), so they are
+// hosted in DA under media/mayoclinic/ (same file name, lower-cased) and referenced from there.
+// New images found by an import must be downloaded and uploaded to that folder before publishing.
+const DA_MEDIA = 'https://content.da.live/charronadobe/mayo-rdda/media/mayoclinic';
+
+function daMediaUrl(src) {
+  let url;
+  try { url = new URL(src, 'https://www.mayoclinic.org'); } catch (e) { return null; }
+  if (url.hostname !== 'www.mayoclinic.org') return null;
+  const name = decodeURIComponent(url.pathname.split('/').pop() || '').toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+  return name ? `${DA_MEDIA}/${name}` : null;
+}
+
 export default function transform(hookName, element, payload) {
   if (hookName === 'beforeTransform') {
+    // Share image in the page metadata (read from these tags by createMetadata)
+    const head = element.ownerDocument && element.ownerDocument.head;
+    if (head) {
+      head.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"], meta[property="twitter:image"]').forEach((meta) => {
+        const local = daMediaUrl(meta.getAttribute('content') || '');
+        if (local) meta.setAttribute('content', local);
+      });
+    }
+
     // Condition pages: keep the YouTube URL before the iframe is removed below
     recordYoutubeVideos(element);
 
@@ -473,6 +495,12 @@ export default function transform(hookName, element, payload) {
 
     // Condition pages: article default content and absolute mayoclinic.org links
     element.querySelectorAll(CONDITION_ROOT).forEach(cleanConditionAfter);
+
+    // www.mayoclinic.org images -> DA-hosted copies (see daMediaUrl)
+    element.querySelectorAll('img[src]').forEach((img) => {
+      const local = daMediaUrl(img.getAttribute('src'));
+      if (local) img.setAttribute('src', local);
+    });
 
     // Strip tracking / framework attributes
     element.querySelectorAll('[onclick], [data-track], [data-analytics], [data-cmp-data-layer]').forEach((el) => {

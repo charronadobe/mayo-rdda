@@ -401,8 +401,27 @@ var CustomImportScript = (() => {
       if (a.textContent.trim() === href) a.textContent = absolute;
     });
   }
+  var DA_MEDIA = "https://content.da.live/charronadobe/mayo-rdda/media/mayoclinic";
+  function daMediaUrl(src) {
+    let url;
+    try {
+      url = new URL(src, "https://www.mayoclinic.org");
+    } catch (e) {
+      return null;
+    }
+    if (url.hostname !== "www.mayoclinic.org") return null;
+    const name = decodeURIComponent(url.pathname.split("/").pop() || "").toLowerCase().replace(/[^a-z0-9._-]/g, "-");
+    return name ? `${DA_MEDIA}/${name}` : null;
+  }
   function transform(hookName, element, payload) {
     if (hookName === "beforeTransform") {
+      const head = element.ownerDocument && element.ownerDocument.head;
+      if (head) {
+        head.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"], meta[property="twitter:image"]').forEach((meta) => {
+          const local = daMediaUrl(meta.getAttribute("content") || "");
+          if (local) meta.setAttribute("content", local);
+        });
+      }
       recordYoutubeVideos(element);
       WebImporter.DOMUtils.remove(element, [
         // Global alert banners (empty ul in captured DOM)
@@ -519,6 +538,10 @@ var CustomImportScript = (() => {
         });
       });
       element.querySelectorAll(CONDITION_ROOT).forEach(cleanConditionAfter);
+      element.querySelectorAll("img[src]").forEach((img) => {
+        const local = daMediaUrl(img.getAttribute("src"));
+        if (local) img.setAttribute("src", local);
+      });
       element.querySelectorAll("[onclick], [data-track], [data-analytics], [data-cmp-data-layer]").forEach((el) => {
         el.removeAttribute("onclick");
         el.removeAttribute("data-track");

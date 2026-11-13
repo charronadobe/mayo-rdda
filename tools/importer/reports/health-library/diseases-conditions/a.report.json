@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=A",
   "path": "health-library/diseases-conditions/a",
-  "timestamp": "2026-11-13T14:11:33.134Z",
+  "timestamp": "2026-11-13T15:53:00.917Z",
   "title": "Diseases and Conditions that Start with A - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "4d044bd987ad"
+  "importScript": "e2e133f136b9"
 }
