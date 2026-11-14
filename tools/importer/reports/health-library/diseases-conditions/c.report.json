@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=C",
   "path": "health-library/diseases-conditions/c",
-  "timestamp": "2026-11-13T14:11:48.808Z",
+  "timestamp": "2026-11-14T06:47:14.388Z",
   "title": "Diseases and Conditions that Start with C - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "4d044bd987ad"
+  "importScript": "254be4353372"
 }

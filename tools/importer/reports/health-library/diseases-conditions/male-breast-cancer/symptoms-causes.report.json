@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/male-breast-cancer/symptoms-causes/syc-20374740",
+  "path": "health-library/diseases-conditions/male-breast-cancer/symptoms-causes",
+  "timestamp": "2026-11-14T06:34:00.736Z",
+  "title": "Male breast cancer - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

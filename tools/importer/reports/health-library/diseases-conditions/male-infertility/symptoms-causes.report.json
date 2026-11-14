@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/male-infertility/symptoms-causes/syc-20374773",
+  "path": "health-library/diseases-conditions/male-infertility/symptoms-causes",
+  "timestamp": "2026-11-14T06:34:07.167Z",
+  "title": "Male infertility - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

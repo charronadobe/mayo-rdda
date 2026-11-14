@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/gallstones/symptoms-causes/syc-20354214",
+  "path": "health-library/diseases-conditions/gallstones/symptoms-causes",
+  "timestamp": "2026-11-14T06:31:12.002Z",
+  "title": "Gallstones - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

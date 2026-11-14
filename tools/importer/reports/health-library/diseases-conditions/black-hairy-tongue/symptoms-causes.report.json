@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/black-hairy-tongue/symptoms-causes/syc-20356077",
+  "path": "health-library/diseases-conditions/black-hairy-tongue/symptoms-causes",
+  "timestamp": "2026-11-14T06:31:37.684Z",
+  "title": "Black hairy tongue - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

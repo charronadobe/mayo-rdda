@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/gastroparesis/symptoms-causes/syc-20355787",
+  "path": "health-library/diseases-conditions/gastroparesis/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:53.858Z",
+  "title": "Gastroparesis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

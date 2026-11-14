@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/salmonella/symptoms-causes/syc-20355329",
+  "path": "health-library/diseases-conditions/salmonella/symptoms-causes",
+  "timestamp": "2026-11-14T06:36:37.589Z",
+  "title": "Salmonella infection - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/spontaneous-coronary-artery-dissection/symptoms-causes/syc-20353711",
+  "path": "health-library/diseases-conditions/spontaneous-coronary-artery-dissection/symptoms-causes",
+  "timestamp": "2026-11-14T06:36:53.932Z",
+  "title": "Spontaneous coronary artery dissection (SCAD) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

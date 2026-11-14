@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/depression/symptoms-causes/syc-20356007",
+  "path": "health-library/diseases-conditions/depression/symptoms-causes",
+  "timestamp": "2026-11-14T06:33:54.360Z",
+  "title": "Depression (major depressive disorder) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

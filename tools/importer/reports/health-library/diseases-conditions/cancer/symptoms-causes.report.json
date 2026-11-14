@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/cancer/symptoms-causes/syc-20370588",
+  "path": "health-library/diseases-conditions/cancer/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:15.831Z",
+  "title": "Cancer - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

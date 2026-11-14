@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/nasopharyngeal-carcinoma/symptoms-causes/syc-20375529",
+  "path": "health-library/diseases-conditions/nasopharyngeal-carcinoma/symptoms-causes",
+  "timestamp": "2026-11-14T06:34:29.479Z",
+  "title": "Nasopharyngeal carcinoma - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

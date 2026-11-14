@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/broken-hand/symptoms-causes/syc-20450240",
+  "path": "health-library/diseases-conditions/broken-hand/symptoms-causes",
+  "timestamp": "2026-11-14T06:31:49.698Z",
+  "title": "Broken hand - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

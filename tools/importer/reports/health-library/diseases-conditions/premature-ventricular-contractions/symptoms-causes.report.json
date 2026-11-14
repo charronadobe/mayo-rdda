@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/premature-ventricular-contractions/symptoms-causes/syc-20376757",
+  "path": "health-library/diseases-conditions/premature-ventricular-contractions/symptoms-causes",
+  "timestamp": "2026-11-14T06:30:31.805Z",
+  "title": "Premature ventricular contractions (PVCs) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

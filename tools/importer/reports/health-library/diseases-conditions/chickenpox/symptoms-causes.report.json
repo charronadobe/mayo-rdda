@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/chickenpox/symptoms-causes/syc-20351282",
+  "path": "health-library/diseases-conditions/chickenpox/symptoms-causes",
+  "timestamp": "2026-11-14T06:38:18.050Z",
+  "title": "Chickenpox - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

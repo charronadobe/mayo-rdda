@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/vaginal-cancer/symptoms-causes/syc-20352447",
+  "path": "health-library/diseases-conditions/vaginal-cancer/symptoms-causes",
+  "timestamp": "2026-11-14T06:37:59.283Z",
+  "title": "Vaginal cancer - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

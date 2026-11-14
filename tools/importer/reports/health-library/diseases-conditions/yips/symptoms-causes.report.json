@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/yips/symptoms-causes/syc-20379021",
+  "path": "health-library/diseases-conditions/yips/symptoms-causes",
+  "timestamp": "2026-11-14T06:39:12.306Z",
+  "title": "Yips - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

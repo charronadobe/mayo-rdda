@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/kidney-cysts/symptoms-causes/syc-20374134",
+  "path": "health-library/diseases-conditions/kidney-cysts/symptoms-causes",
+  "timestamp": "2026-11-14T06:33:21.808Z",
+  "title": "Kidney cysts - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

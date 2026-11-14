@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/calciphylaxis/symptoms-causes/syc-20370559",
+  "path": "health-library/diseases-conditions/calciphylaxis/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:08.681Z",
+  "title": "Calciphylaxis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

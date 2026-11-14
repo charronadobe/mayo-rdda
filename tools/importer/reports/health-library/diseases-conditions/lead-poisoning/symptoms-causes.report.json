@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/lead-poisoning/symptoms-causes/syc-20354717",
+  "path": "health-library/diseases-conditions/lead-poisoning/symptoms-causes",
+  "timestamp": "2026-11-14T06:33:45.342Z",
+  "title": "Lead poisoning - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

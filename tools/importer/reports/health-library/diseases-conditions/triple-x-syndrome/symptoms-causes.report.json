@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/triple-x-syndrome/symptoms-causes/syc-20350977",
+  "path": "health-library/diseases-conditions/triple-x-syndrome/symptoms-causes",
+  "timestamp": "2026-11-14T06:39:09.065Z",
+  "title": "Triple X syndrome - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

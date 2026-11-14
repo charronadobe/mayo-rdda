@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/rectocele/symptoms-causes/syc-20353414",
+  "path": "health-library/diseases-conditions/rectocele/symptoms-causes",
+  "timestamp": "2026-11-14T06:38:05.282Z",
+  "title": "Posterior vaginal prolapse (rectocele) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

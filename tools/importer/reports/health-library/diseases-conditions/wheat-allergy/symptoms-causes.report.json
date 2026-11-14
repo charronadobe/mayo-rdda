@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/wheat-allergy/symptoms-causes/syc-20378897",
+  "path": "health-library/diseases-conditions/wheat-allergy/symptoms-causes",
+  "timestamp": "2026-11-14T06:38:43.629Z",
+  "title": "Wheat allergy - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/familial-hypercholesterolemia/symptoms-causes/syc-20353755",
+  "path": "health-library/diseases-conditions/familial-hypercholesterolemia/symptoms-causes",
+  "timestamp": "2026-11-14T06:30:51.241Z",
+  "title": "Familial hypercholesterolemia - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

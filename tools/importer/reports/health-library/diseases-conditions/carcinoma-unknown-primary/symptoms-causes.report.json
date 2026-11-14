@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/carcinoma-unknown-primary/symptoms-causes/syc-20370683",
+  "path": "health-library/diseases-conditions/carcinoma-unknown-primary/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:18.593Z",
+  "title": "Carcinoma of unknown primary - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

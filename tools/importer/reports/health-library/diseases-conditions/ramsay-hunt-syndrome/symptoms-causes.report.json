@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/ramsay-hunt-syndrome/symptoms-causes/syc-20351783",
+  "path": "health-library/diseases-conditions/ramsay-hunt-syndrome/symptoms-causes",
+  "timestamp": "2026-11-14T06:36:03.912Z",
+  "title": "Ramsay Hunt syndrome - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

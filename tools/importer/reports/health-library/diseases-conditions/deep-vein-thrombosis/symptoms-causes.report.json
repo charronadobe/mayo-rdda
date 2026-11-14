@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/deep-vein-thrombosis/symptoms-causes/syc-20352557",
+  "path": "health-library/diseases-conditions/deep-vein-thrombosis/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:41.221Z",
+  "title": "Deep vein thrombosis (DVT) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

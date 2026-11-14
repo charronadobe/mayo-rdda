@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/keloid-scar/symptoms-causes/syc-20520901",
+  "path": "health-library/diseases-conditions/keloid-scar/symptoms-causes",
+  "timestamp": "2026-11-14T06:32:57.636Z",
+  "title": "Keloid scar - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

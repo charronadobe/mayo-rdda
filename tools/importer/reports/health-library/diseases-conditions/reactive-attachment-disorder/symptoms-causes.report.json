@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/reactive-attachment-disorder/symptoms-causes/syc-20352939",
+  "path": "health-library/diseases-conditions/reactive-attachment-disorder/symptoms-causes",
+  "timestamp": "2026-11-14T06:36:20.224Z",
+  "title": "Reactive attachment disorder - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

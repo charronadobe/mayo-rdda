@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/hammertoe-and-mallet-toe/symptoms-causes/syc-20350839",
+  "path": "health-library/diseases-conditions/hammertoe-and-mallet-toe/symptoms-causes",
+  "timestamp": "2026-11-14T06:31:43.421Z",
+  "title": "Hammertoe and mallet toe - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

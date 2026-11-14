@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/abdominal-aortic-aneurysm/symptoms-causes/syc-20350688",
+  "path": "health-library/diseases-conditions/abdominal-aortic-aneurysm/symptoms-causes",
+  "timestamp": "2026-11-14T06:28:05.022Z",
+  "title": "Abdominal aortic aneurysm - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

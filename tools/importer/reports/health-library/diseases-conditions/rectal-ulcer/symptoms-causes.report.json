@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/rectal-ulcer/symptoms-causes/syc-20377749",
+  "path": "health-library/diseases-conditions/rectal-ulcer/symptoms-causes",
+  "timestamp": "2026-11-14T06:37:28.485Z",
+  "title": "Solitary rectal ulcer syndrome - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

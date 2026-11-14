@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/indigestion/symptoms-causes/syc-20352211",
+  "path": "health-library/diseases-conditions/indigestion/symptoms-causes",
+  "timestamp": "2026-11-14T06:37:50.761Z",
+  "title": "Indigestion - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

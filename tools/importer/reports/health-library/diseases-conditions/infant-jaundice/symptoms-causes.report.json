@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/infant-jaundice/symptoms-causes/syc-20373865",
+  "path": "health-library/diseases-conditions/infant-jaundice/symptoms-causes",
+  "timestamp": "2026-11-14T06:34:46.778Z",
+  "title": "Infant jaundice - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

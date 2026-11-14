@@ -1,0 +1,21 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/chronic-kidney-disease/symptoms-causes/syc-20354521",
+  "path": "health-library/diseases-conditions/chronic-kidney-disease/symptoms-causes",
+  "timestamp": "2026-11-14T06:33:25.525Z",
+  "title": "Chronic kidney disease - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "video-inline",
+    "video-inline",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/scabies/symptoms-causes/syc-20377378",
+  "path": "health-library/diseases-conditions/scabies/symptoms-causes",
+  "timestamp": "2026-11-14T06:36:50.761Z",
+  "title": "Scabies - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

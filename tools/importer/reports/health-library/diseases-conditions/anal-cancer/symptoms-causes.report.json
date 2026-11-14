@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/anal-cancer/symptoms-causes/syc-20354140",
+  "path": "health-library/diseases-conditions/anal-cancer/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:25.318Z",
+  "title": "Anal cancer - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

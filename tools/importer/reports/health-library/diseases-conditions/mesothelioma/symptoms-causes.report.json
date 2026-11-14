@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/mesothelioma/symptoms-causes/syc-20375022",
+  "path": "health-library/diseases-conditions/mesothelioma/symptoms-causes",
+  "timestamp": "2026-11-14T06:34:12.539Z",
+  "title": "Mesothelioma - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

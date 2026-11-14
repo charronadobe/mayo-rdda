@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/obsessive-compulsive-disorder/symptoms-causes/syc-20354432",
+  "path": "health-library/diseases-conditions/obsessive-compulsive-disorder/symptoms-causes",
+  "timestamp": "2026-11-14T06:35:02.795Z",
+  "title": "Obsessive-compulsive disorder (OCD) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

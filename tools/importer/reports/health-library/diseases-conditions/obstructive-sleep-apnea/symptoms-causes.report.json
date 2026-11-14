@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/obstructive-sleep-apnea/symptoms-causes/syc-20352090",
+  "path": "health-library/diseases-conditions/obstructive-sleep-apnea/symptoms-causes",
+  "timestamp": "2026-11-14T06:35:08.131Z",
+  "title": "Obstructive sleep apnea - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

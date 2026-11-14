@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/pediatric-white-blood-cell-disorders/symptoms-causes/syc-20352674",
+  "path": "health-library/diseases-conditions/pediatric-white-blood-cell-disorders/symptoms-causes",
+  "timestamp": "2026-11-14T06:38:52.382Z",
+  "title": "Pediatric white blood cell disorders - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

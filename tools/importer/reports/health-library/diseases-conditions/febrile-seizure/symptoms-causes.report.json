@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/febrile-seizure/symptoms-causes/syc-20372522",
+  "path": "health-library/diseases-conditions/febrile-seizure/symptoms-causes",
+  "timestamp": "2026-11-14T06:30:59.058Z",
+  "title": "Febrile seizure - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

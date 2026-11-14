@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/neurofibromatosis-type-2/symptoms-causes/syc-20594157",
+  "path": "health-library/diseases-conditions/neurofibromatosis-type-2/symptoms-causes",
+  "timestamp": "2026-11-14T06:28:56.092Z",
+  "title": "NF2-related schwannomatosis (neurofibromatosis type 2) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

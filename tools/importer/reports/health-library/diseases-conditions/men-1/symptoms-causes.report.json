@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/men-1/symptoms-causes/syc-20353064",
+  "path": "health-library/diseases-conditions/men-1/symptoms-causes",
+  "timestamp": "2026-11-14T06:38:40.490Z",
+  "title": "Multiple endocrine neoplasia, type 1 (MEN 1) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/albinism/symptoms-causes/syc-20369184",
+  "path": "health-library/diseases-conditions/albinism/symptoms-causes",
+  "timestamp": "2026-11-14T06:35:17.011Z",
+  "title": "Albinism - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/acl-injury/symptoms-causes/syc-20350738",
+  "path": "health-library/diseases-conditions/acl-injury/symptoms-causes",
+  "timestamp": "2026-11-14T06:28:32.933Z",
+  "title": "ACL injury - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-thumb-list",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

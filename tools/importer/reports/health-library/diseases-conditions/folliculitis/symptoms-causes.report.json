@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/folliculitis/symptoms-causes/syc-20361634",
+  "path": "health-library/diseases-conditions/folliculitis/symptoms-causes",
+  "timestamp": "2026-11-14T06:28:59.461Z",
+  "title": "Folliculitis - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

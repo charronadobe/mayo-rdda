@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/chest-pain/symptoms-causes/syc-20370838",
+  "path": "health-library/diseases-conditions/chest-pain/symptoms-causes",
+  "timestamp": "2026-11-14T06:35:36.119Z",
+  "title": "Chest pain - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

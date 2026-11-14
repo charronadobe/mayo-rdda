@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/small-intestinal-bacterial-overgrowth/symptoms-causes/syc-20370168",
+  "path": "health-library/diseases-conditions/small-intestinal-bacterial-overgrowth/symptoms-causes",
+  "timestamp": "2026-11-14T06:36:43.212Z",
+  "title": "Small intestinal bacterial overgrowth (SIBO) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

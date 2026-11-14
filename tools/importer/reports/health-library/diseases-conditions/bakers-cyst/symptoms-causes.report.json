@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/bakers-cyst/symptoms-causes/syc-20369950",
+  "path": "health-library/diseases-conditions/bakers-cyst/symptoms-causes",
+  "timestamp": "2026-11-14T06:28:46.539Z",
+  "title": "Baker cyst - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "columns-media",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

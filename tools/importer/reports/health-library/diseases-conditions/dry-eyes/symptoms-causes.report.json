@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/dry-eyes/symptoms-causes/syc-20371863",
+  "path": "health-library/diseases-conditions/dry-eyes/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:38.782Z",
+  "title": "Dry eyes - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

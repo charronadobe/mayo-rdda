@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/toe-walking/symptoms-causes/syc-20378410",
+  "path": "health-library/diseases-conditions/toe-walking/symptoms-causes",
+  "timestamp": "2026-11-14T06:32:12.814Z",
+  "title": "Toe walking in children - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

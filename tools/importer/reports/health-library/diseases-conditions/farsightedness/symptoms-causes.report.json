@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/farsightedness/symptoms-causes/syc-20372495",
+  "path": "health-library/diseases-conditions/farsightedness/symptoms-causes",
+  "timestamp": "2026-11-14T06:30:56.658Z",
+  "title": "Farsightedness - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

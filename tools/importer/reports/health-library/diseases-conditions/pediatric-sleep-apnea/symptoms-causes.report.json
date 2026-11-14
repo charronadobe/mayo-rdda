@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/pediatric-sleep-apnea/symptoms-causes/syc-20376196",
+  "path": "health-library/diseases-conditions/pediatric-sleep-apnea/symptoms-causes",
+  "timestamp": "2026-11-14T06:35:10.910Z",
+  "title": "Pediatric obstructive sleep apnea - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

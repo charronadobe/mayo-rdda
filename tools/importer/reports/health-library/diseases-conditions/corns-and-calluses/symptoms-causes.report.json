@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/corns-and-calluses/symptoms-causes/syc-20355946",
+  "path": "health-library/diseases-conditions/corns-and-calluses/symptoms-causes",
+  "timestamp": "2026-11-14T06:29:11.921Z",
+  "title": "Corns and calluses - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}

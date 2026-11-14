@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/diseases-conditions/iga-nephropathy/symptoms-causes/syc-20352268",
+  "path": "health-library/diseases-conditions/iga-nephropathy/symptoms-causes",
+  "timestamp": "2026-11-14T06:32:16.107Z",
+  "title": "IgA nephropathy (Berger disease) - Symptoms and causes - Mayo Clinic",
+  "template": "condition",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-toggle",
+    "cards-show-more",
+    "cards-show-more",
+    "cards-show-more",
+    "columns-banner"
+  ],
+  "importScript": "3255c6e7656d"
+}
