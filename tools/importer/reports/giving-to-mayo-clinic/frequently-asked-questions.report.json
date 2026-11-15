@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/giving-to-mayo-clinic/contact-us/frequently-asked-questions",
+  "path": "giving-to-mayo-clinic/frequently-asked-questions",
+  "timestamp": "2026-11-15T22:25:51.328Z",
+  "title": "Frequently asked questions - Mayo Clinic",
+  "template": "giving-article",
+  "blocks": [
+    "cards-side-nav",
+    "accordion-lined",
+    "columns-banner"
+  ],
+  "importScript": "00baec4b66b8"
+}

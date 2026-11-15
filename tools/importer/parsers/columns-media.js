@@ -41,17 +41,32 @@ export default function parse(element, { document, params }) {
     if (collapsible) {
       [...collapsible.children].forEach((child) => textCell.push(child));
     }
+    // Buttons by source style (site button styles): filled pill (color-primary) -> solid accent
+    // pill (<strong><em>), outlined pill (color-secondary) -> outlined pill (<strong>), text link
+    // with chevron (type-text) -> plain link
     textCard.querySelectorAll('.cmp-text-card__buttons a[href]').forEach((link) => {
       const textEl = link.querySelector('.cmp-button__text');
-      const text = (textEl || link).textContent.trim();
+      const text = (textEl || link).textContent.replace(/\s+/g, ' ').trim();
       if (!text) return;
+      const inner = link.querySelector('.cmp-button__inner');
+      const has = (cls) => !!(inner && inner.classList.contains(cls));
       const p = document.createElement('p');
-      const strong = document.createElement('strong');
       const a = document.createElement('a');
       a.href = link.getAttribute('href');
       a.textContent = text;
-      strong.append(a);
-      p.append(strong);
+      if (has('cmp-button__inner--type-text')) {
+        p.append(a);
+      } else {
+        const strong = document.createElement('strong');
+        if (has('cmp-button__inner--color-primary')) {
+          const em = document.createElement('em');
+          em.append(a);
+          strong.append(em);
+        } else {
+          strong.append(a);
+        }
+        p.append(strong);
+      }
       textCell.push(p);
     });
   }
@@ -69,6 +84,10 @@ export default function parse(element, { document, params }) {
   const row = imageLeft ? [imageCell, textCell] : [textCell, imageCell];
 
   const cells = [row];
-  const block = WebImporter.Blocks.createBlock(document, { name: 'columns-media', cells });
+  // Text aligned to the top of the image (cmp-text-card--top, e.g. Giving to Mayo Clinic) is the
+  // "top" variant; the default (cmp-text-card--center) centers the text against the image
+  const top = !!(textCard && textCard.classList.contains('cmp-text-card--top'));
+  const name = top ? 'columns-media (top)' : 'columns-media';
+  const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

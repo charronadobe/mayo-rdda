@@ -54,6 +54,37 @@
   margin-top: 32px;
 }
 
+/* "top" variant (source: cmp-text-card--top): smaller serif title, buttons 24px apart, and a
+   text link (no pill) shown without underline and with a chevron */
+.columns-media.top .columns-media-text-col h2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.columns-media.top .columns-media-text-col p.button-wrapper + p.button-wrapper {
+  margin-top: 24px;
+}
+
+.columns-media.top .columns-media-text-col p > a:only-child:not(.button):any-link {
+  text-decoration: none;
+}
+
+.columns-media.top .columns-media-text-col p > a:only-child:not(.button):hover {
+  text-decoration: underline;
+}
+
+/* chevron follows the last word when the link wraps */
+.columns-media.top .columns-media-text-col p > a:only-child:not(.button)::after {
+  content: '';
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: -2px;
+  width: 16px;
+  height: 16px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3l5 5-5 5' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
 .columns-media .columns-media-img-col picture,
 .columns-media .columns-media-img-col img {
   display: block;
@@ -68,7 +99,7 @@
 }
 
 @media (width >= 600px) {
-  .columns-media .columns-media-text-col h2 {
+  .columns-media:not(.top) .columns-media-text-col h2 {
     font-size: 40px;
     line-height: 44px;
   }
@@ -86,6 +117,11 @@
 
   .columns-media .columns-media-row + .columns-media-row {
     margin-top: 64px;
+  }
+
+  /* "top" variant: text starts at the top edge of the image (source: cmp-text-card--top) */
+  .columns-media.top .columns-media-row {
+    align-items: start;
   }
 
   .columns-media .columns-media-text-col {

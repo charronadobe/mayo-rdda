@@ -564,7 +564,7 @@ function daMediaUrl(src) {
 // /billing-insurance, /locations, /patient-centered-care). Every rule below runs only for these
 // templates and only inside #main-content, so home / A-Z / condition output is unchanged.
 // ---------------------------------------------------------------------------------------------
-const CARE_TEMPLATES = new Set(['care-hub', 'care-service', 'find-a-doctor', 'departments-centers', 'international']);
+const CARE_TEMPLATES = new Set(['care-hub', 'care-service', 'find-a-doctor', 'departments-centers', 'international', 'giving-hub', 'giving-article']);
 
 // The 10 Care at Mayo Clinic pages migrated to this site: source path -> local path
 const CARE_PAGES = {
@@ -578,6 +578,10 @@ const CARE_PAGES = {
   '/departments-centers': '/care-at-mayo-clinic/departments-centers',
   '/international': '/care-at-mayo-clinic/international',
   '/about-mayo-clinic/contact': '/care-at-mayo-clinic/contact',
+  // Giving to Mayo Clinic pages (giving-hub, giving-article templates)
+  '/giving-to-mayo-clinic': '/giving-to-mayo-clinic/',
+  '/giving-to-mayo-clinic/contact-us': '/giving-to-mayo-clinic/contact-us',
+  '/giving-to-mayo-clinic/contact-us/frequently-asked-questions': '/giving-to-mayo-clinic/frequently-asked-questions',
 };
 
 // Source anchor ids on the contact page -> heading ids Edge Delivery generates there
@@ -721,7 +725,8 @@ function cleanCareAfter(main) {
 // addition to the care rules above, only for this template.
 // ---------------------------------------------------------------------------------------------
 function isCareServicePage(payload) {
-  return !!(payload && payload.template && payload.template.name === 'care-service');
+  // the Giving pages share these rules (donation band icon, text cards, image-only hero card)
+  return !!(payload && payload.template && ['care-service', 'giving-hub', 'giving-article'].includes(payload.template.name));
 }
 
 function cleanCareServiceBefore(main) {
@@ -968,7 +973,8 @@ function cleanDepartmentsCentersAfter(root) {
 const INTERNATIONAL_COLUMN = '.cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column';
 
 function isInternationalPage(payload) {
-  return !!(payload && payload.template && payload.template.name === 'international');
+  // the Giving article pages (contact us, FAQ) use the same level-two navigation layout
+  return !!(payload && payload.template && ['international', 'giving-article'].includes(payload.template.name));
 }
 
 // Runs before the global removals: the article sits in an <aside>, which they would drop
@@ -981,17 +987,30 @@ function cleanInternationalBefore(root) {
   root.querySelectorAll('.cmp-luma-chat').forEach((el) => el.remove());
 }
 
-function cleanInternationalAfter(root) {
+function isGivingArticlePage(payload) {
+  return !!(payload && payload.template && payload.template.name === 'giving-article');
+}
+
+function cleanInternationalAfter(root, payload) {
   const doc = root.ownerDocument;
   // Button links in the article: the "Learn how to request an appointment" pills are primary
-  // buttons (<p><strong><a>), other buttons plain links
+  // buttons (<p><strong><a>), other buttons plain links. Giving FAQ: the filled "Give today" pill
+  // (--color-primary) is the solid accent button (<strong><em><a>).
+  const giving = isGivingArticlePage(payload);
   root.querySelectorAll(`${INTERNATIONAL_COLUMN} a.cmp-button`).forEach((a) => {
     if (!isDefaultContent(a) || !a.getAttribute('href') || !linkText(a)) return;
     const link = cleanLink(doc, a);
     let content = link;
-    if (a.querySelector('.cmp-button__inner--type-pill')) {
+    const pill = a.querySelector('.cmp-button__inner--type-pill');
+    if (pill) {
       content = doc.createElement('strong');
-      content.append(link);
+      if (giving && pill.classList.contains('cmp-button__inner--color-primary')) {
+        const em = doc.createElement('em');
+        em.append(link);
+        content.append(em);
+      } else {
+        content.append(link);
+      }
     }
     const wrapper = a.closest('.cmp-link') || a;
     if (wrapper.closest('li, p')) wrapper.replaceWith(content);
@@ -1176,7 +1195,7 @@ export default function transform(hookName, element, payload) {
     // Departments & Centers: location filter and A-Z directory lists (see cleanDepartmentsCentersAfter)
     if (isDepartmentsCentersPage(payload)) cleanDepartmentsCentersAfter(element);
     // International: article button links (see cleanInternationalAfter)
-    if (isInternationalPage(payload)) cleanInternationalAfter(element);
+    if (isInternationalPage(payload)) cleanInternationalAfter(element, payload);
 
     // Care at Mayo Clinic hub pages: links to migrated pages are local, the rest absolute
     if (isCarePage(payload)) element.querySelectorAll(careRootSelector(payload)).forEach(cleanCareAfter);

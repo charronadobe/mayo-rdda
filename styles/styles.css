@@ -611,20 +611,41 @@ button.button.secondary:disabled:focus-visible {
   color: var(--dark-color);
 }
 
-/* high-impact call-to-action */
-a.button.accent,
+/* high-impact call-to-action: solid pill on light sections (source: --type-pill.--color-primary,
+   e.g. Giving "Give today"); authored as bold + italic link */
+main a.button.accent:any-link,
 button.button.accent {
-  border-color: var(--link-color);
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 12px 24px;
+  border: 2px solid var(--link-color);
+  border-radius: var(--brand-pill-radius);
   background-color: var(--link-color);
-  color: var(--background-color);
+  color: var(--text-light);
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
-a.button.accent:hover,
-a.button.accent:focus-visible,
+main a.button.accent:hover,
+main a.button.accent:focus-visible,
 button.button.accent:hover,
 button.button.accent:focus-visible {
   border-color: var(--link-hover-color);
   background-color: var(--link-hover-color);
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+main a.button.accent:active,
+button.button.accent:active {
+  border-color: var(--link-pressed-color);
+  background-color: var(--link-pressed-color);
 }
 
 a.button.accent[aria-disabled="true"],
@@ -817,6 +838,16 @@ main > .section.centered .default-content-wrapper > p > a:only-child:any-link::a
 
 main > .section.centered .default-content-wrapper > p > a:only-child:hover {
   text-decoration: underline;
+}
+
+/* "centered, plain": the same message without the grey rules and with a 552px text column
+   (source: /giving-to-mayo-clinic .cmp-support-card--style-landing-page) */
+main > .section.centered.plain .default-content-wrapper {
+  background: none;
+}
+
+main > .section.centered.plain .default-content-wrapper > p {
+  max-width: 552px;
 }
 
 @media (width >= 600px) {
@@ -1256,6 +1287,51 @@ main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .de
     max-width: none;
     padding-inline: calc(((100% - var(--section-column-width)) / 2) + 10px);
   }
+}
+
+/*
+ * "narrow" section style (source: 10/12 .cmp-column-control__container, e.g. /giving-to-mayo-clinic):
+ * the section's column is 80% - 48px wide from 900px and 10/12 (max 1320px) - 48px from 1440px,
+ * i.e. 1152px at x=144 at 1440, like the narrow page column above. A narrow first section (the
+ * page title) sits 60px below the header from 900px (32px on phones).
+ */
+main > .section.narrow:first-child {
+  padding-top: 32px;
+}
+
+@media (width >= 900px) {
+  main > .section.narrow {
+    max-width: calc(80% - 48px + (2 * var(--brand-page-gutter)));
+    margin-inline: auto;
+  }
+
+  /* 52px from the subtitle to a hero photo section below (source /giving-to-mayo-clinic) */
+  main > .section.narrow:first-child {
+    padding-top: 60px;
+    padding-bottom: 16px;
+  }
+}
+
+@media (width >= 1440px) {
+  main > .section.narrow {
+    max-width: calc(min(83.3333%, 1320px) - 48px + (2 * var(--brand-page-gutter)));
+  }
+}
+
+/* text beside a block in a narrow split section (source: .cmp-text-card--top): 24px serif title */
+main > .section.split.narrow > .default-content-wrapper > h2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+/*
+ * Hero photo (source: image-only .cmp-hero-card, 8px corners): an image paragraph after the page
+ * title in the first section (/patient-visitor-guide, /billing-insurance), or a section holding
+ * only an image (/giving-to-mayo-clinic)
+ */
+main > .section:first-child > .default-content-wrapper > h1 ~ p > picture:only-child img,
+main > .section > .default-content-wrapper:only-child > p:only-child > picture:only-child img {
+  border-radius: 8px;
 }
 
 /*

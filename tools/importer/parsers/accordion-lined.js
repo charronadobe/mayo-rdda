@@ -39,6 +39,10 @@ export default function parse(element, { document, params }) {
     cells.push([label, panel]);
   });
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'accordion-lined', cells });
+  // Source items that start open carry cmp-accordion__item--expanded (Appointments: the first).
+  // None open (Giving FAQ) -> the "closed" variant, so the block doesn't open the first item.
+  const anyOpen = items.some((item) => item.classList.contains('cmp-accordion__item--expanded'));
+  const name = anyOpen ? 'accordion-lined' : 'accordion-lined (closed)';
+  const block = WebImporter.Blocks.createBlock(document, { name, cells });
   element.replaceWith(block);
 }

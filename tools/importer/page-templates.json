@@ -1332,6 +1332,200 @@
         }
       ],
       "representativeUrl": "https://www.mayoclinic.org/international"
+    },
+    {
+      "name": "giving-hub",
+      "urls": [
+        "https://www.mayoclinic.org/giving-to-mayo-clinic"
+      ],
+      "description": "Giving to Mayo Clinic landing page: headline and hero photo, story cards, ways to give, contact card",
+      "blocks": [
+        {
+          "name": "columns-media",
+          "instances": [
+            "#main-content .cmp-story-card"
+          ]
+        },
+        {
+          "name": "cards-link-list",
+          "instances": [
+            "#main-content .cmp-link-list"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "gh1",
+          "name": "Headline and hero photo",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-headline)"
+          ],
+          "style": "narrow",
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-headline h1",
+            ".cmp-headline__description"
+          ]
+        },
+        {
+          "id": "gh1b",
+          "name": "Hero photo",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> div > .cmp-hero-card)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-hero-card"
+          ]
+        },
+        {
+          "id": "gh2",
+          "name": "Philanthropy at Mayo Clinic (story card)",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-story-card):has(+ .aem-GridColumn > .cmp-yspace .cmp-link-list)",
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-story-card)"
+          ],
+          "style": "narrow",
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "gh3",
+          "name": "Ways to give",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--TwoColumn .cmp-link-list)"
+          ],
+          "style": "split, narrow",
+          "blocks": [
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-text-card"
+          ]
+        },
+        {
+          "id": "gh4",
+          "name": "Honoring philanthropy (story card)",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--TwoColumn .cmp-link-list) + .aem-GridColumn"
+          ],
+          "style": "narrow",
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "gh5",
+          "name": "Mayo Clinic Magazine (story card)",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--TwoColumn .cmp-link-list) + .aem-GridColumn + .aem-GridColumn"
+          ],
+          "style": "narrow",
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "gh6",
+          "name": "Contact us (support card)",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-support-card)"
+          ],
+          "style": "centered, plain",
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-support-card h2",
+            ".cmp-support-card__description",
+            ".cmp-support-card__link-container a"
+          ]
+        },
+        {
+          "id": "gh7",
+          "name": "Donation banner (navy)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/giving-to-mayo-clinic"
+    },
+    {
+      "name": "giving-article",
+      "urls": [
+        "https://www.mayoclinic.org/giving-to-mayo-clinic/contact-us",
+        "https://www.mayoclinic.org/giving-to-mayo-clinic/contact-us/frequently-asked-questions"
+      ],
+      "description": "Giving to Mayo Clinic article pages: section navigation beside the article (contact details, FAQ accordion)",
+      "blocks": [
+        {
+          "name": "cards-side-nav",
+          "instances": [
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__level-to-nav .cmp-level-two-navigation"
+          ]
+        },
+        {
+          "name": "accordion-lined",
+          "instances": [
+            "#main-content .cmp-accordion"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "ga1",
+          "name": "Section nav and article",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--LevelTwoNavigation)",
+            ".cmp-column-control__layoutType--LevelTwoNavigation"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-side-nav",
+            "accordion-lined"
+          ],
+          "defaultContent": [
+            ".cmp-column-control__content-column .cmp-title h1",
+            ".cmp-column-control__content-column .cmp-title h2",
+            ".cmp-column-control__content-column .cmp-text__rich-content",
+            ".cmp-column-control__content-column .cmp-link > a.cmp-button"
+          ]
+        },
+        {
+          "id": "ga2",
+          "name": "Donation banner (navy)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/giving-to-mayo-clinic/contact-us"
     }
   ],
   "metadata": {

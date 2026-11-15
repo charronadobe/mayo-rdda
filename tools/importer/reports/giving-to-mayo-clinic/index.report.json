@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/giving-to-mayo-clinic",
+  "path": "giving-to-mayo-clinic/index",
+  "timestamp": "2026-11-15T22:23:04.285Z",
+  "title": "Giving to Mayo Clinic - Mayo Clinic",
+  "template": "giving-hub",
+  "blocks": [
+    "columns-media",
+    "columns-media",
+    "columns-media",
+    "cards-link-list",
+    "columns-banner"
+  ],
+  "importScript": "6502d8a54da8"
+}

@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/giving-to-mayo-clinic/contact-us",
+  "path": "giving-to-mayo-clinic/contact-us",
+  "timestamp": "2026-11-15T22:25:48.055Z",
+  "title": "Contact us - Mayo Clinic",
+  "template": "giving-article",
+  "blocks": [
+    "cards-side-nav",
+    "columns-banner"
+  ],
+  "importScript": "00baec4b66b8"
+}
