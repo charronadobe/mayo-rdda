@@ -9,8 +9,17 @@ async function fetchFooter() {
   let resp = local ? await fetch('/content/footer.plain.html') : await fetch('/footer.plain.html');
   if (!resp.ok) resp = local ? await fetch('/footer.plain.html') : await fetch('/content/footer.plain.html');
   if (!resp.ok) return null;
+  let html = await resp.text();
+  // local preview only: DA-hosted images (content.da.live/.../.footer/<name>-<hash>.<ext>) need
+  // a DA login, and relative "images/" paths break below /content subfolders, so use the copies
+  // in /content/images (same files). EDS/DA pages are not affected.
+  if (local) {
+    html = html
+      .replace(/https:\/\/content\.da\.live\/[^"]*?\/\.footer\/([a-z0-9-]+?)-[0-9a-f]{8}\.([a-z]+)/g, '/content/images/$1.$2')
+      .replace(/(src|srcset)="(?:\.\/)?images\//g, '$1="/content/images/');
+  }
   const container = document.createElement('div');
-  container.innerHTML = await resp.text();
+  container.innerHTML = html;
   return container;
 }
 

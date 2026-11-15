@@ -12,7 +12,15 @@ async function fetchNav() {
   let resp = local ? await fetch('/content/nav.plain.html') : await fetch('/nav.plain.html');
   if (!resp.ok) resp = local ? await fetch('/nav.plain.html') : await fetch('/content/nav.plain.html');
   if (!resp.ok) return null;
-  const html = await resp.text();
+  let html = await resp.text();
+  // local preview only: DA-hosted images (content.da.live/.../.nav/<name>-<hash>.<ext>) need a DA
+  // login, and relative "images/" paths break below /content subfolders, so use the local copies
+  // in /content/images (same files). EDS/DA pages are not affected.
+  if (local) {
+    html = html
+      .replace(/https:\/\/content\.da\.live\/[^"]*?\/\.nav\/([a-z0-9-]+?)-[0-9a-f]{8}\.([a-z]+)/g, '/content/images/$1.$2')
+      .replace(/(src|srcset)="(?:\.\/)?images\//g, '$1="/content/images/');
+  }
   const container = document.createElement('div');
   container.innerHTML = html;
   return container;
