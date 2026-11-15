@@ -1327,10 +1327,13 @@ main > .section.split.narrow > .default-content-wrapper > h2 {
 /*
  * Hero photo (source: image-only .cmp-hero-card, 8px corners): an image paragraph after the page
  * title in the first section (/patient-visitor-guide, /billing-insurance), or a section holding
- * only an image (/giving-to-mayo-clinic)
+ * only an image (/giving-to-mayo-clinic). Edge Delivery unwraps an image-only paragraph, so the
+ * picture may sit directly in the wrapper (the local preview keeps the <p>).
  */
 main > .section:first-child > .default-content-wrapper > h1 ~ p > picture:only-child img,
-main > .section > .default-content-wrapper:only-child > p:only-child > picture:only-child img {
+main > .section:first-child > .default-content-wrapper > h1 ~ picture img,
+main > .section > .default-content-wrapper:only-child > p:only-child > picture:only-child img,
+main > .section > .default-content-wrapper:only-child > picture:only-child img {
   border-radius: 8px;
 }
 
