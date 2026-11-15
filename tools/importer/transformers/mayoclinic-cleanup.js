@@ -303,6 +303,23 @@ function removeWithEmptyWrappers(el, stopAt) {
   }
 }
 
+// Lazy images: make sure src is the real image URL (data-src / srcset)
+function fixLazyImages(root) {
+  root.querySelectorAll('img').forEach((img) => {
+    const src = img.getAttribute('src') || '';
+    const placeholder = !src || src.startsWith('data:') || /blank|placeholder|spacer/i.test(src);
+    const lazy = img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || img.getAttribute('data-original');
+    const srcset = img.getAttribute('srcset') || img.getAttribute('data-srcset') || '';
+    if (lazy && placeholder) {
+      img.setAttribute('src', lazy);
+    } else if (placeholder && srcset) {
+      const first = srcset.split(',')[0].trim().split(/\s+/)[0];
+      if (first) img.setAttribute('src', first);
+    }
+    ['data-src', 'data-lazy-src', 'data-original', 'data-srcset', 'srcset', 'sizes'].forEach((a) => img.removeAttribute(a));
+  });
+}
+
 // Same slug as the Edge Delivery html pipeline gives headings (github-slugger),
 // e.g. "When to see a doctor" -> "when-to-see-a-doctor", "Diseases & Conditions" -> "diseases--conditions"
 function slugify(text) {
@@ -367,19 +384,7 @@ function cleanConditionBefore(root) {
   root.querySelectorAll('.cmp-icon, svg').forEach((el) => el.remove());
 
   // Lazy images: make sure src is the real image URL (data-src / srcset)
-  root.querySelectorAll('img').forEach((img) => {
-    const src = img.getAttribute('src') || '';
-    const placeholder = !src || src.startsWith('data:') || /blank|placeholder|spacer/i.test(src);
-    const lazy = img.getAttribute('data-src') || img.getAttribute('data-lazy-src') || img.getAttribute('data-original');
-    const srcset = img.getAttribute('srcset') || img.getAttribute('data-srcset') || '';
-    if (lazy && placeholder) {
-      img.setAttribute('src', lazy);
-    } else if (placeholder && srcset) {
-      const first = srcset.split(',')[0].trim().split(/\s+/)[0];
-      if (first) img.setAttribute('src', first);
-    }
-    ['data-src', 'data-lazy-src', 'data-original', 'data-srcset', 'srcset', 'sizes'].forEach((a) => img.removeAttribute(a));
-  });
+  fixLazyImages(root);
 
   // H1: "Atrial fibrillation<div class=second-title>Symptoms and causes</div>" -> "Atrial fibrillation<br>Symptoms and causes"
   root.querySelectorAll('.cmp-titlewithparent h1').forEach((h1) => {
@@ -554,8 +559,451 @@ function daMediaUrl(src) {
   return name ? `${DA_MEDIA}/${name}` : null;
 }
 
+// ---------------------------------------------------------------------------------------------
+// Care at Mayo Clinic hub pages (template "care-hub": /about-mayo-clinic, /about-mayo-clinic/contact,
+// /billing-insurance, /locations, /patient-centered-care). Every rule below runs only for these
+// templates and only inside #main-content, so home / A-Z / condition output is unchanged.
+// ---------------------------------------------------------------------------------------------
+const CARE_TEMPLATES = new Set(['care-hub', 'care-service', 'find-a-doctor', 'departments-centers', 'international']);
+
+// The 10 Care at Mayo Clinic pages migrated to this site: source path -> local path
+const CARE_PAGES = {
+  '/patient-centered-care': '/care-at-mayo-clinic/patient-centered-care',
+  '/about-mayo-clinic': '/care-at-mayo-clinic/about-mayo-clinic',
+  '/appointments': '/care-at-mayo-clinic/appointments',
+  '/appointments/find-a-doctor': '/care-at-mayo-clinic/find-a-doctor',
+  '/locations': '/care-at-mayo-clinic/locations',
+  '/patient-visitor-guide': '/care-at-mayo-clinic/patient-visitor-guide',
+  '/billing-insurance': '/care-at-mayo-clinic/billing-insurance',
+  '/departments-centers': '/care-at-mayo-clinic/departments-centers',
+  '/international': '/care-at-mayo-clinic/international',
+  '/about-mayo-clinic/contact': '/care-at-mayo-clinic/contact',
+};
+
+// Source anchor ids on the contact page -> heading ids Edge Delivery generates there
+// (used by links from other pages, e.g. Locations "Contact us" -> /about-mayo-clinic/contact#arizona)
+const CARE_FRAGMENTS = {
+  '/about-mayo-clinic/contact': {
+    arizona: 'arizona---scottsdalephoenix',
+    florida: 'florida---jacksonville',
+    minnesota: 'minnesota---rochester',
+    'staff-directories': 'staff-phone-and-email-directories',
+  },
+};
+
+function isCarePage(payload) {
+  const template = payload && payload.template;
+  return !!(template && CARE_TEMPLATES.has(template.name));
+}
+
+// Heading id Edge Delivery generates for the element a source anchor (#id) points at:
+// the element itself when it is a heading, else its first heading (e.g. a text card)
+function anchorSlug(root, id) {
+  let target = null;
+  try { target = root.querySelector(`[id="${id.replace(/"/g, '\\"')}"]`); } catch (e) { return null; }
+  if (!target) return null;
+  const heading = /^H[1-6]$/.test(target.tagName) ? target : target.querySelector('h1, h2, h3, h4, h5, h6');
+  return heading && heading.textContent.trim() ? slugify(heading.textContent) : null;
+}
+
+function cleanCareBefore(main) {
+  const doc = main.ownerDocument;
+
+  // YouTube video without an iframe (Patient-Centered Care): the video id is in the poster URL
+  // (i.ytimg.com/vi/<id>/...); record it for the video-inline parser like recordYoutubeVideos
+  main.querySelectorAll('.cmp-video-from-model:not([data-youtube-src])').forEach((video) => {
+    const poster = video.querySelector('img[src*="ytimg.com/vi/"]');
+    const id = poster && (poster.getAttribute('src').match(/ytimg\.com\/vi\/([\w-]{6,})\//) || [])[1];
+    if (id) video.setAttribute('data-youtube-src', `https://www.youtube.com/watch?v=${id}`);
+  });
+
+  [
+    // Slider dots and prev/next arrows (generated by the carousel-story block code)
+    '.cmp-slider__controls-container',
+    // Story cards: the mobile-only "Read more about ..." expando repeats the collapsible text
+    '.cmp-story-card .cmp-text-card__expando',
+    // Video poster play button and duration (decorative; the block renders its own)
+    '.cmp-poster__content',
+  ].forEach((sel) => main.querySelectorAll(sel).forEach((el) => el.remove()));
+
+  // "Back to top" links (contact page, after each state): they only jump to #top of the same
+  // page, which has no counterpart on Edge Delivery, so they are dropped rather than authored
+  main.querySelectorAll('a[href="#top"], a[href$="#top"]').forEach((a) => {
+    if (!a.isConnected) return;
+    removeWithEmptyWrappers(a.closest('.cmp-link') || a, main);
+  });
+
+  // Decorative icons: inline SVG, mc-icon web components (fact cards, action tiles, support card)
+  main.querySelectorAll('.cmp-icon, mc-icon, svg').forEach((el) => el.remove());
+
+  fixLazyImages(main);
+
+  // About headline: the source splits the H1 into two h1 elements -> one H1 with a line break
+  main.querySelectorAll('.cmp-headline__titles').forEach((titles) => {
+    const h1s = [...titles.querySelectorAll('h1')];
+    if (h1s.length < 2) return;
+    const heading = doc.createElement('h1');
+    h1s.forEach((h, i) => {
+      if (i) heading.append(doc.createElement('br'));
+      heading.append(doc.createTextNode(h.textContent.replace(/\s+/g, ' ').trim()));
+    });
+    h1s[0].replaceWith(heading);
+    h1s.slice(1).forEach((h) => removeWithEmptyWrappers(h, titles));
+  });
+
+  // Same-page anchor links (#arizona, #resources) -> heading id Edge Delivery generates.
+  // Done before the parsers run: they copy hrefs, and the targets may sit inside a block.
+  main.querySelectorAll('a[href^="#"]').forEach((a) => {
+    const id = a.getAttribute('href').slice(1);
+    const slug = id && anchorSlug(main, id);
+    if (slug) a.setAttribute('href', `#${slug}`);
+  });
+
+  // "On this page" (contact): label paragraph + list of the anchor links
+  main.querySelectorAll('.cmp-anchor-nav').forEach((nav) => {
+    const frag = doc.createDocumentFragment();
+    const label = nav.querySelector('.cmp-title, h2, h3');
+    if (label && label.textContent.trim()) frag.append(paragraph(doc, doc.createTextNode(label.textContent.trim())));
+    const ul = doc.createElement('ul');
+    nav.querySelectorAll('a[href]').forEach((a) => {
+      const li = doc.createElement('li');
+      li.append(cleanLink(doc, a));
+      ul.append(li);
+    });
+    if (ul.children.length) frag.append(ul);
+    nav.replaceWith(frag);
+  });
+}
+
+// Link target on this site for a www.mayoclinic.org URL, or null
+function careLocalHref(href) {
+  let url;
+  try { url = new URL(href); } catch (e) { return null; }
+  if (!/^(www\.)?mayoclinic\.org$/.test(url.hostname)) return null;
+  const path = url.pathname.replace(/\/+$/, '').toLowerCase() || '/';
+  // Departments directory filtered by location (?location=Arizona): server-rendered views that
+  // only exist on mayoclinic.org, so they stay absolute
+  if (path === '/departments-centers' && url.searchParams.has('location')) return null;
+  const local = CARE_PAGES[path];
+  if (local) {
+    const id = url.hash.slice(1);
+    const fragments = CARE_FRAGMENTS[path] || {};
+    const hash = id ? `#${fragments[id] || id}` : '';
+    return `${local}${url.search}${hash}`;
+  }
+  return migratedConditionPath(url.href);
+}
+
+function cleanCareAfter(main) {
+  main.querySelectorAll('a[href]').forEach((a) => {
+    const href = a.getAttribute('href').trim();
+    let next = href;
+    // Root-relative links point back to mayoclinic.org (except this site's /health-library pages)
+    if (/^\/(?!\/)/.test(href) && href !== '/health-library' && !href.startsWith('/health-library/')) {
+      next = `${MAYO_ORIGIN}${href}`;
+    }
+    // Pages migrated to this site (the 10 Care at Mayo Clinic pages, migrated condition pages)
+    // link to the local copy
+    if (/^https?:\/\//.test(next)) next = careLocalHref(next) || next;
+    if (next === href) return;
+    a.setAttribute('href', next);
+    if (a.textContent.trim() === href) a.textContent = next;
+  });
+
+  // Headings: plain text, no component classes or source ids
+  main.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((h) => {
+    [...h.attributes].forEach((attr) => h.removeAttribute(attr.name));
+  });
+}
+
+// ---------------------------------------------------------------------------------------------
+// Care service pages (template "care-service": /appointments, /patient-visitor-guide). Runs in
+// addition to the care rules above, only for this template.
+// ---------------------------------------------------------------------------------------------
+function isCareServicePage(payload) {
+  return !!(payload && payload.template && payload.template.name === 'care-service');
+}
+
+function cleanCareServiceBefore(main) {
+  // Donation band: decorative heart icon image (giving-charity.svg) next to the heading
+  main.querySelectorAll('.cmp-container--background-color-donations img[src*="/images/icons/"]').forEach((img) => {
+    removeWithEmptyWrappers(img.closest('picture') || img, main);
+  });
+}
+
+// Widest rendition of a responsive <picture>: the source for the largest min-width, else the img
+function widestImageSrc(picture) {
+  let best = null;
+  let bestWidth = -1;
+  picture.querySelectorAll('source[srcset]').forEach((source) => {
+    const width = +((source.getAttribute('media') || '').match(/min-width:\s*(\d+)px/) || [0, 0])[1];
+    const src = source.getAttribute('srcset').split(',')[0].trim().split(/\s+/)[0];
+    if (src && width >= bestWidth) { best = src; bestWidth = width; }
+  });
+  const img = picture.querySelector('img');
+  return best || (img && img.getAttribute('src'));
+}
+
+function cleanCareServiceAfter(main) {
+  const doc = main.ownerDocument;
+  // Done after the parsers: the section selectors (pvg-3) match on .cmp-text-card
+  const each = (sel, fn) => [...main.querySelectorAll(sel)].filter(isDefaultContent).forEach(fn);
+
+  // Text cards without buttons (guide section intros, "Questions about appointments?"):
+  // heading + description paragraphs as default content
+  each('.cmp-text-card', (card) => {
+    if (card.querySelector('.cmp-text-card__buttons a[href]')) return;
+    const frag = doc.createDocumentFragment();
+    const title = card.querySelector('.cmp-text-card__title, h2, h3, h4');
+    if (title && title.textContent.trim()) {
+      const tag = /^H[1-6]$/.test(title.tagName) ? title.tagName.toLowerCase() : 'h2';
+      const h = doc.createElement(tag);
+      h.textContent = title.textContent.replace(/\s+/g, ' ').trim();
+      frag.append(h);
+    }
+    const desc = card.querySelector('.cmp-text-card__description');
+    if (desc) {
+      const blocks = desc.querySelectorAll(':scope > p, :scope > ul, :scope > ol');
+      if (blocks.length) frag.append(...blocks);
+      else if (desc.textContent.trim()) frag.append(paragraph(doc, doc.createTextNode(desc.textContent.trim())));
+    }
+    card.replaceWith(frag);
+  });
+
+  // Image-only hero card under the H1: one image paragraph with the wide (desktop) rendition
+  each('.cmp-hero-card', (hero) => {
+    const picture = hero.querySelector('picture');
+    const src = picture && widestImageSrc(picture);
+    if (!src) return;
+    const source = picture.querySelector('img');
+    const img = doc.createElement('img');
+    img.setAttribute('src', src);
+    img.setAttribute('alt', (source && source.getAttribute('alt')) || '');
+    hero.replaceWith(paragraph(doc, img));
+  });
+}
+
+// ---------------------------------------------------------------------------------------------
+// Find a Doctor page (template "find-a-doctor": /appointments/find-a-doctor). Legacy ASP.NET
+// markup (div.main > header + article#main-content). Runs only for this template.
+// ---------------------------------------------------------------------------------------------
+function isFindADoctorPage(payload) {
+  return !!(payload && payload.template && payload.template.name === 'find-a-doctor');
+}
+
+function cleanFindADoctorBefore(root) {
+  const doc = root.ownerDocument;
+
+  // Page title: the H1 sits in the page <header> (removed with the global header in
+  // afterTransform) after an empty <h1><a href=""></a></h1>, with the breadcrumb and an empty
+  // ol.bio-rank. Keep only the H1 text (its self-link unwrapped) in place of the header.
+  root.querySelectorAll('.main > header').forEach((header) => {
+    const title = [...header.querySelectorAll('h1')]
+      .map((h) => h.textContent.replace(/\s+/g, ' ').trim())
+      .find(Boolean);
+    if (!title) return;
+    const h1 = doc.createElement('h1');
+    h1.textContent = title;
+    header.replaceWith(h1);
+  });
+
+  // Duplicate breadcrumb row below the content (#divRow .breadcrumbs)
+  root.querySelectorAll('#main-content .breadcrumbs').forEach((el) => {
+    const main = el.closest('#main-content');
+    if (el.isConnected) removeWithEmptyWrappers(el, main);
+  });
+
+  // Azure type-ahead (jQuery UI autocomplete menu and live region appended to the body), and
+  // the language alerts ("This content does not have an English/Arabic version.")
+  root.querySelectorAll('ul.ui-autocomplete, .ui-helper-hidden-accessible, .page-alert').forEach((el) => el.remove());
+
+  // Donation band: decorative heart icon (giving-charity.svg); the band sits outside #main-content here
+  root.querySelectorAll('.cmp-container--background-color-donations img[src*="/images/icons/"]').forEach((img) => {
+    if (!img.isConnected) return;
+    const band = img.closest('.cmp-container--background-color-donations');
+    removeWithEmptyWrappers(img.closest('picture') || img, band);
+  });
+
+  // Directory tiles: the source splits the four a.linkbox tiles over two column wrappers;
+  // move them into the first so one cards-action block holds all four, in DOM order
+  root.querySelectorAll('#main-content .sub').forEach((sub) => {
+    const columns = [...sub.querySelectorAll(':scope > .p-4')].filter((col) => col.querySelector(':scope > a.linkbox'));
+    const [first, ...rest] = columns;
+    rest.forEach((col) => {
+      first.append(...col.querySelectorAll(':scope > a.linkbox'));
+      if (isEmpty(col)) col.remove();
+    });
+  });
+}
+
+function cleanFindADoctorAfter(root) {
+  const doc = root.ownerDocument;
+
+  // "Browse by last name": ordered list of letter links, the letter as link text (the
+  // visually hidden "Find a doctor whose last name begins with the letter X" is dropped).
+  // The results page only exists on mayoclinic.org, so links are absolute.
+  root.querySelectorAll('ol.acces-alpha').forEach((list) => {
+    const ol = doc.createElement('ol');
+    list.querySelectorAll('a[href]').forEach((a) => {
+      const shown = a.querySelector('[aria-hidden="true"]');
+      const text = (shown || a).textContent.replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      let href = a.getAttribute('href');
+      try { href = new URL(href, MAYO_ORIGIN).href; } catch (e) { /* keep href */ }
+      const link = doc.createElement('a');
+      link.setAttribute('href', href);
+      link.textContent = text;
+      const li = doc.createElement('li');
+      li.append(link);
+      ol.append(li);
+    });
+    list.replaceWith(ol);
+  });
+}
+
+// ---------------------------------------------------------------------------------------------
+// Departments & Centers page (template "departments-centers": /departments-centers). The same
+// legacy ASP.NET markup family as Find a Doctor (whose rules above also run for it), laid out as
+// #main > .page-header, #main-content (#filter + .list), #secondary (appointment tile),
+// .placeHolder (related links). Runs only for this template.
+// ---------------------------------------------------------------------------------------------
+function isDepartmentsCentersPage(payload) {
+  return !!(payload && payload.template && payload.template.name === 'departments-centers');
+}
+
+// Find a Doctor rules (page header H1, breadcrumbs, type-ahead, alerts, donation icon, tiles)
+// also apply to the Departments & Centers page
+function isLegacyAspPage(payload) {
+  return isFindADoctorPage(payload) || isDepartmentsCentersPage(payload);
+}
+
+// Root of the care rules (links, headings, icons): #main-content holds the whole page body on the
+// other care templates; here the H1, the tile rail and the related links sit beside it in #main
+function careRootSelector(payload) {
+  return isDepartmentsCentersPage(payload) ? '#main' : '#main-content';
+}
+
+function cleanDepartmentsCentersBefore(root) {
+  const doc = root.ownerDocument;
+  const text = (el) => el.textContent.replace(/\s+/g, ' ').trim();
+
+  // Page title: <h1><a href="(this page)">Medical Departments and Centers</a></h1> -> plain H1
+  root.querySelectorAll('#main > .page-header h1').forEach((h) => {
+    if (!text(h)) { h.remove(); return; }
+    const h1 = doc.createElement('h1');
+    h1.textContent = text(h);
+    h.replaceWith(h1);
+  });
+
+  // Bottom breadcrumb (Home > Medical Departments and Centers), the mobile-only duplicate
+  // "Narrow your search" toggle, scripts inside the link tiles
+  root.querySelectorAll('#mayo-wrapper > div.pageinfo, #filter a.mobilePull, #main a.linkbox script').forEach((el) => el.remove());
+
+  // Empty ad slot in the tile rail and the clearfix spacer (its only text is ".")
+  root.querySelectorAll('#main .internalads, #main .mobile.test').forEach((el) => {
+    if (el.isConnected && isEmpty(el)) el.remove();
+  });
+  root.querySelectorAll('#main > div.clearfix').forEach((el) => el.remove());
+
+  // "Related information" tile (the whole box is one <a>): heading and paragraph as text, the
+  // span.action as the link
+  root.querySelectorAll('#main .related-links a.linkbox').forEach((box) => {
+    const frag = doc.createDocumentFragment();
+    const title = box.querySelector('h2, h3, h4');
+    if (title && text(title)) {
+      const h2 = doc.createElement('h2');
+      h2.textContent = text(title);
+      frag.append(h2);
+    }
+    box.querySelectorAll(':scope > p').forEach((p) => {
+      if (text(p)) frag.append(paragraph(doc, doc.createTextNode(text(p))));
+    });
+    const action = box.querySelector('.action');
+    if (action && text(action) && box.getAttribute('href')) {
+      const a = doc.createElement('a');
+      a.setAttribute('href', box.getAttribute('href'));
+      a.textContent = text(action);
+      frag.append(paragraph(doc, a));
+    }
+    box.replaceWith(frag);
+  });
+}
+
+// Source list (ol, no visible numbers) -> ul of plain links, nested lists kept as nested ul
+function linkList(doc, list) {
+  const ul = doc.createElement('ul');
+  list.querySelectorAll(':scope > li').forEach((item) => {
+    const li = doc.createElement('li');
+    const a = item.querySelector(':scope > a[href]');
+    if (a && linkText(a)) li.append(cleanLink(doc, a));
+    item.querySelectorAll(':scope > ol, :scope > ul').forEach((sub) => {
+      const nested = linkList(doc, sub);
+      if (nested.children.length) li.append(nested);
+    });
+    if (li.childNodes.length) ul.append(li);
+  });
+  return ul;
+}
+
+function cleanDepartmentsCentersAfter(root) {
+  const doc = root.ownerDocument;
+
+  // Location filter ("By location": All / Arizona / Florida / Minnesota) and the A-Z directory
+  // (letter H3 + list of departments): clean default content lists
+  root.querySelectorAll('#filter .holder ol, #main-content > .list > ol').forEach((list) => {
+    list.replaceWith(linkList(doc, list));
+  });
+
+  // Headings: collapse the source's whitespace ("\n        All Departments")
+  root.querySelectorAll('#main-content h2, #main-content h3').forEach((h) => {
+    if (!h.children.length) h.textContent = h.textContent.replace(/\s+/g, ' ').trim();
+  });
+}
+
+// ---------------------------------------------------------------------------------------------
+// International Patient Services page (template "international": /international). Level-two
+// navigation layout: left rail section nav (cards-side-nav), article in an <aside> of the content
+// column. Runs only for this template; the care rules above also apply (icons, links, headings).
+// ---------------------------------------------------------------------------------------------
+const INTERNATIONAL_COLUMN = '.cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column';
+
+function isInternationalPage(payload) {
+  return !!(payload && payload.template && payload.template.name === 'international');
+}
+
+// Runs before the global removals: the article sits in an <aside>, which they would drop
+// ('#main-content aside' is the empty ad column on other pages)
+function cleanInternationalBefore(root) {
+  root.querySelectorAll(`${INTERNATIONAL_COLUMN} > aside`).forEach((aside) => {
+    aside.replaceWith(...aside.childNodes);
+  });
+  // Floating LUMA virtual assistant chat bubble and its popup
+  root.querySelectorAll('.cmp-luma-chat').forEach((el) => el.remove());
+}
+
+function cleanInternationalAfter(root) {
+  const doc = root.ownerDocument;
+  // Button links in the article: the "Learn how to request an appointment" pills are primary
+  // buttons (<p><strong><a>), other buttons plain links
+  root.querySelectorAll(`${INTERNATIONAL_COLUMN} a.cmp-button`).forEach((a) => {
+    if (!isDefaultContent(a) || !a.getAttribute('href') || !linkText(a)) return;
+    const link = cleanLink(doc, a);
+    let content = link;
+    if (a.querySelector('.cmp-button__inner--type-pill')) {
+      content = doc.createElement('strong');
+      content.append(link);
+    }
+    const wrapper = a.closest('.cmp-link') || a;
+    if (wrapper.closest('li, p')) wrapper.replaceWith(content);
+    else wrapper.replaceWith(paragraph(doc, content));
+  });
+}
+
 export default function transform(hookName, element, payload) {
   if (hookName === 'beforeTransform') {
+    // International page: keep the article <aside>, drop the chat bubble (see cleanInternationalBefore)
+    if (isInternationalPage(payload)) cleanInternationalBefore(element);
+
     // Share image in the page metadata (read from these tags by createMetadata)
     const head = element.ownerDocument && element.ownerDocument.head;
     if (head) {
@@ -606,6 +1054,16 @@ export default function transform(hookName, element, payload) {
 
     // Condition pages: ad rail, duplicate nav, newsletter, print, content ID, lazy images, H1
     element.querySelectorAll(CONDITION_ROOT).forEach(cleanConditionBefore);
+
+    // Care at Mayo Clinic hub pages: icons, slider controls, duplicates, H1, anchors (see cleanCareBefore)
+    if (isCarePage(payload)) element.querySelectorAll(careRootSelector(payload)).forEach(cleanCareBefore);
+    // Care service pages: donation band icon (see cleanCareServiceBefore)
+    if (isCareServicePage(payload)) element.querySelectorAll('#main-content').forEach(cleanCareServiceBefore);
+    // Find a Doctor (and Departments & Centers): lift the H1 out of the page header,
+    // breadcrumbs, type-ahead, icons, tiles
+    if (isLegacyAspPage(payload)) cleanFindADoctorBefore(element);
+    // Departments & Centers: H1 self-link, breadcrumb, mobile toggle, empty slots, related links
+    if (isDepartmentsCentersPage(payload)) cleanDepartmentsCentersBefore(element);
   }
 
   if (hookName === 'afterTransform') {
@@ -709,6 +1167,19 @@ export default function transform(hookName, element, payload) {
 
     // Condition pages: article default content and absolute mayoclinic.org links
     element.querySelectorAll(CONDITION_ROOT).forEach(cleanConditionAfter);
+
+    // Care service pages: text cards and hero image as default content (see cleanCareServiceAfter)
+    if (isCareServicePage(payload)) element.querySelectorAll('#main-content').forEach(cleanCareServiceAfter);
+
+    // Find a Doctor: browse-by-last-name letter list (see cleanFindADoctorAfter)
+    if (isFindADoctorPage(payload)) cleanFindADoctorAfter(element);
+    // Departments & Centers: location filter and A-Z directory lists (see cleanDepartmentsCentersAfter)
+    if (isDepartmentsCentersPage(payload)) cleanDepartmentsCentersAfter(element);
+    // International: article button links (see cleanInternationalAfter)
+    if (isInternationalPage(payload)) cleanInternationalAfter(element);
+
+    // Care at Mayo Clinic hub pages: links to migrated pages are local, the rest absolute
+    if (isCarePage(payload)) element.querySelectorAll(careRootSelector(payload)).forEach(cleanCareAfter);
 
     // www.mayoclinic.org images -> DA-hosted copies (see daMediaUrl)
     element.querySelectorAll('img[src]').forEach((img) => {

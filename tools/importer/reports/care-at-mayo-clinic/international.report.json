@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/international",
+  "path": "care-at-mayo-clinic/international",
+  "timestamp": "2026-11-15T00:09:44.855Z",
+  "title": "International Patient Services at Mayo Clinic - Mayo Clinic",
+  "template": "international",
+  "blocks": [
+    "cards-side-nav",
+    "cards-link-list",
+    "columns-banner"
+  ],
+  "importScript": "1b3914a3e909"
+}

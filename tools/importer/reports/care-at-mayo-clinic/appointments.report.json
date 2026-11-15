@@ -1,0 +1,15 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/appointments",
+  "path": "care-at-mayo-clinic/appointments",
+  "timestamp": "2026-11-15T00:09:21.087Z",
+  "title": "Appointments at Mayo Clinic",
+  "template": "care-service",
+  "blocks": [
+    "cards-link-list",
+    "cards-link-list",
+    "accordion-lined",
+    "columns-banner"
+  ],
+  "importScript": "01d0d1f6c00f"
+}

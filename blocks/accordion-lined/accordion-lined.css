@@ -1,0 +1,112 @@
+/* source: .cmp-accordion--default (https://www.mayoclinic.org/appointments, "Still want to schedule by phone?") */
+.accordion-lined {
+  margin: 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+}
+
+/* thin rule under every item (source: .cmp-accordion__item) */
+.accordion-lined .accordion-lined-item {
+  border-bottom: 1px solid #d6d6d6;
+}
+
+/* label row: chevron, 10px gap, dark 24px label (source: .cmp-accordion__button-inner) */
+.accordion-lined .accordion-lined-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.2s ease;
+}
+
+.accordion-lined .accordion-lined-label::-webkit-details-marker {
+  display: none;
+}
+
+/* chevron before the label: down when closed, up when open */
+.accordion-lined .accordion-lined-label::before {
+  content: '';
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.414 2.293 5.707l1.414-1.414L8 8.586l4.293-4.293 1.414 1.414z'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  transition: transform 0.2s ease;
+}
+
+.accordion-lined .accordion-lined-item[open] > .accordion-lined-label::before {
+  transform: rotate(180deg);
+}
+
+.accordion-lined .accordion-lined-label:hover {
+  color: var(--brand-link-hover-color);
+}
+
+.accordion-lined .accordion-lined-label:focus-visible {
+  color: var(--brand-link-hover-color);
+  outline: 2px solid var(--brand-focus-color);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion-lined .accordion-lined-label,
+  .accordion-lined .accordion-lined-label::before {
+    transition: none;
+  }
+}
+
+/* panel: phone numbers, hours, links (source: .cmp-text--body-sans-small) */
+.accordion-lined .accordion-lined-body {
+  padding: 8px 8px 20px;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.accordion-lined .accordion-lined-body h3,
+.accordion-lined .accordion-lined-body h4 {
+  margin: 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 23.4px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.accordion-lined .accordion-lined-body p {
+  margin: 0 0 12px;
+}
+
+.accordion-lined .accordion-lined-body ul,
+.accordion-lined .accordion-lined-body ol {
+  margin: 20px 0;
+  padding-left: 40px;
+}
+
+.accordion-lined .accordion-lined-body ul {
+  list-style-type: circle;
+}
+
+.accordion-lined .accordion-lined-body li {
+  margin: 0;
+}
+
+.accordion-lined .accordion-lined-body > :last-child {
+  margin-bottom: 0;
+}
+
+@media (width >= 900px) {
+  .accordion-lined .accordion-lined-body {
+    padding: 12px 12px 24px;
+  }
+
+  .accordion-lined .accordion-lined-body p {
+    margin-bottom: 20px;
+  }
+}

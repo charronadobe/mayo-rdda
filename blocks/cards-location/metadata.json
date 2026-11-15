@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-location",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Location cards: a landscape photo beside an H2 title, a subtitle and a list of chevron links.",
+    "description": "Rounded 16:9 photo on the left half (stacked above the text on mobile and tablet), serif bold H2 (24px mobile, 32px up), 20px subtitle, list of blue chevron links (no underline, 24px apart) indented 36px."
+  },
+  "contentPattern": {
+    "structure": "One row per location, two cells: Image | H2 title, subtitle paragraph, bulleted list of links.",
+    "description": "Repeating location cards stacked vertically. The paragraph right after the H2 is the subtitle; the list holds the links. Paragraphs that hold only a link are turned into the list when no list is authored.",
+    "blockContent": "Three campus cards (Arizona, Florida, Minnesota) and one international card (London) with 2-3 links each",
+    "table": [
+      [
+        "Cards Location"
+      ],
+      [
+        "Image",
+        "H2 title, subtitle paragraph, list of links"
+      ],
+      [
+        "Image",
+        "H2 title, subtitle paragraph, list of links"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-location"
+  ],
+  "usage": {
+    "description": "Location cards with photo, title, subtitle and links.",
+    "pagesUsing": [
+      "/locations"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-14T00:00:00.000Z"
+  },
+  "reuseGuidance": "Use for places or campuses that each have a photo and a few related links. One row per location: image | H2, subtitle paragraph, list of links.",
+  "sourceUrl": "https://www.mayoclinic.org/locations"
+}

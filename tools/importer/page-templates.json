@@ -645,6 +645,693 @@
         }
       ],
       "representativeUrl": "https://www.mayoclinic.org/diseases-conditions/atrial-fibrillation/symptoms-causes/syc-20350624"
+    },
+    {
+      "name": "care-hub",
+      "urls": [
+        "https://www.mayoclinic.org/about-mayo-clinic",
+        "https://www.mayoclinic.org/about-mayo-clinic/contact",
+        "https://www.mayoclinic.org/billing-insurance",
+        "https://www.mayoclinic.org/locations",
+        "https://www.mayoclinic.org/patient-centered-care"
+      ],
+      "description": "Care at Mayo Clinic hub pages: About Mayo Clinic, Contact Us, Billing & Insurance, Locations, Patient-Centered Care",
+      "blocks": [
+        {
+          "name": "carousel-story",
+          "instances": [
+            "#main-content .cmp-slider-from-model"
+          ]
+        },
+        {
+          "name": "columns-media",
+          "instances": [
+            ".cmp-story-card"
+          ]
+        },
+        {
+          "name": "cards-stat",
+          "instances": [
+            "#main-content .cmp-column-control__container:has(> .container-child .cmp-fact-card)"
+          ]
+        },
+        {
+          "name": "quote-pull",
+          "instances": [
+            "#main-content .cmp-pull-quote"
+          ]
+        },
+        {
+          "name": "cards-action",
+          "instances": [
+            "#main-content .cmp-column-control__container:has(> .container-child > .cmp-action-card-simple)",
+            "#main-content .cmp-column-control__container:has(> .container-child > .cmp-action-card-robust)"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement",
+            "#main-content .cmp-column-control__container.cmp-text-card__care"
+          ]
+        },
+        {
+          "name": "cards-location",
+          "instances": [
+            "#main-content .cmp-locations-card-from-model"
+          ]
+        },
+        {
+          "name": "table-lined",
+          "instances": [
+            "#main-content .cmp-text__rich-content table"
+          ]
+        },
+        {
+          "name": "video-inline",
+          "instances": [
+            "#main-content .cmp-video-from-model"
+          ]
+        },
+        {
+          "name": "accordion-toggle",
+          "instances": [
+            "#main-content .cmp-video-from-model .cmp-video__expando"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Page intro and story carousel",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-headline)",
+            "#main-content .aem-GridColumn:has(> .cmp-yspace h1)"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-story",
+            "cards-action",
+            "cards-location",
+            "video-inline",
+            "accordion-toggle"
+          ],
+          "defaultContent": [
+            ".cmp-headline",
+            ".cmp-title h1",
+            ".cmp-hero-card",
+            ".cmp-text__rich-content",
+            ".cmp-video__description"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Who we are",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-story-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s3",
+          "name": "Our impact",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-story-card) ~ .aem-GridColumn:has(> .cmp-yspace .cmp-story-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s4",
+          "name": "Impact facts",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-fact-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-stat"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s5",
+          "name": "People and culture",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-story-card) ~ .aem-GridColumn:has(> .cmp-yspace .cmp-story-card) ~ .aem-GridColumn:has(> .cmp-yspace .cmp-story-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-media"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s6",
+          "name": "CEO quote",
+          "selector": [
+            "#main-content .cmp-pull-quote__white"
+          ],
+          "style": null,
+          "blocks": [
+            "quote-pull"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s7",
+          "name": "Resources",
+          "selector": [
+            "#main-content .aem-GridColumn:has(+ .aem-GridColumn .cmp-action-card-simple)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-action"
+          ],
+          "defaultContent": [
+            ".cmp-text-card",
+            ".cmp-title h3",
+            ".cmp-text__rich-content"
+          ]
+        },
+        {
+          "id": "s8",
+          "name": "Donation banner",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s9",
+          "name": "Contact: first state group",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace table)"
+          ],
+          "style": null,
+          "blocks": [
+            "table-lined"
+          ],
+          "defaultContent": [
+            ".cmp-title h3",
+            ".cmp-text__rich-content p",
+            ".cmp-link"
+          ]
+        },
+        {
+          "id": "s10",
+          "name": "Contact: second state group",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace table) ~ .aem-GridColumn:has(> .cmp-yspace table)"
+          ],
+          "style": null,
+          "blocks": [
+            "table-lined"
+          ],
+          "defaultContent": [
+            ".cmp-title h3",
+            ".cmp-text__rich-content p",
+            ".cmp-link"
+          ]
+        },
+        {
+          "id": "s11",
+          "name": "Contact: third state group",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace table) ~ .aem-GridColumn:has(> .cmp-yspace table) ~ .aem-GridColumn:has(> .cmp-yspace table)"
+          ],
+          "style": null,
+          "blocks": [
+            "table-lined"
+          ],
+          "defaultContent": [
+            ".cmp-title h3",
+            ".cmp-text__rich-content p",
+            ".cmp-link"
+          ]
+        },
+        {
+          "id": "s12",
+          "name": "Locations: support getting to main campuses",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-support-card)"
+          ],
+          "style": "centered",
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-support-card .cmp-title h2",
+            ".cmp-support-card .cmp-text__rich-content",
+            ".cmp-support-card .cmp-link"
+          ]
+        },
+        {
+          "id": "s13",
+          "name": "Locations: international locations",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-text-card):has(+ .aem-GridColumn .cmp-locations-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-location"
+          ],
+          "defaultContent": [
+            ".cmp-text-card"
+          ]
+        },
+        {
+          "id": "s14",
+          "name": "Patient-Centered Care: patient quote band",
+          "selector": [
+            "#main-content .cmp-pull-quote__light-blue"
+          ],
+          "style": "light-blue",
+          "blocks": [
+            "quote-pull"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s15",
+          "name": "Patient-Centered Care: plan that works for you",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-text-card__care)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s16",
+          "name": "Patient-Centered Care: full-width photo",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control > .cmp-column-control__container > .container-child > .cmp-image)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-image img"
+          ]
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/about-mayo-clinic"
+    },
+    {
+      "name": "care-service",
+      "urls": [
+        "https://www.mayoclinic.org/appointments",
+        "https://www.mayoclinic.org/patient-visitor-guide"
+      ],
+      "description": "Care service pages: Request Appointment, Patient & Visitor Guide",
+      "blocks": [
+        {
+          "name": "cards-link-list",
+          "instances": [
+            "#main-content .cmp-link-list-robust",
+            "#main-content .cmp-link-list"
+          ]
+        },
+        {
+          "name": "accordion-lined",
+          "instances": [
+            "#main-content .cmp-accordion"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement",
+            "#main-content .cmp-column-control__layoutType--TwoColumn > .cmp-column-control__container:has(> .container-child > .cmp-text-card .cmp-text-card__buttons):not(:has(> .container-child > :not(.cmp-text-card)))"
+          ]
+        },
+        {
+          "name": "cards-location",
+          "instances": [
+            "#main-content .cmp-locations-card-from-model"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc5",
+          "name": "Appointment request (light-blue band)",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-container--background-color-copyright .cmp-link-list-robust)"
+          ],
+          "style": "light-blue",
+          "blocks": [
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-title h1",
+            ".cmp-text__rich-content"
+          ]
+        },
+        {
+          "id": "rc6",
+          "name": "Schedule by phone",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-accordion)"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion-lined"
+          ],
+          "defaultContent": [
+            ".cmp-title h2"
+          ]
+        },
+        {
+          "id": "rc7",
+          "name": "Appointments in London",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-accordion) + .aem-GridColumn:has(> .cmp-yspace)",
+            "#main-content .aem-GridColumn:has(> .cmp-yspace):has(+ .aem-GridColumn > .cmp-container--background-color-brand .cmp-link-list-robust)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".cmp-title h2",
+            ".cmp-text__rich-content"
+          ]
+        },
+        {
+          "id": "rc8",
+          "name": "Questions about appointments (blue gradient)",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-container--background-color-brand .cmp-link-list-robust)"
+          ],
+          "style": "blue-gradient, split",
+          "blocks": [
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-text-card"
+          ]
+        },
+        {
+          "id": "rc9",
+          "name": "Donation banner (navy, both pages)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "pvg-2",
+          "name": "Guide: before requesting an appointment",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--TwoColumn .cmp-link-list)"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-text-card"
+          ]
+        },
+        {
+          "id": "pvg-3",
+          "name": "Guide: planning your trip and campuses",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace .cmp-text-card):has(+ .aem-GridColumn .cmp-locations-card)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-location"
+          ],
+          "defaultContent": [
+            ".cmp-text-card"
+          ]
+        },
+        {
+          "id": "pvg-4",
+          "name": "Guide: additional help",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--OneColumn .cmp-link-list)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-text-card"
+          ]
+        },
+        {
+          "id": "pvg-5",
+          "name": "Guide: online access and confidentiality",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--TwoColumn .cmp-text-card__buttons)"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/appointments"
+    },
+    {
+      "name": "find-a-doctor",
+      "urls": [
+        "https://www.mayoclinic.org/appointments/find-a-doctor"
+      ],
+      "description": "Find a Doctor: doctor search",
+      "blocks": [
+        {
+          "name": "search-doctor",
+          "instances": [
+            "#main-content > .bio-find"
+          ]
+        },
+        {
+          "name": "cards-action",
+          "instances": [
+            "#main-content .sub > .p-4:has(> a.linkbox)"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc3",
+          "name": "Page title band",
+          "selector": [
+            "#mayoform > .main > h1"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#mayoform > .main > h1"
+          ]
+        },
+        {
+          "id": "rc4",
+          "name": "Find a doctor search band",
+          "selector": [
+            "#main-content > .bio-find"
+          ],
+          "style": null,
+          "blocks": [
+            "search-doctor"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "Browse by last name and related directories",
+          "selector": [
+            "#main-content > .row:has(a.linkbox)"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-action"
+          ],
+          "defaultContent": [
+            "h3.eye",
+            "ol.acces-alpha"
+          ]
+        },
+        {
+          "id": "rc7",
+          "name": "Donation banner (navy)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/appointments/find-a-doctor"
+    },
+    {
+      "name": "departments-centers",
+      "urls": [
+        "https://www.mayoclinic.org/departments-centers"
+      ],
+      "description": "Departments & Centers: A-Z directory of departments",
+      "blocks": [
+        {
+          "name": "cards-action",
+          "instances": [
+            "#main > #secondary:has(> a.linkbox)"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc6",
+          "name": "Page title",
+          "selector": [
+            "#main > .page-header"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "#main > .page-header h1"
+          ]
+        },
+        {
+          "id": "rc7",
+          "name": "Department directory with location filter and appointment promo",
+          "selector": [
+            "#main > #main-content:has(> #filter)"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-action"
+          ],
+          "defaultContent": [
+            "#filter .holder > h2",
+            "#filter .holder h3",
+            "#filter .holder ol",
+            "#main-content > .list > h2",
+            "#main-content > .list > h3",
+            "#main-content > .list > ol.navlist"
+          ]
+        },
+        {
+          "id": "rc8",
+          "name": "Related information",
+          "selector": [
+            "#main > .placeHolder:has(> .related-links)"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".related-links h2",
+            ".related-links p"
+          ]
+        },
+        {
+          "id": "rc11",
+          "name": "Donation banner (navy)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/departments-centers"
+    },
+    {
+      "name": "international",
+      "urls": [
+        "https://www.mayoclinic.org/international"
+      ],
+      "description": "International Services",
+      "blocks": [
+        {
+          "name": "cards-side-nav",
+          "instances": [
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__level-to-nav .cmp-level-two-navigation"
+          ]
+        },
+        {
+          "name": "cards-link-list",
+          "instances": [
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-link-list-from-model .cmp-link-list__item-list"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "s1",
+          "name": "International Patient Services: section nav and article",
+          "selector": [
+            "#main-content .aem-GridColumn:has(> .cmp-yspace > .cmp-column-control__layoutType--LevelTwoNavigation)",
+            ".cmp-column-control__layoutType--LevelTwoNavigation"
+          ],
+          "style": "split",
+          "blocks": [
+            "cards-side-nav",
+            "cards-link-list"
+          ],
+          "defaultContent": [
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-title h1",
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-text__rich-content",
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-image img",
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-title h2",
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-link-list__title h2",
+            ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column .cmp-link > a.cmp-button:has(.cmp-button__inner--type-pill)"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Donation banner (navy)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/international"
     }
   ],
   "metadata": {

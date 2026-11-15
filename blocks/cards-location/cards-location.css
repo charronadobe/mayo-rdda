@@ -1,0 +1,179 @@
+/* cards-location (source: .cmp-locations-card__horizontal on /locations) */
+.cards-location > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-location .cards-location-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* landscape photo (source: .cmp-media__locations, 16:9, radius 8px) */
+.cards-location .cards-location-card-image p {
+  margin: 0;
+}
+
+.cards-location .cards-location-card-image picture,
+.cards-location .cards-location-card-image img {
+  display: block;
+  width: 100%;
+}
+
+.cards-location .cards-location-card-image img {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cards-location .cards-location-card-body {
+  padding-top: 16px;
+}
+
+.cards-location .cards-location-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* source: .cmp-locations-card__heading, mayo-display bold 24px mobile / 32px tablet up */
+.cards-location .cards-location-card-title {
+  margin: 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-heading-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+/* source: .cmp-title__subheader, set under the title */
+.cards-location .cards-location-card-subtitle {
+  margin: 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.cards-location .cards-location-card-title + :not(.cards-location-card-subtitle),
+.cards-location .cards-location-card-subtitle + * {
+  margin-top: 24px;
+}
+
+/* chevron link list, indented past the (unrendered) source icon slot */
+.cards-location .cards-location-card-links {
+  margin-bottom: 0;
+  padding: 0 0 0 36px;
+  list-style: none;
+}
+
+.cards-location .cards-location-card-links li {
+  margin-bottom: 24px;
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.cards-location .cards-location-card-links li:last-child {
+  margin-bottom: 0;
+}
+
+.cards-location .cards-location-card-links a:any-link {
+  color: var(--brand-link-color);
+  text-decoration: none;
+}
+
+.cards-location .cards-location-card-links a:hover {
+  color: var(--brand-link-hover-color);
+  text-decoration: underline;
+}
+
+.cards-location .cards-location-card-links a::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-inline-start: 10px;
+  border-top: 2px solid currentcolor;
+  border-right: 2px solid currentcolor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+@media (width >= 600px) {
+  .cards-location .cards-location-card-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .cards-location .cards-location-card-title + :not(.cards-location-card-subtitle),
+  .cards-location .cards-location-card-subtitle + * {
+    margin-top: 32px;
+  }
+}
+
+/* desktop: photo on the left half, text from the 8th of 12 columns */
+@media (width >= 900px) {
+  .cards-location > ul {
+    gap: 48px;
+  }
+
+  .cards-location .cards-location-card {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    align-items: start;
+  }
+
+  .cards-location .cards-location-card-image {
+    grid-column: 1 / span 6;
+  }
+
+  .cards-location .cards-location-card-body {
+    grid-column: 8 / span 5;
+    padding-top: 0;
+  }
+
+  .cards-location .cards-location-card-body:only-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* stacked look (source: .cmp-locations-card__vertical on /patient-visitor-guide):
+   photo above the text, one link per card; 1 column mobile, 2 tablet, 3 desktop */
+.cards-location.stacked > ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.cards-location.stacked .cards-location-card-links {
+  padding-left: 0;
+}
+
+@media (width >= 600px) {
+  .cards-location.stacked > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cards-location.stacked .cards-location-card-body {
+    padding-top: 24px;
+  }
+}
+
+@media (width >= 900px) {
+  .cards-location.stacked > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .cards-location.stacked .cards-location-card {
+    display: flex;
+  }
+
+  .cards-location.stacked .cards-location-card-body {
+    padding-top: 32px;
+  }
+}

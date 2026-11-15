@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/about-mayo-clinic/contact",
+  "path": "care-at-mayo-clinic/contact",
+  "timestamp": "2026-11-15T02:02:19.199Z",
+  "title": "Contact us - Mayo Clinic",
+  "template": "care-hub",
+  "blocks": [
+    "cards-action",
+    "columns-banner",
+    "table-lined",
+    "table-lined",
+    "table-lined",
+    "table-lined",
+    "table-lined",
+    "table-lined",
+    "table-lined"
+  ],
+  "importScript": "6ac39104dc96"
+}

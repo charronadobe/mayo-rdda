@@ -59,6 +59,83 @@
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8.707 2.293 7.293 3.707 10.586 7H2v2h8.586l-3.293 3.293 1.414 1.414L14.414 8z'/%3E%3C/svg%3E") center / 12px 12px no-repeat;
 }
 
+/*
+ * grouped navs (hub pages such as /international, source: .cmp-level-two-navigation with
+ * nested lists): dotted separators; a group is its label link with a chevron button
+ * 8px after the text, then its sub-links indented 40px (+24px per deeper level).
+ */
+.cards-side-nav.grouped .cards-side-nav-item {
+  border-top-style: dotted;
+}
+
+.cards-side-nav .cards-side-nav-group-label {
+  display: flex;
+  align-items: center;
+}
+
+.cards-side-nav .cards-side-nav-group-label > a.cards-side-nav-link:any-link,
+.cards-side-nav .cards-side-nav-group-label > .cards-side-nav-current {
+  flex: 0 1 auto;
+  padding-right: 0;
+  line-height: 22.4px;
+}
+
+.cards-side-nav .cards-side-nav-group-toggle {
+  display: inline-flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--brand-link-color);
+}
+
+.cards-side-nav .cards-side-nav-group-toggle::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M12.293 11.707 8 7.414l-4.293 4.293-1.414-1.414L8 4.586l5.707 5.707z'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+  transform: rotate(180deg);
+}
+
+.cards-side-nav .cards-side-nav-group-toggle[aria-expanded='true']::before {
+  transform: none;
+}
+
+.cards-side-nav .cards-side-nav-group-label:hover .cards-side-nav-group-toggle {
+  color: var(--brand-link-hover-color);
+}
+
+.cards-side-nav .cards-side-nav-sublist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-side-nav .cards-side-nav-sublist:not([hidden]) {
+  margin-bottom: 16px;
+}
+
+.cards-side-nav .cards-side-nav-sublist .cards-side-nav-sublist {
+  padding-inline-start: 24px;
+}
+
+.cards-side-nav .cards-side-nav-sublist a.cards-side-nav-link:any-link,
+.cards-side-nav .cards-side-nav-sublist .cards-side-nav-current {
+  padding-block: 8px;
+  padding-left: 40px;
+}
+
+.cards-side-nav .cards-side-nav-sublist .cards-side-nav-current {
+  padding-left: 24px;
+}
+
 /* small screens: the top nav collapses behind a "Menu" button (source: menu toggle) */
 .cards-side-nav .cards-side-nav-toggle {
   display: flex;
@@ -118,6 +195,21 @@
 .cards-side-nav-repeat .cards-side-nav {
   margin-top: 40px;
   padding-inline: 24px;
+}
+
+/* grouped navs sit in the rail from 900px (source: LevelTwoNavigation layout) */
+@media (width >= 900px) {
+  .cards-side-nav.grouped .cards-side-nav-toggle {
+    display: none;
+  }
+
+  .cards-side-nav.grouped nav:has(> .cards-side-nav-toggle) > .cards-side-nav-title {
+    display: block;
+  }
+
+  .cards-side-nav.grouped nav:has(> .cards-side-nav-toggle):not(.is-open) > ul {
+    display: block;
+  }
 }
 
 @media (width >= 1200px) {
@@ -222,5 +314,49 @@ main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper + div {
 
   main > .section.split.cards-side-nav-container > .cards-side-nav-wrapper + div {
     padding-top: 0;
+  }
+}
+
+/*
+ * hub page layout, for a grouped nav (source: .cmp-column-control__layoutType--LevelTwoNavigation)
+ * below 900px the article is full width, 12px below the collapsed nav; from 900px the nav
+ * rail and article sit side by side: 30% rail | 5% gap | 60% article inside the container,
+ * with 12px column padding (the article starts 12px below the top of the nav).
+ */
+main > .section.split.cards-side-nav-container:has(.cards-side-nav.grouped) > .cards-side-nav-wrapper + div {
+  margin-top: 12px;
+}
+
+@media (width >= 600px) {
+  main > .section.split.cards-side-nav-container:has(.cards-side-nav.grouped) > div:not(.cards-side-nav-wrapper) {
+    width: auto;
+    margin-inline: 0;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section.split.cards-side-nav-container:has(.cards-side-nav.grouped) {
+    display: grid;
+    grid-template-columns: 30% 5% 60%;
+    column-gap: 0;
+    align-items: start;
+    max-width: 1360px;
+    margin-inline: auto;
+  }
+
+  main > .section.split.cards-side-nav-container:has(.cards-side-nav.grouped) > div:not(.cards-side-nav-wrapper) {
+    grid-column: 3;
+    margin: 0;
+  }
+
+  main > .section.split.cards-side-nav-container:has(.cards-side-nav.grouped) > .cards-side-nav-wrapper {
+    grid-column: 1;
+    grid-row: 1 / span var(--cards-side-nav-rows, 99);
+    align-self: start;
+    padding-block: 0 12px;
+  }
+
+  main > .section.split.cards-side-nav-container:has(.cards-side-nav.grouped) > .cards-side-nav-wrapper + div {
+    padding-top: 12px;
   }
 }

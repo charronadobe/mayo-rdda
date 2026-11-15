@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/departments-centers",
+  "path": "care-at-mayo-clinic/departments-centers",
+  "timestamp": "2026-11-15T00:09:38.828Z",
+  "title": "Medical departments and centers - Mayo Clinic",
+  "template": "departments-centers",
+  "blocks": [
+    "cards-action",
+    "columns-banner"
+  ],
+  "importScript": "4a7a0d174cfb"
+}

@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/appointments/find-a-doctor",
+  "path": "care-at-mayo-clinic/find-a-doctor",
+  "timestamp": "2026-11-15T00:09:31.623Z",
+  "title": "Doctors and Medical Staff - Mayo Clinic",
+  "template": "find-a-doctor",
+  "blocks": [
+    "search-doctor",
+    "cards-action",
+    "columns-banner"
+  ],
+  "importScript": "4de03c6c9b4e"
+}

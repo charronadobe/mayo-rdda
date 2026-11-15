@@ -39,10 +39,13 @@
   "usage": {
     "description": "Action tiles with one CTA each; optional image on the right or as background.",
     "pagesUsing": [
-      "/diseases-conditions"
+      "/diseases-conditions",
+      "/about-mayo-clinic",
+      "/appointments/find-a-doctor",
+      "/departments-centers"
     ],
-    "reuseCount": 1,
-    "lastUsed": "2026-11-12T00:00:00.000Z"
+    "reuseCount": 4,
+    "lastUsed": "2026-11-14"
   },
   "reuseGuidance": "Use for task/action tiles that each lead to one destination. One row per tile with a body cell (H2, paragraph, link) and an image cell: leave the image cell empty for a half-width text tile, put the image after the body for image-right, before the body for a background image.",
   "sourceUrl": "https://www.mayoclinic.org/diseases-conditions"

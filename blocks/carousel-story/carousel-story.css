@@ -1,0 +1,251 @@
+/* carousel-story (source: .cmp-slider-from-model on /about-mayo-clinic) */
+
+/* full-bleed: release the section's centered content column for this block only */
+main > .section > .carousel-story-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.carousel-story {
+  --carousel-story-inset: 12px;
+  --carousel-story-gap: 8px;
+
+  position: relative;
+}
+
+.carousel-story .carousel-story-viewport {
+  overflow: hidden;
+}
+
+.carousel-story .carousel-story-slides {
+  position: relative;
+  display: flex;
+  gap: var(--carousel-story-gap);
+  margin: 0;
+  padding: 0 var(--carousel-story-inset);
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--carousel-story-inset);
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.carousel-story .carousel-story-slides::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .carousel-story .carousel-story-slides {
+    scroll-behavior: smooth;
+  }
+}
+
+.carousel-story .carousel-story-slide {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  aspect-ratio: 5 / 8;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--brand-dark-color);
+}
+
+.carousel-story.carousel-story-single .carousel-story-slides {
+  overflow: hidden;
+}
+
+/* photo fills the slide (source: .cmp-media__asset-container, radius 8px) */
+.carousel-story .carousel-story-slide-image {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-story .carousel-story-slide-image p {
+  height: 100%;
+  margin: 0;
+}
+
+.carousel-story .carousel-story-slide-image picture,
+.carousel-story .carousel-story-slide-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-story .carousel-story-slide-image img {
+  object-fit: cover;
+}
+
+/* source: .cmp-media__overlay */
+.carousel-story .carousel-story-slide-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgb(0 0 0 / 0%) 27.4%, rgb(0 0 0 / 56%) 58.85%, rgb(0 0 0 / 80%) 100%);
+  pointer-events: none;
+}
+
+/* caption over the bottom-left of the photo (source: .cmp-slider__legend) */
+.carousel-story .carousel-story-slide-content {
+  position: absolute;
+  inset: auto 20px 32px;
+  color: var(--brand-light-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.carousel-story .carousel-story-slide-content p {
+  margin: 0 0 12px;
+  color: inherit;
+}
+
+.carousel-story .carousel-story-slide-content p:last-child {
+  margin-bottom: 0;
+}
+
+.carousel-story .carousel-story-slide-content a:any-link {
+  color: var(--brand-light-text-color);
+  text-decoration: none;
+}
+
+.carousel-story .carousel-story-slide-content a:hover {
+  color: var(--brand-light-text-color);
+  text-decoration: underline;
+}
+
+/* source: legend text p::after { content: '>' } */
+.carousel-story .carousel-story-slide-link::after {
+  content: '\00a0>';
+}
+
+/* the whole caption is the link target, as in the source */
+.carousel-story .carousel-story-slide-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.carousel-story .carousel-story-slide-link:focus-visible {
+  outline-color: var(--brand-light-text-color);
+}
+
+/* pagination left, arrows right, aligned with the page content column */
+.carousel-story .carousel-story-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: calc(var(--brand-content-max-width) + (2 * var(--brand-page-gutter)));
+  margin: 0 auto;
+  padding: 8px var(--brand-page-gutter);
+  box-sizing: border-box;
+}
+
+.carousel-story .carousel-story-dots {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* dash pagination (source: .cmp-slider__dot, 2px line, 4px when selected) */
+.carousel-story .carousel-story-dot {
+  position: relative;
+  width: 24px;
+  height: 30px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--brand-text-color);
+}
+
+.carousel-story .carousel-story-dot::before {
+  content: '';
+  position: absolute;
+  inset: 14px 0 auto;
+  height: 2px;
+  border-radius: 8px;
+  background-color: currentcolor;
+}
+
+.carousel-story .carousel-story-dot.active::before {
+  top: 13px;
+  height: 4px;
+}
+
+.carousel-story .carousel-story-dot:hover {
+  color: var(--brand-link-hover-color);
+}
+
+.carousel-story .carousel-story-nav {
+  display: flex;
+}
+
+.carousel-story .carousel-story-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 30px;
+  margin: 0;
+  padding: 0 6px;
+  border: 0;
+  background: none;
+  color: var(--brand-text-color);
+}
+
+.carousel-story .carousel-story-arrow:hover {
+  color: var(--brand-link-hover-color);
+}
+
+.carousel-story .carousel-story-arrow svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+@media (width >= 600px) {
+  .carousel-story {
+    --carousel-story-inset: 8px;
+  }
+
+  .carousel-story .carousel-story-slide {
+    aspect-ratio: 16 / 9;
+  }
+
+  .carousel-story .carousel-story-slide-content {
+    right: auto;
+    max-width: 526px;
+  }
+
+  .carousel-story .carousel-story-slide-content p {
+    margin-bottom: 20px;
+  }
+}
+
+@media (width >= 900px) {
+  .carousel-story {
+    --carousel-story-inset: 16px;
+    --carousel-story-gap: 16px;
+  }
+
+  .carousel-story .carousel-story-slide-content {
+    left: 32px;
+  }
+}
+
+@media (width >= 1200px) {
+  .carousel-story {
+    --carousel-story-inset: 24px;
+  }
+
+  .carousel-story .carousel-story-slide {
+    aspect-ratio: 21 / 9;
+  }
+
+  .carousel-story .carousel-story-slide-content {
+    left: 58px;
+  }
+}

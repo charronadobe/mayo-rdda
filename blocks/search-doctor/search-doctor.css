@@ -1,0 +1,257 @@
+/* source: .bio .bio-find on mayoclinic.org/appointments/find-a-doctor
+   mobile < 600 (source < 768): light-blue band, stacked fields, button right
+   tablet 600-899 (source 768-870): photo band, stacked 358px column, button left
+   desktop >= 900 (source >= 871): photo band, term | location | button in one row */
+main > .section.search-doctor-container > .search-doctor-wrapper {
+  max-width: none;
+  padding: 0;
+}
+
+.search-doctor {
+  --search-doctor-accent: #003da5;
+  --search-doctor-field-border: #babbb1;
+  --search-doctor-field-text: #717268;
+  --search-doctor-tips-color: #3967c1;
+
+  position: relative;
+  padding: 24px 0 15px;
+  background-color: #e8f2f9;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 16px;
+  text-align: center;
+}
+
+.search-doctor .search-doctor-background {
+  display: none;
+}
+
+.search-doctor .search-doctor-content {
+  position: relative;
+}
+
+/* heading with the round blue magnifier badge to its left */
+.search-doctor .search-doctor-title {
+  position: relative;
+  display: inline-block;
+  margin: 0 0 20px;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: normal;
+}
+
+.search-doctor .search-doctor-title::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -54px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--search-doctor-accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 21 21'/%3E%3C/svg%3E") center / 55% no-repeat;
+}
+
+.search-doctor .search-doctor-form {
+  display: block;
+  margin: 20px 0 0;
+  padding-bottom: 60px;
+}
+
+.search-doctor .search-doctor-field {
+  margin: 0 12px 20px;
+}
+
+.search-doctor .search-doctor-field-submit {
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.search-doctor .search-doctor-label {
+  display: block;
+  max-width: 345px;
+  margin: 0 0 8px;
+  color: var(--brand-text-color);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 15px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.search-doctor .search-doctor-input,
+.search-doctor .search-doctor-select {
+  display: block;
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 51px;
+  margin: 0;
+  border: 1px solid var(--search-doctor-field-border);
+  border-radius: 0;
+  background: linear-gradient(to bottom, #eeeeef, #fff, #fff);
+  color: var(--search-doctor-field-text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: lighter;
+}
+
+.search-doctor .search-doctor-input {
+  width: 358px;
+  padding: 15px 19px;
+}
+
+.search-doctor .search-doctor-input::placeholder {
+  color: var(--search-doctor-field-text);
+  opacity: 1;
+}
+
+.search-doctor .search-doctor-select {
+  width: 239px;
+  padding: 14px 19px;
+}
+
+.search-doctor .search-doctor-input:focus,
+.search-doctor .search-doctor-select:focus {
+  outline: 3px dotted #27251f;
+  outline-offset: -3px;
+}
+
+.search-doctor .search-doctor-button {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 125px;
+  height: 51px;
+  margin: 0;
+  padding: 17px 0;
+  border: none;
+  border-radius: 0;
+  background-color: var(--search-doctor-accent);
+  color: var(--brand-light-text-color);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+  cursor: pointer;
+  appearance: none;
+}
+
+.search-doctor .search-doctor-button:focus-visible {
+  outline: 3px dotted #27251f;
+  outline-offset: 3px;
+}
+
+.search-doctor .search-doctor-tips {
+  display: table;
+  margin: 0 auto;
+  color: var(--search-doctor-tips-color);
+  font-size: 16px;
+  line-height: 19px;
+  text-decoration: none;
+}
+
+.search-doctor .search-doctor-tips:visited {
+  color: var(--search-doctor-tips-color);
+}
+
+.search-doctor .search-doctor-tips:hover {
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  .search-doctor {
+    padding: 70px 0 140px;
+    background-color: var(--brand-background-color);
+  }
+
+  .search-doctor .search-doctor-background {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+  .search-doctor .search-doctor-background picture,
+  .search-doctor .search-doctor-background img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .search-doctor .search-doctor-background img {
+    object-fit: cover;
+    object-position: 0 0;
+  }
+
+  /* white wash over the photo */
+  .search-doctor::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: rgb(255 255 255 / 70%);
+  }
+
+  .search-doctor .search-doctor-content {
+    position: static;
+  }
+
+  .search-doctor .search-doctor-title,
+  .search-doctor .search-doctor-form,
+  .search-doctor .search-doctor-tips {
+    z-index: 2;
+  }
+
+  .search-doctor .search-doctor-title {
+    margin-bottom: 51px;
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  .search-doctor .search-doctor-title::before {
+    top: -3px;
+    left: -71px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .search-doctor .search-doctor-form {
+    position: relative;
+    width: max-content;
+    max-width: calc(100% - 24px);
+    margin: 40px auto 0;
+    padding-bottom: 0;
+  }
+
+  .search-doctor .search-doctor-field {
+    margin: 0 0 20px;
+  }
+
+  .search-doctor .search-doctor-field-submit {
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .search-doctor .search-doctor-tips {
+    position: absolute;
+    bottom: 4%;
+    left: 45%;
+  }
+}
+
+@media (width >= 900px) {
+  .search-doctor .search-doctor-form {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .search-doctor .search-doctor-field,
+  .search-doctor .search-doctor-field-submit {
+    margin: 0;
+  }
+
+  .search-doctor .search-doctor-select {
+    border-left: 0;
+  }
+}

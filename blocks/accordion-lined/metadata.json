@@ -1,0 +1,39 @@
+{
+  "variantName": "accordion-lined",
+  "baseBlock": "accordion",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Stacked expandable items holding contact details (phone numbers, opening hours, links) by audience",
+    "description": "Full-width items with a dark 24px label, a 16px chevron before the label (down when closed, up when open) and a thin grey rule under each item. No outer border or panel background. The first item is open on load; the label turns blue on hover."
+  },
+  "contentPattern": {
+    "structure": "One row per item: label | panel content (H3s, paragraphs, phone/email links, lists) | optional \"open\"",
+    "description": "Each row becomes a native details/summary item. The label cell is plain text. The panel cell keeps all its rich content. A third cell reading \"open\" makes that item start open; with none, the first item starts open. The closed option starts every item closed.",
+    "blockContent": "U.S. patients | Rochester / Phoenix/Scottsdale / Jacksonville / Mayo Clinic Health System phone numbers and hours; International patients | email, phone, U.S. locations list, Representative Offices link",
+    "table": [
+      [
+        "Accordion Lined"
+      ],
+      [
+        "U.S. patients",
+        "Body: H3s, paragraphs with tel: links, link paragraph"
+      ],
+      [
+        "International patients",
+        "Body: paragraphs, H3, bulleted list, links"
+      ]
+    ]
+  },
+  "options": [
+    {
+      "class": "closed",
+      "label": "All closed"
+    }
+  ],
+  "memberVariantIds": [
+    "accordion-lined"
+  ],
+  "usage": "A short set of expandable items in a content section, such as \"Still want to schedule by phone?\" on the appointments page.",
+  "reuseGuidance": "Use for two or more expandable items with plain text labels and rich panels, separated by rules. For a single show/hide text toggle (references, transcript) use accordion-toggle.",
+  "sourceUrl": "https://www.mayoclinic.org/appointments"
+}

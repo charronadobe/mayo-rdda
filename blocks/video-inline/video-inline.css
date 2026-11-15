@@ -110,6 +110,25 @@ main .video-inline-wrapper + .default-content-wrapper:has(> h3:only-child) + .ac
   background-color: var(--brand-link-color);
 }
 
+/*
+ * outside the condition article the player, its title and transcript sit in the source's 10/12
+ * column (source: /patient-centered-care, 1152px at x=144 at 1440): 80% - 48px from 900px,
+ * 10/12 (max 1320px) - 48px from 1440px
+ */
+@media (width >= 900px) {
+  main > .section:not(.cards-side-nav-container) > .video-inline-wrapper,
+  main > .section:not(.cards-side-nav-container) > .video-inline-wrapper ~ div {
+    max-width: calc(80% - 48px + (2 * var(--brand-page-gutter)));
+  }
+}
+
+@media (width >= 1440px) {
+  main > .section:not(.cards-side-nav-container) > .video-inline-wrapper,
+  main > .section:not(.cards-side-nav-container) > .video-inline-wrapper ~ div {
+    max-width: calc(min(83.3333%, 1320px) - 48px + (2 * var(--brand-page-gutter)));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .video-inline .video-inline-play {
     transition: none;

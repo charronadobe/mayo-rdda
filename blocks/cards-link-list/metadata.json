@@ -26,7 +26,16 @@
   "memberVariantIds": [
     "cards-link-list"
   ],
-  "usage": "Text-only list of link rows with a bottom border and chevron, flowing into two columns on wider screens.",
+  "usage": {
+    "description": "Text-only list of link rows with a bottom border and chevron, flowing into two columns on wider screens.",
+    "pagesUsing": [
+      "/index",
+      "/appointments",
+      "/international"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-11-14"
+  },
   "reuseGuidance": "Use for a list of links to detail pages (care areas, topics). One row per link, a single cell holding the link and optionally a short description.",
   "sourceUrl": "https://www.mayoclinic.org/"
 }

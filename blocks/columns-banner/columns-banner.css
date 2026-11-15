@@ -1,16 +1,10 @@
-/* source: #top-advertisement — aem grid, 8px column padding on mobile, 12px on desktop */
-.columns-banner {
-  margin: 0 -20px;
-  padding: 0 16px;
-}
-
+/* shared: one row of columns, cell children carry no outer margins */
 .columns-banner .columns-banner-row {
   display: flex;
   flex-direction: column;
 }
 
 .columns-banner .columns-banner-col {
-  padding: 8px;
   min-width: 0;
 }
 
@@ -19,75 +13,184 @@
   margin-bottom: 0;
 }
 
-.columns-banner h2 {
+/* ---------------------------------------------------------------------------
+   band look (heading | text | CTA), paired with the dark section style
+   source: #top-advertisement — aem grid, 8px column padding on mobile, 12px on desktop
+   text colour comes from the section (main > .section.dark)
+   --------------------------------------------------------------------------- */
+.columns-banner.columns-banner-band {
+  margin: 0 -20px;
+  padding: 0 16px;
+}
+
+.columns-banner.columns-banner-band .columns-banner-col {
+  padding: 8px;
+}
+
+.columns-banner.columns-banner-band h2 {
   margin: 0;
   font-family: mayo-display, Georgia, serif;
   font-size: 40px;
   font-weight: 700;
   line-height: 50px;
-  color: rgb(255 255 255);
 }
 
-.columns-banner p {
+.columns-banner.columns-banner-band p {
   margin: 0;
   font-family: mayo-sans, Arial, "Helvetica Neue", sans-serif;
   font-size: 20px;
   line-height: 28px;
-  color: rgb(255 255 255);
 }
 
 /* source button is full column width (cmp-button__inner--width-full) */
-main .columns-banner .columns-banner-cta a.button:any-link {
+main .columns-banner.columns-banner-band .columns-banner-cta a.button:any-link {
   display: block;
   width: 100%;
 }
 
+/* ---------------------------------------------------------------------------
+   split (title | text) and cards (text card | text card) looks, on a light section
+   source: .cmp-column-control__layoutType--TwoColumn .cmp-text-card — columns
+   12px in from the page edge with 8px padding, and the card keeps a 12px right margin
+   --------------------------------------------------------------------------- */
+.columns-banner:is(.columns-banner-split, .columns-banner-cards) {
+  margin: 0 calc(12px - var(--brand-page-gutter));
+}
+
+.columns-banner:is(.columns-banner-split, .columns-banner-cards) .columns-banner-col {
+  padding: 8px 20px 8px 8px;
+}
+
+/* source: .cmp-title__pretitle */
+.columns-banner .columns-banner-col > .columns-banner-eyebrow {
+  margin-bottom: 8px;
+}
+
+/* source: .cmp-text-card__title (padding-bottom 16px) */
+.columns-banner:is(.columns-banner-split, .columns-banner-cards) .columns-banner-col > :is(h2, h3, h4) {
+  margin-bottom: 16px;
+}
+
+/* source: description bottom + buttons top padding (16 + 16 desktop, 8 + 24 mobile) */
+.columns-banner .columns-banner-col > :is(h2, h3, h4) + .columns-banner-link {
+  margin-top: 16px;
+}
+
+.columns-banner .columns-banner-col > :not(.columns-banner-link, h2, h3, h4) + .columns-banner-link {
+  margin-top: 32px;
+}
+
+/* source: .cmp-button__inner--type-text with a 16px chevron after a no-break space */
+.columns-banner .columns-banner-link a:any-link {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.columns-banner .columns-banner-link a:any-link::after {
+  content: "\00a0";
+  padding-right: 24px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5.707 13.707L4.293 12.293 8.586 8 4.293 3.707 5.707 2.293 11.414 8 5.707 13.707z'/%3E%3C/svg%3E") right center / 16px 16px no-repeat;
+}
+
+.columns-banner .columns-banner-link a:hover {
+  color: var(--link-hover-color);
+  text-decoration: underline;
+}
+
+.columns-banner .columns-banner-link a:active {
+  color: var(--link-pressed-color);
+}
+
 /* tablet: keep the 8px column padding but align with the 48px page gutter */
 @media (width >= 600px) {
-  .columns-banner {
+  .columns-banner.columns-banner-band {
     margin: 0 -8px;
     padding: 0;
+  }
+
+  /* two equal columns side by side */
+  .columns-banner:is(.columns-banner-split, .columns-banner-cards) .columns-banner-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* source: .cmp-text-card--center */
+  .columns-banner.columns-banner-split .columns-banner-text {
+    align-self: center;
   }
 }
 
 @media (width >= 900px) {
-  .columns-banner {
+  .columns-banner.columns-banner-band {
     margin: 0 -12px;
     padding: 0;
   }
 
-  .columns-banner .columns-banner-row {
+  .columns-banner.columns-banner-band .columns-banner-row {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     align-items: start;
   }
 
-  .columns-banner .columns-banner-col {
+  .columns-banner.columns-banner-band .columns-banner-col {
     padding: 12px;
   }
 
-  .columns-banner .columns-banner-heading {
+  .columns-banner.columns-banner-band .columns-banner-heading {
     grid-column: 1 / span 4;
   }
 
-  .columns-banner .columns-banner-text {
+  .columns-banner.columns-banner-band .columns-banner-text {
     grid-column: span 5;
   }
 
-  .columns-banner .columns-banner-cta {
+  .columns-banner.columns-banner-band .columns-banner-cta {
     grid-column: span 3;
+  }
+
+  /* source: column control at 80% of the page width, centred */
+  .columns-banner:is(.columns-banner-split, .columns-banner-cards) {
+    width: calc((100% + 2 * var(--brand-page-gutter)) * 0.8);
+    margin: 0 auto;
+  }
+
+  .columns-banner.columns-banner-cards {
+    padding: 0 12px;
+  }
+
+  .columns-banner:is(.columns-banner-split, .columns-banner-cards) .columns-banner-col {
+    padding: 12px 24px 12px 12px;
   }
 }
 
 /* x-large: heading, text and button each take 3 of 12 columns after the
    2-column icon slot of the source (icon not migrated) */
 @media (width >= 1200px) {
-  .columns-banner .columns-banner-heading {
+  .columns-banner.columns-banner-band .columns-banner-heading {
     grid-column: 3 / span 3;
   }
 
-  .columns-banner .columns-banner-text,
-  .columns-banner .columns-banner-cta {
+  .columns-banner.columns-banner-band .columns-banner-text,
+  .columns-banner.columns-banner-band .columns-banner-cta {
     grid-column: span 3;
+  }
+}
+
+/* source xl breakpoint: the column control narrows to a fixed width */
+@media (width >= 1440px) {
+  /* 10 of 12 page columns, at most the 1320px grid */
+  .columns-banner.columns-banner-cards {
+    width: auto;
+    margin: 0 calc((100% - min(100vw * 10 / 12, 1320px)) / 2);
+  }
+
+  .columns-banner.columns-banner-split {
+    width: 1124px;
+    padding: 0 12px;
+  }
+
+  .columns-banner.columns-banner-split .columns-banner-heading {
+    padding-right: 124px;
   }
 }

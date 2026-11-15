@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/patient-visitor-guide",
+  "path": "care-at-mayo-clinic/patient-visitor-guide",
+  "timestamp": "2026-11-15T00:09:23.991Z",
+  "title": "Patient and Visitor Guide - Mayo Clinic",
+  "template": "care-service",
+  "blocks": [
+    "cards-link-list",
+    "cards-link-list",
+    "columns-banner",
+    "columns-banner",
+    "cards-location",
+    "cards-location",
+    "cards-location"
+  ],
+  "importScript": "01d0d1f6c00f"
+}

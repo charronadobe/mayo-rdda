@@ -90,12 +90,28 @@ export default function parse(element, { document, params }) {
     out.push(h3);
   }
 
+  // Video description (care pages, e.g. Patient-Centered Care) -> default content after the title.
+  // The source often holds bare text in the rich-text div: wrap it in a paragraph.
+  const description = element.querySelector('.cmp-video__description');
+  if (description && clean(description.textContent)) {
+    const blocks = [...description.children].filter((child) => /^(P|UL|OL)$/.test(child.tagName) && clean(child.textContent));
+    if (blocks.length) {
+      out.push(...blocks);
+    } else {
+      const p = document.createElement('p');
+      p.textContent = clean(description.textContent);
+      out.push(p);
+    }
+  }
+
   // "Show transcript" expando -> accordion-toggle block right after the video
   const expando = element.querySelector('.cmp-video__expando');
   if (expando) {
     const labelEl = expando.querySelector('.cmp-expando__button-title');
     const label = clean(labelEl && labelEl.textContent) || 'Show transcript';
-    const body = transcriptBody(document, expando.querySelector('.cmp-video__expando-transcript, .cmp-expando__content'));
+    // the transcript div sits inside .cmp-expando__content: prefer it, so its paragraphs are
+    // taken directly instead of being wrapped in a <p> together with their container
+    const body = transcriptBody(document, expando.querySelector('.cmp-video__expando-transcript') || expando.querySelector('.cmp-expando__content'));
     if (body.length) {
       out.push(WebImporter.Blocks.createBlock(document, { name: 'accordion-toggle', cells: [[label, body]] }));
     }

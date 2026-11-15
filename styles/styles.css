@@ -730,6 +730,13 @@ main > .section.dark a:hover:not(.button) {
   color: var(--brand-link-inverse-hover-color);
 }
 
+/* light blue band (source: .cmp-container--background-color-copyright, .cmp-pull-quote__light-blue) */
+main > .section.light-blue {
+  margin-bottom: var(--brand-section-spacing);
+  padding: 48px 0;
+  background-color: #e1f0ff;
+}
+
 /* blue gradient band (source: #cmp-dc-banner, diseases & conditions intro) */
 main > .section.blue-gradient {
   margin-bottom: var(--brand-section-spacing);
@@ -759,6 +766,82 @@ main > .section.blue-gradient :where(a:any-link:not(.button)) {
 /* stylelint-disable no-descending-specificity */
 
 /*
+ * centred support message between grey rules (source: /locations .cmp-support-card):
+ * 20px/28px (24px/32px from 600px) bold sans heading, 624px text, chevron links stacked on
+ * phones and in one centred row from 900px
+ */
+main > .section.centered .default-content-wrapper {
+  display: flow-root;
+  background:
+    linear-gradient(#eaeaea, #eaeaea) top / 100% 1px no-repeat,
+    linear-gradient(#eaeaea, #eaeaea) bottom / 100% 1px no-repeat;
+  background-clip: content-box;
+  background-origin: content-box;
+  text-align: center;
+}
+
+main > .section.centered .default-content-wrapper > h2 {
+  margin: 28px auto 0;
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+main > .section.centered .default-content-wrapper > p {
+  max-width: 624px;
+  margin: 4px auto 0;
+}
+
+main > .section.centered .default-content-wrapper > p:has(> a:only-child) {
+  margin-top: 16px;
+}
+
+main > .section.centered .default-content-wrapper > p:last-child {
+  margin-bottom: 28px;
+}
+
+main > .section.centered .default-content-wrapper > p > a:only-child:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+main > .section.centered .default-content-wrapper > p > a:only-child:any-link::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: currentcolor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3l5 5-5 5' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+main > .section.centered .default-content-wrapper > p > a:only-child:hover {
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  main > .section.centered .default-content-wrapper > h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section.centered .default-content-wrapper > h2 {
+    margin-top: 36px;
+  }
+
+  main > .section.centered .default-content-wrapper > p:has(> a:only-child) {
+    display: inline-block;
+    margin: 16px 16px 0;
+  }
+
+  main > .section.centered .default-content-wrapper > p:last-child {
+    margin-bottom: 68px;
+  }
+}
+
+/*
  * condition article (source: .cmp-column-control__content-column of "Symptoms & causes" pages);
  * scoped to the section that holds the cards-side-nav block. The rules each target different
  * elements (title, byline, captions, anchor list, links), so their source order doesn't matter.
@@ -774,6 +857,25 @@ main > .section.cards-side-nav-container .default-content-wrapper h1 {
 /* second line of the title ("Symptoms and causes"), wrapped by decorateTitleLines() */
 main > .section.cards-side-nav-container .default-content-wrapper h1 .title-second-line {
   font-weight: 700;
+}
+
+/*
+ * a one-line title beside the side nav is bold throughout and followed by a 20px/28px intro,
+ * not a byline (source: /international .cmp-title); every condition title has two lines
+ */
+main > .section.cards-side-nav-container .default-content-wrapper h1:not(:has(.title-second-line)) {
+  font-weight: 700;
+}
+
+main > .section.cards-side-nav-container .default-content-wrapper h1:not(:has(.title-second-line)) + p {
+  font-size: var(--brand-body-font-size);
+  line-height: var(--brand-body-line-height);
+}
+
+@media (width >= 900px) {
+  main > .section.cards-side-nav-container .default-content-wrapper h1:not(:has(.title-second-line)) + p {
+    margin: 8px 0;
+  }
 }
 
 main > .section.cards-side-nav-container .default-content-wrapper h2 {
@@ -809,14 +911,20 @@ main > .section.cards-side-nav-container .default-content-wrapper h1 + p + p {
   color: var(--brand-text-secondary-color);
 }
 
-/* "On this page": label above a wrapping row of anchor links (source: .cmp-anchor-nav) */
-main > .section.cards-side-nav-container .default-content-wrapper p:has(+ ul > li > a[href^="#"]) {
+/*
+ * "On this page": label above a wrapping row of anchor links (source: .cmp-anchor-nav).
+ * The second selector of each rule applies the same pattern outside the condition article
+ * (e.g. /contact); it is less specific, so it never changes the condition pages.
+ */
+main > .section.cards-side-nav-container .default-content-wrapper p:has(+ ul > li > a[href^="#"]),
+main > .section .default-content-wrapper > p:has(+ ul > li > a[href^="#"]) {
   margin: 0;
   font-size: 16px;
   line-height: 24px;
 }
 
-main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) {
+main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]),
+main > .section .default-content-wrapper > p + ul:has(> li > a[href^="#"]) {
   display: flex;
   flex-wrap: wrap;
   gap: 16px 24px;
@@ -825,12 +933,14 @@ main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > 
   list-style: none;
 }
 
-main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) li {
+main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) li,
+main > .section .default-content-wrapper > p + ul:has(> li > a[href^="#"]) li {
   line-height: 24px;
 }
 
 /* anchor links: no underline, a down arrow after the label (source: .anchor__inner-button--icon) */
-main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) a:any-link {
+main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) a:any-link,
+main > .section .default-content-wrapper > p + ul:has(> li > a[href^="#"]) a:any-link {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -839,7 +949,8 @@ main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > 
   text-decoration: none;
 }
 
-main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) a:any-link::after {
+main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) a:any-link::after,
+main > .section .default-content-wrapper > p + ul:has(> li > a[href^="#"]) a:any-link::after {
   content: '';
   width: 12px;
   height: 12px;
@@ -847,8 +958,30 @@ main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > 
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 1v9M2 6.5 6 10.5l4-4' fill='none' stroke='black' stroke-width='1.5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) a:hover {
+main > .section.cards-side-nav-container .default-content-wrapper ul:has(> li > a[href^="#"]) a:hover,
+main > .section .default-content-wrapper > p + ul:has(> li > a[href^="#"]) a:hover {
   text-decoration: underline;
+}
+
+/* outside the article the list ends the page intro on a grey rule (source: .cmp-separator after .cmp-anchor-nav) */
+main > .section:not(.cards-side-nav-container) .default-content-wrapper > p + ul:has(> li > a[href^="#"]):last-child {
+  padding-bottom: 28px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* 2px rule (1px line + 1px space) to the next heading: 52px, 68px from 1200px, 76px from 1440px, with the next section's top padding */
+main > .section:not(.cards-side-nav-container):has(> .default-content-wrapper:last-child > p + ul:last-child > li > a[href^="#"]) {
+  padding-bottom: 11px;
+}
+
+@media (width >= 1200px) {
+  main > .section:not(.cards-side-nav-container) .default-content-wrapper > p + ul:has(> li > a[href^="#"]):last-child {
+    padding-bottom: 36px;
+  }
+
+  main > .section:not(.cards-side-nav-container):has(> .default-content-wrapper:last-child > p + ul:last-child > li > a[href^="#"]) {
+    padding-bottom: 27px;
+  }
 }
 
 /* illustration: image, bold title, caption (source: .cmp-image-with-title) */
@@ -941,6 +1074,373 @@ main > .section.cards-side-nav-container .default-content-wrapper h2#top-ranked-
     padding: 0;
   }
 }
+
+/* stylelint-disable no-descending-specificity -- the title, column, band and directory rules below target different elements */
+
+/*
+ * Page title (source: .cmp-title h1, 40px/44px bold at every width): an h1 that opens the first
+ * section's default content. Not the homepage (title inside hero-video), not the blue
+ * Diseases & Conditions band, not condition articles (side nav first), not /about-mayo-clinic
+ * (eyebrow before the h1, keeps the large light headline).
+ */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child {
+  margin-bottom: 24px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+/* subtitle heading right under the title (source: /contact "Addresses and phone numbers") */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + h2 {
+  margin-bottom: 24px;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+/*
+ * Headline (source: .cmp-headline v1 on /locations, /patient-centered-care, /patient-visitor-guide):
+ * a title followed by a text paragraph (not an image), outside a coloured band.
+ * Title 40px/44px, 48px/52px from 600px; intro 24px/32px light display, 32px/40px from 1200px.
+ */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container, .light-blue) > .default-content-wrapper:first-child > h1:first-child:has(+ p):not(:has(+ p > picture)) {
+  margin-bottom: 16px;
+}
+
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container, .light-blue) > .default-content-wrapper:first-child > h1:first-child + p:not(:has(> picture)) {
+  margin-bottom: 24px;
+  font-family: var(--heading-font-family);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 32px;
+}
+
+@media (width >= 600px) {
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container, .light-blue) > .default-content-wrapper:first-child > h1:first-child:has(+ p):not(:has(+ p > picture)) {
+    font-size: 48px;
+    line-height: 52px;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child,
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + h2 {
+    margin-bottom: 36px;
+  }
+
+  /* the headline keeps its 16px gap to the intro */
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container, .light-blue) > .default-content-wrapper:first-child > h1:first-child:has(+ p):not(:has(+ p > picture)) {
+    margin-bottom: 16px;
+  }
+}
+
+@media (width >= 1200px) {
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container, .light-blue) > .default-content-wrapper:first-child > h1:first-child + p:not(:has(> picture)) {
+    margin-bottom: 36px;
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+/*
+ * a hero image right under the title (source: /billing-insurance .cmp-media): edge to edge on
+ * phones; 40px/64px above it (title margin + padding, as margins would collapse) and 32px/52px below
+ */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + p:has(> picture) {
+  margin: 0 calc(-1 * var(--brand-page-gutter)) 32px;
+  padding-top: 16px;
+}
+
+/* phones: a square crop (source: 390x390 at 390px) */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + p:has(> picture) img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+/* tiles right after the title text (source: /billing-insurance action cards) */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child:has(> h1:first-child) + .cards-action-wrapper {
+  margin-top: 32px;
+}
+
+@media (width >= 600px) {
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + p:has(> picture) {
+    margin-inline: 0;
+  }
+
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + p:has(> picture) img {
+    aspect-ratio: auto;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child + p:has(> picture) {
+    margin-bottom: 52px;
+    padding-top: 28px;
+  }
+
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child:has(> h1:first-child) + .cards-action-wrapper {
+    margin-top: 48px;
+  }
+}
+
+/*
+ * eyebrow headline (source: /about-mayo-clinic .cmp-headline v2): 20px/28px eyebrow 8px above
+ * the large light title; its second line ("— one person at a time") bold in the secondary blue;
+ * 48px/76px to the carousel below
+ */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > p:first-child:has(+ h1) {
+  margin-bottom: 8px;
+}
+
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > p:first-child + h1 {
+  margin-bottom: 48px;
+}
+
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > p:first-child + h1 .title-second-line {
+  display: block;
+  color: #008acb;
+  font-weight: 700;
+}
+
+@media (width >= 900px) {
+  main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > p:first-child + h1 {
+    margin-bottom: 76px;
+  }
+}
+
+/* a bare title section (legacy pages): the section spacing alone separates it from the content */
+main > .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:only-child {
+  margin-bottom: 0;
+}
+
+/*
+ * Narrow column (source: 10/12 .cmp-column-control__container): pages that open with a page
+ * title and have no media rows (/contact, /billing-insurance, /appointments,
+ * /patient-visitor-guide) set their text 80% - 48px wide from 900px and 10/12 (max 1320px)
+ * - 48px from 1440px: 1152px at x=144 at 1440. Legacy pages (a bare title section:
+ * /departments-centers, /find-a-doctor) use the old fixed 960px column.
+ * Pages with media rows (/about-mayo-clinic, /locations, /patient-centered-care), the homepage,
+ * Diseases & Conditions and condition articles keep the full 1296px grid.
+ * The headline section of /patient-visitor-guide (title + intro + image) also stays full width.
+ */
+@media (width >= 900px) {
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child):not(:has(.columns-media)) {
+    --section-column-width: calc(80% - 48px);
+  }
+}
+
+@media (width >= 1440px) {
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child):not(:has(.columns-media)) {
+    --section-column-width: calc(min(83.3333%, 1320px) - 48px);
+  }
+}
+
+@media (width >= 900px) {
+  /* as specific as the rule above, and later, so it wins at every width */
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:only-child > h1:only-child):not(:has(.columns-media)) {
+    --section-column-width: 960px;
+  }
+
+  /* text and text-like blocks; full-bleed blocks (search-doctor, banners) keep their own width */
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child):not(:has(.columns-media)) > .section:not(.dark, .split, .light-blue):is(:not(:has(> .default-content-wrapper > h1:first-child + p)), :has(> .default-content-wrapper > h1:first-child + p > picture)) > :is(.default-content-wrapper, .cards-action-wrapper, .cards-link-list-wrapper, .cards-location-wrapper, .accordion-lined-wrapper, .table-lined-wrapper),
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child):not(:has(.columns-media)) > .section.light-blue > div {
+    max-width: calc(var(--section-column-width) + (2 * var(--brand-page-gutter)));
+  }
+
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child):not(:has(.columns-media)) > .section.split:not(.blue-gradient) {
+    max-width: calc(var(--section-column-width) + (2 * var(--brand-page-gutter)));
+  }
+
+  /* a split band keeps its full-bleed background; its column sits 12px inside (source /appointments) */
+  main:has(> .section:first-child:not(.blue-gradient, .cards-side-nav-container) > .default-content-wrapper:first-child > h1:first-child):not(:has(.columns-media)) > .section.split.blue-gradient {
+    max-width: none;
+    padding-inline: calc(((100% - var(--section-column-width)) / 2) + 10px);
+  }
+}
+
+/*
+ * Title band (source: /appointments .cmp-container--background-color-copyright holding the h1):
+ * the column sits 8px (12px from 900px) inside the band; 16px/24px above the title and
+ * 64px/80px/96px/120px below the last line.
+ */
+main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) {
+  margin-bottom: 32px;
+  padding: 16px 8px 64px;
+}
+
+main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) .cards-link-list {
+  margin: 16px 0;
+}
+
+main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) .cards-link-list-wrapper + .default-content-wrapper > ul:first-child {
+  margin: 12px 0;
+}
+
+@media (width >= 600px) {
+  main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) {
+    padding-bottom: 80px;
+  }
+}
+
+@media (width >= 900px) {
+  main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) {
+    margin-bottom: 52px;
+    padding: 24px 12px 96px;
+  }
+
+  main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) .cards-link-list {
+    margin: 24px 0;
+  }
+
+  main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) .cards-link-list-wrapper + .default-content-wrapper > ul:first-child {
+    margin: 20px 0;
+  }
+}
+
+@media (width >= 1440px) {
+  main > .section.light-blue:has(> .default-content-wrapper:first-child > h1:first-child) {
+    padding-bottom: 120px;
+  }
+}
+
+/*
+ * Department directory (source: /departments-centers legacy 3-column page): a split section whose
+ * block is a single cards-action tile. Location filter 220px, A-Z list, 304px tile rail.
+ * Below 900px the source hides the filter and the tile follows the list.
+ */
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child,
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3,
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3 + ul {
+  display: none;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2 {
+  margin: 0 0 14px;
+  font-size: 26px;
+  line-height: 31px;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h3 {
+  margin: 0 0 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e3e3e0;
+  font-size: 26px;
+  line-height: 25px;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2 + h3 {
+  border-top: 0;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper ul {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper li {
+  margin-bottom: 12px;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper li > p {
+  margin: 0;
+}
+
+main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper li > ul {
+  margin: 12px 0 0 36px;
+}
+
+@media (width >= 900px) {
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) {
+    grid-template-columns: minmax(0, 1fr) 304px;
+    column-gap: 26px;
+  }
+
+  /* the filter floats in its own 220px column beside the list */
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child,
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3,
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3 + ul {
+    display: block;
+    float: left;
+    clear: left;
+    width: 220px;
+    margin: 0;
+    border: 1px solid #e3e3e0;
+    color: #54585a;
+  }
+
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child {
+    padding: 10px;
+    border-bottom: 0;
+    background-color: #f5f5f3;
+    font-family: var(--body-font-family);
+    font-size: 16px;
+    line-height: 31px;
+  }
+
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3 {
+    padding: 16px 10px 12px;
+    border-block: 0;
+    font-family: var(--body-font-family);
+    font-size: 13px;
+    line-height: 25px;
+  }
+
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3 + ul {
+    padding: 0 10px 10px;
+    border-top: 0;
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > h2:first-child + h3 + ul li {
+    margin-bottom: 6px;
+  }
+
+  main > .section.split:has(> .cards-action-wrapper:last-child .cards-action > ul > li:only-child) .default-content-wrapper > :not(h2:first-child, h2:first-child + h3, h2:first-child + h3 + ul) {
+    margin-left: 244px;
+  }
+}
+
+/*
+ * A-Z browse list (source: /find-a-doctor ol.acces-alpha): 26 ordered links under a heading
+ * become a wrapping row of bordered letter boxes. The long link text stays for screen
+ * readers; the visible letter comes from the list counter.
+ */
+main > .section .default-content-wrapper > h3 + ol:has(> li:nth-child(26):last-child) {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0 0;
+  padding: 0 0 24px;
+  list-style: none;
+}
+
+main > .section .default-content-wrapper > h3 + ol:has(> li:nth-child(26):last-child) > li {
+  width: 40px;
+  text-align: center;
+}
+
+main > .section .default-content-wrapper > h3 + ol:has(> li:nth-child(26):last-child) > li > a:any-link {
+  display: block;
+  margin: 0 8px 8px 0;
+  padding: 7px;
+  border: 1px solid #949494;
+  font-size: 0;
+  line-height: 22px;
+}
+
+main > .section .default-content-wrapper > h3 + ol:has(> li:nth-child(26):last-child) > li > a::before {
+  content: counter(list-item, upper-alpha);
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+main > .section .default-content-wrapper > h3 + ol:has(> li:nth-child(26):last-child) > li > a:hover::before {
+  text-decoration: none;
+}
+/* stylelint-enable no-descending-specificity */
 
 
 /* section metadata */

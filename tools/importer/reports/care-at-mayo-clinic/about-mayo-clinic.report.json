@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/about-mayo-clinic",
+  "path": "care-at-mayo-clinic/about-mayo-clinic",
+  "timestamp": "2026-11-15T02:02:15.920Z",
+  "title": "About Us - Mayo Clinic",
+  "template": "care-hub",
+  "blocks": [
+    "carousel-story",
+    "columns-media",
+    "columns-media",
+    "columns-media",
+    "cards-stat",
+    "quote-pull",
+    "cards-action",
+    "columns-banner"
+  ],
+  "importScript": "6ac39104dc96"
+}

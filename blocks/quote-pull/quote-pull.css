@@ -1,0 +1,128 @@
+/* quote-pull (source: .cmp-pull-quote on /about-mayo-clinic and /patient-centered-care) */
+.quote-pull {
+  padding-top: 40px;
+}
+
+.quote-pull .quote-pull-figure {
+  margin: 0;
+}
+
+/* large light serif quotation (source: .cmp-pull-quote__quote, mayo-display 40px/44px 300) */
+.quote-pull .quote-pull-quotation {
+  margin: 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-heading-font-family);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 44px;
+}
+
+.quote-pull .quote-pull-quotation > * {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.quote-pull .quote-pull-quotation > * + * {
+  margin-top: 24px;
+}
+
+/* attribution: optional round avatar beside name, title and link */
+.quote-pull .quote-pull-attribution {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.quote-pull .quote-pull-avatar {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--brand-text-color);
+}
+
+.quote-pull .quote-pull-avatar picture,
+.quote-pull .quote-pull-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.quote-pull .quote-pull-avatar img {
+  object-fit: cover;
+}
+
+.quote-pull .quote-pull-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote-pull .quote-pull-details p {
+  margin: 0;
+}
+
+/* source: .cmp-pull-quote__name / __title, #686868 */
+.quote-pull .quote-pull-name {
+  color: var(--brand-text-secondary-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.quote-pull .quote-pull-title {
+  color: var(--brand-text-secondary-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* chevron text link (source: .cmp-pull-quote__link-text) */
+.quote-pull .quote-pull-link {
+  padding-top: 8px;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.quote-pull .quote-pull-link a:any-link {
+  color: var(--brand-link-color);
+  text-decoration: none;
+}
+
+.quote-pull .quote-pull-link a:hover {
+  color: var(--brand-link-hover-color);
+  text-decoration: underline;
+}
+
+.quote-pull .quote-pull-link a::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-inline-start: 8px;
+  border-top: 2px solid currentcolor;
+  border-right: 2px solid currentcolor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+@media (width >= 900px) {
+  .quote-pull {
+    max-width: calc(100% * 2 / 3);
+    margin: 0 auto;
+    padding-top: 64px;
+  }
+
+  .quote-pull .quote-pull-attribution {
+    gap: 24px;
+  }
+
+  .quote-pull .quote-pull-avatar {
+    flex-basis: 80px;
+    width: 80px;
+    height: 80px;
+  }
+}

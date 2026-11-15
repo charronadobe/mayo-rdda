@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/patient-centered-care",
+  "path": "care-at-mayo-clinic/patient-centered-care",
+  "timestamp": "2026-11-15T02:02:26.376Z",
+  "title": "Patient-Centered Care - Mayo Clinic",
+  "template": "care-hub",
+  "blocks": [
+    "columns-media",
+    "columns-media",
+    "columns-media",
+    "quote-pull",
+    "cards-action",
+    "columns-banner",
+    "columns-banner",
+    "video-inline"
+  ],
+  "importScript": "6ac39104dc96"
+}

@@ -24,7 +24,14 @@
   "memberVariantIds": [
     "columns-media"
   ],
-  "usage": "Text column beside a tall portrait image; the authored cell order decides which side the image is on.",
+  "usage": {
+    "description": "Text column beside a tall portrait image; the authored cell order decides which side the image is on.",
+    "pagesUsing": [
+      "/about-mayo-clinic"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-14T00:00:00.000Z"
+  },
   "reuseGuidance": "Use for a fixed text/image pair. Put the image in the first cell to show it on the left, or in the second cell for the right. On mobile the image stacks above the text.",
   "sourceUrl": "https://www.mayoclinic.org/"
 }

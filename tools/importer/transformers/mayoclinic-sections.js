@@ -51,10 +51,12 @@ export default function transform(hookName, element, payload) {
       const marker = element.querySelector(`hr[${MARKER_ATTR}="${section.id}"]`);
       if (!marker) continue;
 
-      // Find the last node of this section: everything after the marker up to the next <hr>
+      // Find the last node of this section: everything after the marker up to the next <hr>,
+      // or up to a wrapper that holds the next section's <hr> deeper down (e.g. the care-service
+      // donation band, whose break sits inside nested grid containers)
       let last = marker;
       let next = marker.nextSibling;
-      while (next && !(next.nodeType === 1 && next.tagName === 'HR')) {
+      while (next && !(next.nodeType === 1 && (next.tagName === 'HR' || next.querySelector('hr')))) {
         last = next;
         next = next.nextSibling;
       }

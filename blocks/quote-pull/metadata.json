@@ -1,0 +1,40 @@
+{
+  "variantName": "quote-pull",
+  "baseBlock": "quote",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Large light serif pull quote with an attribution (name, title) and an optional round avatar and chevron story link.",
+    "description": "Quotation in mayo-display 40px/44px weight 300, centered column (two thirds of the content width on desktop). Attribution below: optional 64/80px round avatar, grey bold name, grey 16px title and/or blue chevron link. On a light-blue section it sits on the band (section style, not the block)."
+  },
+  "contentPattern": {
+    "structure": "Row 1: quotation paragraph. Row 2 (optional): one cell with an optional avatar image, the name paragraph, then a title paragraph and/or a link paragraph.",
+    "description": "The first text paragraph of row 2 is the name; a paragraph holding only a link is the chevron link; any other paragraph is the title. An image-only paragraph becomes the round avatar.",
+    "blockContent": "Pull quote 'A diverse staff makes every single aspect...' attributed to Gianrico Farrugia, M.D., President & CEO, Mayo Clinic",
+    "table": [
+      [
+        "Quote Pull"
+      ],
+      [
+        "Quotation paragraph"
+      ],
+      [
+        "Avatar image (optional), name paragraph, title paragraph and/or link"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "quote-pull"
+  ],
+  "usage": {
+    "description": "Pull quote with attribution.",
+    "pagesUsing": [
+      "/about-mayo-clinic",
+      "/patient-centered-care"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-11-14T00:00:00.000Z"
+  },
+  "reuseGuidance": "Use for a standalone quotation with a named speaker. Put the quotation in row 1, and the avatar/name/title/link in one cell in row 2. Use section style light-blue for the blue band version.",
+  "sourceUrl": "https://www.mayoclinic.org/about-mayo-clinic"
+}

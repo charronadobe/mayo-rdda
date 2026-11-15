@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/locations",
+  "path": "care-at-mayo-clinic/locations",
+  "timestamp": "2026-11-15T02:02:23.262Z",
+  "title": "U.S. and International Locations - Mayo Clinic",
+  "template": "care-hub",
+  "blocks": [
+    "columns-media",
+    "columns-banner",
+    "cards-location",
+    "cards-location",
+    "cards-location",
+    "cards-location"
+  ],
+  "importScript": "6ac39104dc96"
+}

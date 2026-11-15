@@ -1,0 +1,33 @@
+{
+  "variantName": "search-doctor",
+  "baseBlock": "search",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Doctor search band: free-text term plus a location dropdown that submits a GET request to the Mayo Clinic doctor results page",
+    "description": "Full-width photo band (white 70% wash) with a centered H2 and a round blue magnifier badge to its left; below, uppercase field labels over a square text field, a square location select and a solid blue SEARCH button in one row on desktop (stacked on tablet and mobile); centered Search Tips link near the bottom. On mobile the photo is replaced by a light-blue background."
+  },
+  "contentPattern": {
+    "structure": "Background photo; then H2 heading; then Field label | placeholder; then Location label | default option text (all locations); then one row per location: shown text | query value; then link to the results page (form action); then optional Search Tips link",
+    "description": "Interactive search form; cannot be authored as default content. Sends searchterm={term} (required, trimmed) and locations={value} (omitted when the default option is chosen). No type-ahead.",
+    "blockContent": "Find a doctor search: term field, location select, SEARCH button, Search Tips link",
+    "table": [
+      ["Search Doctor"],
+      ["Background photo (picture)"],
+      ["H2, e.g. Find a doctor"],
+      ["Doctor's name, condition or procedure", "Type in your search term"],
+      ["Location", "Main locations"],
+      ["Rochester, MN", "Rochester, MN"],
+      ["Jacksonville, FL", "Jacksonville, FL"],
+      ["Phoenix/Scottsdale, AZ", "Phoenix, AZ"],
+      ["Link to the results page, e.g. https://www.mayoclinic.org/appointments/find-a-doctor/search-results"],
+      ["Optional: Search Tips link"]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "search-doctor"
+  ],
+  "usage": "Photo band with a heading and a doctor search form (term + location) that submits to an external or on-site results page.",
+  "reuseGuidance": "Use when a search needs a second filter (a select) and a visible submit button, with query names searchterm and locations. Rows by kind, in this order: picture row (background); heading row; two-cell text rows: the first is field label | placeholder, the second is select label | default option text, each further one is an option (shown text | query value; value defaults to the shown text); first link row is the form action; second link row is a helper link (e.g. Search Tips). For a single field without a select, use search-conditions.",
+  "sourceUrl": "https://www.mayoclinic.org/appointments/find-a-doctor"
+}

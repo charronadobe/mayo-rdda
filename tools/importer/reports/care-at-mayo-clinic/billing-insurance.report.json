@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/billing-insurance",
+  "path": "care-at-mayo-clinic/billing-insurance",
+  "timestamp": "2026-11-15T02:02:21.294Z",
+  "title": "Billing and Insurance - Mayo Clinic",
+  "template": "care-hub",
+  "blocks": [
+    "cards-action",
+    "columns-banner"
+  ],
+  "importScript": "6ac39104dc96"
+}

@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-stat",
+  "baseBlock": "cards",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Fact cards with a heading label, an oversized stat value (a paragraph, not a heading), a short description and a square photo below.",
+    "description": "Thin grey top rule, serif bold 24px label, very large serif stat (76px) with a light-to-dark blue text gradient, 20px description, square rounded photo at the bottom. Stacked on mobile, text beside photo per card on tablet, cards side by side (three-column track, centered) on desktop."
+  },
+  "contentPattern": {
+    "structure": "One row per card, two cells: Image | H3 label, stat paragraph (e.g. '$100M'), description paragraph.",
+    "description": "Repeating fact cards. The first paragraph after the heading is styled as the stat; it stays a paragraph so the heading outline is not polluted. The image renders after the text whatever the cell order.",
+    "blockContent": "Two fact cards: 'Belonging' $100M and 'Greenhouse gas reduction' 50%, each with a description and a square photo",
+    "table": [
+      [
+        "Cards Stat"
+      ],
+      [
+        "Image",
+        "H3 label, stat paragraph, description paragraph"
+      ],
+      [
+        "Image",
+        "H3 label, stat paragraph, description paragraph"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "cards-stat"
+  ],
+  "usage": {
+    "description": "Fact cards with a big stat value.",
+    "pagesUsing": [
+      "/about-mayo-clinic"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-14T00:00:00.000Z"
+  },
+  "reuseGuidance": "Use for key figures (amounts, percentages) each with a label, a sentence and a photo. One row per card: image | H3, stat paragraph, description.",
+  "sourceUrl": "https://www.mayoclinic.org/about-mayo-clinic"
+}

@@ -32,7 +32,14 @@
   "memberVariantIds": [
     "cards-side-nav"
   ],
-  "usage": "Left-rail nav between the pages of one condition. Put it first in a section whose Section Metadata style is \"split\"; the article default content and blocks that follow fill the right column.",
+  "usage": {
+    "description": "Left-rail nav between the pages of one condition. Put it first in a section whose Section Metadata style is \"split\"; the article default content and blocks that follow fill the right column.",
+    "pagesUsing": [
+      "/international"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-14"
+  },
   "reuseGuidance": "Use for any set of sibling pages about one topic. Author one copy only: the code repeats it after the article on mobile. Keep the current page as plain text.",
   "sectionMetadata": {
     "style": "split"

@@ -1,0 +1,120 @@
+/* cards-stat (source: .cmp-fact-card on /about-mayo-clinic) */
+.cards-stat > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* thin top rule (source: .cmp-fact-card__showSeparator, 1px #d6d6d6) */
+.cards-stat .cards-stat-card {
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  border-top: 1px solid #d6d6d6;
+}
+
+.cards-stat .cards-stat-card-body {
+  padding-bottom: 24px;
+}
+
+.cards-stat .cards-stat-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* label (source: .cmp-fact-card__pretitle, mayo-display 24px bold) */
+.cards-stat .cards-stat-card-label {
+  margin: 0;
+  color: var(--brand-text-color);
+  font-family: var(--brand-heading-font-family);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+/* stat value: oversized serif with the blue text gradient (source: .cmp-fact-card__statistic) */
+.cards-stat .cards-stat-card-value {
+  margin: 0;
+  padding: 36px 0 16px;
+  background-image: linear-gradient(90deg, #0086cf 0%, #00296b 100%);
+  background-clip: text;
+  color: transparent;
+  font-family: var(--brand-heading-font-family);
+  font-size: 76px;
+  font-weight: 400;
+  line-height: 112px;
+  overflow-wrap: anywhere;
+}
+
+.cards-stat .cards-stat-card-text {
+  margin: 0 0 16px;
+  padding-right: 24px;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* square rounded photo (source: .cmp-media__square, radius 8px) */
+.cards-stat .cards-stat-card-image {
+  margin-top: auto;
+}
+
+.cards-stat .cards-stat-card-image p {
+  margin: 0;
+}
+
+.cards-stat .cards-stat-card-image picture,
+.cards-stat .cards-stat-card-image img {
+  display: block;
+  width: 100%;
+}
+
+.cards-stat .cards-stat-card-image img {
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+/* tablet: each card is text beside its photo */
+@media (width >= 600px) {
+  .cards-stat .cards-stat-card {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    align-items: start;
+  }
+
+  .cards-stat .cards-stat-card-body {
+    padding-bottom: 0;
+  }
+}
+
+/* desktop: cards side by side in a narrower centered column, photo below the text */
+@media (width >= 900px) {
+  .cards-stat > ul {
+    flex-flow: row wrap;
+    justify-content: center;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .cards-stat .cards-stat-card {
+    display: flex;
+    flex: 0 0 calc((100% - 48px) / 3);
+    gap: 0;
+  }
+
+  .cards-stat .cards-stat-card-body {
+    padding-bottom: 24px;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-stat > ul {
+    max-width: 1176px;
+  }
+}

@@ -146,3 +146,231 @@
     min-height: 480px;
   }
 }
+
+/* the tile and link-box looks never apply together, so their selectors don't compete */
+/* stylelint-disable no-descending-specificity */
+
+/*
+ * Tile grid: blocks without images (source: .cmp-action-card-robust and
+ * .cmp-action-card-simple). Shadowed tiles, 1 / 2 / 3 per row.
+ */
+.cards-action.cards-action-tiles .cards-action-card {
+  border-radius: 8px;
+  box-shadow: 0 5px 25px 0 rgb(0 0 0 / 10%);
+}
+
+/* mobile bottom padding: the source's 64px plus the 96px it leaves under the text */
+.cards-action.cards-action-tiles .cards-action-card-body {
+  min-height: 0;
+  padding: 24px 24px 160px;
+}
+
+.cards-action.cards-action-tiles .cards-action-card-body :is(h2, h3, h4, h5, h6) {
+  margin: 0 0 8px;
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.cards-action.cards-action-tiles .cards-action-card-body p:not(.cards-action-card-cta-wrapper) {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.cards-action.cards-action-tiles .cards-action-card-body ul {
+  margin: 12px 0;
+  padding-inline-start: 40px;
+  list-style-type: disc;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+/* CTA pinned to the bottom of the tile, 48px clear of the text above */
+.cards-action.cards-action-tiles .cards-action-card-cta-wrapper {
+  margin: 48px 0 0;
+}
+
+.cards-action.cards-action-tiles a.cards-action-card-cta:any-link {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  padding-inline-end: 32px;
+  color: var(--link-color);
+  font-size: 20px;
+  line-height: 28px;
+  text-decoration: none;
+}
+
+.cards-action.cards-action-tiles a.cards-action-card-cta:hover {
+  color: var(--link-hover-color);
+}
+
+.cards-action.cards-action-tiles a.cards-action-card-cta::after {
+  width: 16px;
+  height: 16px;
+  margin-inline-start: 5px;
+  border: 0;
+  background-color: currentcolor;
+  transform: none;
+  vertical-align: -3px;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M5.707 13.707 4.293 12.293 8.586 8 4.293 3.707l1.414-1.414L11.414 8z'/%3E%3C/svg%3E") center / 16px 16px no-repeat;
+}
+
+/* linked heading as the CTA (source: simple action card) */
+.cards-action.cards-action-tiles .cards-action-card-linked-title .cards-action-card-body {
+  padding: 24px;
+}
+
+.cards-action.cards-action-tiles .cards-action-card-linked-title .cards-action-card-body p:not(.cards-action-card-cta-wrapper) {
+  margin-bottom: 8px;
+}
+
+/*
+ * Link boxes: image-free blocks beside default content (source: a.linkbox).
+ * The whole box is the link; the CTA underlines on hover.
+ */
+.cards-action.cards-action-linkbox > ul {
+  display: block;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card {
+  margin: 0 0 13.5312px;
+  background-color: rgb(255 255 255);
+  break-inside: avoid;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card-body {
+  min-height: 0;
+  padding: 0;
+  color: rgb(17 17 17);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: normal;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card-body :is(h2, h3, h4, h5, h6) {
+  margin: 0 0 12px;
+  color: rgb(17 17 17);
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card-body p:not(.cards-action-card-cta-wrapper) {
+  margin: 0 0 12px;
+  font-size: 16px;
+  line-height: 20.8px;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card-cta-wrapper {
+  margin: 0;
+}
+
+.cards-action.cards-action-linkbox a.cards-action-card-cta:any-link {
+  color: rgb(0 61 165);
+  font-size: 16px;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.cards-action.cards-action-linkbox a.cards-action-card-cta::after {
+  content: none;
+}
+
+/* stretch the CTA over the whole box */
+.cards-action.cards-action-linkbox a.cards-action-card-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card:hover a.cards-action-card-cta {
+  text-decoration: underline;
+}
+
+/* a single link box is a highlighted promo (source: a.linkbox.appointment) */
+.cards-action.cards-action-linkbox .cards-action-card:only-child {
+  margin: 0 0 24px;
+  background-color: rgb(244 248 255);
+}
+
+.cards-action.cards-action-linkbox .cards-action-card:only-child .cards-action-card-body {
+  padding: 20px;
+  line-height: 22px;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card:only-child .cards-action-card-body :is(h2, h3, h4, h5, h6) {
+  margin: 0 0 14px;
+  color: rgb(84 88 90);
+  font-size: 26px;
+  line-height: 31px;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card:only-child .cards-action-card-body p {
+  line-height: 22px;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card:only-child .cards-action-card-cta-wrapper {
+  margin: 0 0 24px;
+}
+
+.cards-action.cards-action-linkbox .cards-action-card:only-child a.cards-action-card-cta:any-link {
+  color: rgb(57 103 193);
+  line-height: 22px;
+}
+
+@media (width >= 600px) {
+  .cards-action.cards-action-tiles .cards-action-card:not(.cards-action-card-linked-title) {
+    min-height: 325px;
+  }
+
+  .cards-action.cards-action-tiles .cards-action-card-body {
+    padding: 32px 32px 64px;
+  }
+
+  .cards-action.cards-action-tiles a.cards-action-card-cta:any-link {
+    bottom: 32px;
+    left: 32px;
+  }
+
+  .cards-action.cards-action-tiles .cards-action-card-linked-title .cards-action-card-body {
+    padding: 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .cards-action.cards-action-tiles > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .cards-action.cards-action-tiles .cards-action-card-body ul {
+    margin: 20px 0;
+  }
+
+  .cards-action.cards-action-linkbox > ul {
+    column-count: 2;
+    column-gap: 24px;
+  }
+
+  .cards-action.cards-action-linkbox > ul:has(> li:only-child) {
+    column-count: auto;
+  }
+
+  .cards-action.cards-action-linkbox .cards-action-card {
+    margin-bottom: 11.2344px;
+  }
+
+  .cards-action.cards-action-linkbox .cards-action-card-body p {
+    line-height: 24px;
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-action.cards-action-tiles .cards-action-card:not(.cards-action-card-linked-title) {
+    min-height: 360px;
+  }
+}
+/* stylelint-enable no-descending-specificity */

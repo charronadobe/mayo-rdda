@@ -1,7 +1,9 @@
 /**
- * Full-width single-row band: heading, text and call to action side by side.
- * Each authored cell becomes one column; cells are tagged by their content so
- * the CTA column can align to the end.
+ * Single-row columns block with three looks, chosen from the authored structure:
+ * - band: a cell holds only a call-to-action link (heading | text | CTA side by side)
+ * - split: a title cell (optional eyebrow + heading) beside a text cell
+ * - cards: every cell is a text card (heading, text, list of links)
+ * Each authored cell becomes one column; cells are tagged by their content.
  * @param {Element} block
  */
 export default function decorate(block) {
@@ -24,5 +26,26 @@ export default function decorate(block) {
         col.classList.add('columns-banner-text');
       }
     });
+  });
+
+  if (block.querySelector('.columns-banner-cta')) {
+    block.classList.add('columns-banner-band');
+    return;
+  }
+
+  block.classList.add(block.querySelector('.columns-banner-text') ? 'columns-banner-split' : 'columns-banner-cards');
+
+  // text before the heading is an eyebrow; a paragraph holding only a link is a link row
+  block.querySelectorAll('.columns-banner-heading').forEach((col) => {
+    const heading = col.querySelector(':scope > :is(h1, h2, h3, h4, h5, h6)');
+    let prev = heading?.previousElementSibling;
+    while (prev) {
+      if (prev.tagName === 'P') prev.classList.add('columns-banner-eyebrow');
+      prev = prev.previousElementSibling;
+    }
+  });
+  block.querySelectorAll('.columns-banner-col > p').forEach((p) => {
+    const a = p.querySelector('a[href]');
+    if (a && p.textContent.trim() === a.textContent.trim()) p.classList.add('columns-banner-link');
   });
 }

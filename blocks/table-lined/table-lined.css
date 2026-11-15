@@ -1,0 +1,130 @@
+/* table-lined (source: .cmp-text__rich-content table on /about-mayo-clinic/contact) */
+.table-lined {
+  margin: 16px 0 32px;
+}
+
+.table-lined .table-lined-scroll {
+  overflow-x: auto;
+}
+
+.table-lined .table-lined-scroll:focus-visible {
+  outline: 2px dashed var(--focus-color);
+  outline-offset: 2px;
+}
+
+/* the global table rule sets display: block; the scroller handles overflow instead */
+.table-lined table {
+  display: table;
+  width: 100%;
+  min-width: 320px;
+  border-collapse: collapse;
+  color: var(--brand-text-color);
+  font-family: var(--brand-body-font-family);
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.table-lined th,
+.table-lined td {
+  padding: 16px 0;
+  font-weight: 400;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* bold header row with a dark rule under it */
+.table-lined thead th {
+  border-bottom: 1px solid var(--brand-text-color);
+  font-weight: 700;
+}
+
+/* first column: one third (source: th width 33%) */
+.table-lined th:first-child {
+  width: 33%;
+  padding-right: 16px;
+}
+
+/* thin grey rules between rows, no fill or stripes */
+.table-lined tbody tr {
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.table-lined th p,
+.table-lined td p {
+  margin: 0;
+}
+
+/* several numbers in one cell: separated by the same grey rule (source: rowspan rows) */
+.table-lined .table-lined-stack > p + p {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #d6d6d6;
+}
+
+/*
+ * Sections holding lined tables (source: one state per column-control row on the contact page).
+ * Source column: full width below ~910px; 80% - 48px from there; 10/12 (max 1320px) - 48px
+ * from 1440px. So 1152px at 1440 and 912px at 1200.
+ * Spacing: 24px/36px heading to address, 16px/24px between groups,
+ * 158px/190px/198px from the last table to the next heading.
+ */
+main > .section.table-lined-container {
+  padding-bottom: 126px;
+}
+
+main > .section:not(.table-lined-container) + .section.table-lined-container {
+  padding-top: 42px;
+}
+
+main > .section.table-lined-container .default-content-wrapper > h3 {
+  margin-bottom: 24px;
+}
+
+main > .section.table-lined-container .default-content-wrapper > p:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+/* a new location after a table: source groups sit 16px below the table's 32px margin */
+main > .section.table-lined-container .table-lined-wrapper + .default-content-wrapper > p:first-child:has(> strong:first-child) {
+  padding-top: 16px;
+}
+
+@media (width >= 900px) {
+  .table-lined {
+    margin-top: 24px;
+  }
+
+  main > .section.table-lined-container {
+    padding-bottom: 158px;
+  }
+
+  main > .section.table-lined-container > div {
+    max-width: calc(80% - 48px + (2 * var(--brand-page-gutter)));
+  }
+
+  main > .section.table-lined-container .default-content-wrapper > h3 {
+    margin-bottom: 36px;
+  }
+
+  main > .section.table-lined-container .default-content-wrapper > p:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  main > .section.table-lined-container .table-lined-wrapper + .default-content-wrapper > p:first-child:has(> strong:first-child) {
+    padding-top: 24px;
+  }
+}
+
+@media (width >= 1440px) {
+  main > .section.table-lined-container {
+    padding-bottom: 166px;
+  }
+
+  main > .section:not(.table-lined-container) + .section.table-lined-container {
+    padding-top: 50px;
+  }
+
+  main > .section.table-lined-container > div {
+    max-width: calc(min(83.3333%, 1320px) - 48px + (2 * var(--brand-page-gutter)));
+  }
+}

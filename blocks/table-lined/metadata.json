@@ -1,0 +1,41 @@
+{
+  "variantName": "table-lined",
+  "baseBlock": "table",
+  "canonicalModel": "standalone",
+  "visualCharacteristics": {
+    "purpose": "Contact/phone table: bold header row with a dark rule, thin grey rules between rows, no fill or stripes.",
+    "description": "Real table, 20px/28px sans text, first column one third wide. Header row bold with a 1px dark rule under it, body rows separated by 1px #d6d6d6 rules, 16px vertical cell padding, links underlined blue. Several paragraphs in one cell stack with the same grey rule between them. Scrolls horizontally if it cannot fit."
+  },
+  "contentPattern": {
+    "structure": "Row 1: header cells (Contact | Number). Each later row: label or linked label | phone link(s) with notes; several numbers for one contact = several paragraphs in one cell.",
+    "description": "First row becomes the column headers (th scope=col), the first cell of each body row is a row header (th scope=row). Source rowspan cells are folded into one row with one paragraph per number.",
+    "blockContent": "Contact table for Mayo Clinic Arizona: General number, Appointment Office, Billing and Insurance (two numbers), International Center, ...",
+    "table": [
+      [
+        "Table Lined"
+      ],
+      [
+        "Contact",
+        "Number"
+      ],
+      [
+        "Label or linked label",
+        "Phone link(s) + note; one paragraph per number"
+      ]
+    ]
+  },
+  "options": [],
+  "memberVariantIds": [
+    "table-lined"
+  ],
+  "usage": {
+    "description": "Lined contact/phone tables.",
+    "pagesUsing": [
+      "/about-mayo-clinic/contact"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-11-14T00:00:00.000Z"
+  },
+  "reuseGuidance": "Use for two-column label/value lists such as phone directories. First row is the header row. Put several values for one label as separate paragraphs in one cell rather than splitting rows.",
+  "sourceUrl": "https://www.mayoclinic.org/about-mayo-clinic/contact"
+}
