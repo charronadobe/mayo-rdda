@@ -1,1 +1,2 @@
-catalog/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+# Catalog images are small planning screenshots and are stored as normal files.
+# (They used Git LFS before, but their LFS objects never reached GitHub.)
