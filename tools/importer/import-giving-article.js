@@ -174,12 +174,13 @@ export default {
       WebImporter.rules.adjustImageUrls(element, url, params.originalURL);
     });
 
-    // Giving to Mayo Clinic pages live in the giving-to-mayo-clinic folder: the landing page as the
-    // folder index, the others named after the last part of the source path
+    // Giving to Mayo Clinic: the landing page is a document beside the giving-to-mayo-clinic
+    // folder (/giving-to-mayo-clinic, no trailing slash); the other pages live in the folder, named
+    // after the last part of the source path
     // (.../contact-us/frequently-asked-questions -> giving-to-mayo-clinic/frequently-asked-questions)
     const parts = new URL(params.originalURL).pathname.split('/').filter(Boolean);
-    const last = parts.length > 1 ? parts[parts.length - 1] : 'index';
-    const path = WebImporter.FileUtils.sanitizePath(`/giving-to-mayo-clinic/${last}`);
+    const page = parts.length > 1 ? `/giving-to-mayo-clinic/${parts[parts.length - 1]}` : '/giving-to-mayo-clinic';
+    const path = WebImporter.FileUtils.sanitizePath(page);
 
     return [{
       element: main,

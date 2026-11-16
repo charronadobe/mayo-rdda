@@ -578,8 +578,10 @@ const CARE_PAGES = {
   '/departments-centers': '/care-at-mayo-clinic/departments-centers',
   '/international': '/care-at-mayo-clinic/international',
   '/about-mayo-clinic/contact': '/care-at-mayo-clinic/contact',
-  // Giving to Mayo Clinic pages (giving-hub, giving-article templates)
-  '/giving-to-mayo-clinic': '/giving-to-mayo-clinic/',
+  // Giving to Mayo Clinic pages (giving-hub, giving-article templates). The landing page is a
+  // document beside the folder (no trailing slash: Sync strips it, and Edge Delivery doesn't
+  // redirect /x to /x/)
+  '/giving-to-mayo-clinic': '/giving-to-mayo-clinic',
   '/giving-to-mayo-clinic/contact-us': '/giving-to-mayo-clinic/contact-us',
   '/giving-to-mayo-clinic/contact-us/frequently-asked-questions': '/giving-to-mayo-clinic/frequently-asked-questions',
 };
