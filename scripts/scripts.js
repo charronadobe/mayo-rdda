@@ -367,6 +367,11 @@ async function loadEager(doc) {
   renderWBDataLayer();
   const main = doc.querySelector('main');
   if (main) {
+    // structured-content (DA form) documents are rebuilt as regular pages before decoration
+    if (main.querySelector(':scope > div > .da-form')) {
+      const { default: renderStructuredContent } = await import('./structured-content.js');
+      renderStructuredContent(main);
+    }
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
