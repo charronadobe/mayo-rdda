@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=F",
   "path": "health-library/diseases-conditions/f",
-  "timestamp": "2026-11-14T06:47:33.562Z",
+  "timestamp": "2026-11-18T06:08:16.080Z",
   "title": "Diseases and Conditions that Start with F - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "254be4353372"
+  "importScript": "169a1e3b442f"
 }

@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=S",
   "path": "health-library/diseases-conditions/s",
-  "timestamp": "2026-11-14T06:49:04.704Z",
+  "timestamp": "2026-11-18T06:09:42.240Z",
   "title": "Diseases and Conditions that Start with S - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "254be4353372"
+  "importScript": "169a1e3b442f"
 }

@@ -277,6 +277,18 @@ function migratedConditionPath(href) {
 }
 
 /**
+ * Structured-content document of a migrated condition, or null: the A-Z letter pages link here.
+ * /diseases-conditions/<slug>/symptoms-causes/syc-... -> /health-library/diseases-conditions/medical-condition/<slug>
+ * Every migrated condition has a medical-condition document; a newly migrated condition needs one too.
+ * @param {string} href absolute www.mayoclinic.org URL
+ */
+function migratedConditionDocPath(href) {
+  const page = migratedConditionPath(href);
+  if (!page) return null;
+  return `/health-library/diseases-conditions/medical-condition/${page.split('/')[3]}`;
+}
+
+/**
  * Mayo Clinic cleanup transformer.
  * Removes non-authorable chrome: global header, footer, alerts, skip links,
  * feedback/tracking widgets, iframes and framework artifacts.
@@ -1136,10 +1148,10 @@ export default function transform(hookName, element, payload) {
         if (a.textContent.trim() === href) a.textContent = absolute;
       });
 
-      // Condition pages already migrated to this site (tools/importer/migrated-pages.js)
-      // link to the migrated copy; the rest stay on www.mayoclinic.org
+      // Condition pages already migrated to this site (MIGRATED_CONDITION_URLS) link to their
+      // structured-content document (medical-condition folder); the rest stay on www.mayoclinic.org
       az.querySelectorAll('a[href^="https://www.mayoclinic.org/diseases-conditions/"]').forEach((a) => {
-        const local = migratedConditionPath(a.getAttribute('href'));
+        const local = migratedConditionDocPath(a.getAttribute('href'));
         if (local) a.setAttribute('href', local);
       });
 

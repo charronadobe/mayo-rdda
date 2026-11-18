@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=Y",
   "path": "health-library/diseases-conditions/y",
-  "timestamp": "2026-11-14T06:49:45.050Z",
+  "timestamp": "2026-11-18T06:10:23.466Z",
   "title": "Diseases and Conditions that Start with Y - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "254be4353372"
+  "importScript": "169a1e3b442f"
 }

@@ -468,6 +468,11 @@ var CustomImportScript = (() => {
     const parts = url.pathname.split("/").filter(Boolean);
     return `/health-library/diseases-conditions/${parts[1]}/${parts[2]}`;
   }
+  function migratedConditionDocPath(href) {
+    const page = migratedConditionPath(href);
+    if (!page) return null;
+    return `/health-library/diseases-conditions/medical-condition/${page.split("/")[3]}`;
+  }
   var CONDITION_ROOT = ".cmp-column-control__layoutType--ThreeColumnWithL2AndAd";
   var MAYO_ORIGIN = "https://www.mayoclinic.org";
   function isEmpty(el) {
@@ -689,7 +694,7 @@ var CustomImportScript = (() => {
     const name = decodeURIComponent(url.pathname.split("/").pop() || "").toLowerCase().replace(/[^a-z0-9._-]/g, "-");
     return name ? `${DA_MEDIA}/${name}` : null;
   }
-  var CARE_TEMPLATES = /* @__PURE__ */ new Set(["care-hub", "care-service", "find-a-doctor", "departments-centers", "international"]);
+  var CARE_TEMPLATES = /* @__PURE__ */ new Set(["care-hub", "care-service", "find-a-doctor", "departments-centers", "international", "giving-hub", "giving-article"]);
   var CARE_PAGES = {
     "/patient-centered-care": "/care-at-mayo-clinic/patient-centered-care",
     "/about-mayo-clinic": "/care-at-mayo-clinic/about-mayo-clinic",
@@ -700,7 +705,13 @@ var CustomImportScript = (() => {
     "/billing-insurance": "/care-at-mayo-clinic/billing-insurance",
     "/departments-centers": "/care-at-mayo-clinic/departments-centers",
     "/international": "/care-at-mayo-clinic/international",
-    "/about-mayo-clinic/contact": "/care-at-mayo-clinic/contact"
+    "/about-mayo-clinic/contact": "/care-at-mayo-clinic/contact",
+    // Giving to Mayo Clinic pages (giving-hub, giving-article templates). The landing page is a
+    // document beside the folder (no trailing slash: Sync strips it, and Edge Delivery doesn't
+    // redirect /x to /x/)
+    "/giving-to-mayo-clinic": "/giving-to-mayo-clinic",
+    "/giving-to-mayo-clinic/contact-us": "/giving-to-mayo-clinic/contact-us",
+    "/giving-to-mayo-clinic/contact-us/frequently-asked-questions": "/giving-to-mayo-clinic/frequently-asked-questions"
   };
   var CARE_FRAGMENTS = {
     "/about-mayo-clinic/contact": {
@@ -812,7 +823,7 @@ var CustomImportScript = (() => {
     });
   }
   function isCareServicePage(payload) {
-    return !!(payload && payload.template && payload.template.name === "care-service");
+    return !!(payload && payload.template && ["care-service", "giving-hub", "giving-article"].includes(payload.template.name));
   }
   function cleanCareServiceBefore(main) {
     main.querySelectorAll('.cmp-container--background-color-donations img[src*="/images/icons/"]').forEach((img) => {
@@ -991,7 +1002,7 @@ var CustomImportScript = (() => {
   }
   var INTERNATIONAL_COLUMN = ".cmp-column-control__layoutType--LevelTwoNavigation .cmp-column-control__content-column";
   function isInternationalPage(payload) {
-    return !!(payload && payload.template && payload.template.name === "international");
+    return !!(payload && payload.template && ["international", "giving-article"].includes(payload.template.name));
   }
   function cleanInternationalBefore(root) {
     root.querySelectorAll(`${INTERNATIONAL_COLUMN} > aside`).forEach((aside) => {
@@ -999,15 +1010,26 @@ var CustomImportScript = (() => {
     });
     root.querySelectorAll(".cmp-luma-chat").forEach((el) => el.remove());
   }
-  function cleanInternationalAfter(root) {
+  function isGivingArticlePage(payload) {
+    return !!(payload && payload.template && payload.template.name === "giving-article");
+  }
+  function cleanInternationalAfter(root, payload) {
     const doc = root.ownerDocument;
+    const giving = isGivingArticlePage(payload);
     root.querySelectorAll(`${INTERNATIONAL_COLUMN} a.cmp-button`).forEach((a) => {
       if (!isDefaultContent(a) || !a.getAttribute("href") || !linkText(a)) return;
       const link = cleanLink(doc, a);
       let content = link;
-      if (a.querySelector(".cmp-button__inner--type-pill")) {
+      const pill = a.querySelector(".cmp-button__inner--type-pill");
+      if (pill) {
         content = doc.createElement("strong");
-        content.append(link);
+        if (giving && pill.classList.contains("cmp-button__inner--color-primary")) {
+          const em = doc.createElement("em");
+          em.append(link);
+          content.append(em);
+        } else {
+          content.append(link);
+        }
       }
       const wrapper = a.closest(".cmp-link") || a;
       if (wrapper.closest("li, p")) wrapper.replaceWith(content);
@@ -1101,7 +1123,7 @@ var CustomImportScript = (() => {
           if (a.textContent.trim() === href) a.textContent = absolute;
         });
         az.querySelectorAll('a[href^="https://www.mayoclinic.org/diseases-conditions/"]').forEach((a) => {
-          const local = migratedConditionPath(a.getAttribute("href"));
+          const local = migratedConditionDocPath(a.getAttribute("href"));
           if (local) a.setAttribute("href", local);
         });
         az.querySelectorAll(".cmp-result-letters").forEach((wrap) => {
@@ -1147,7 +1169,7 @@ var CustomImportScript = (() => {
       if (isCareServicePage(payload)) element.querySelectorAll("#main-content").forEach(cleanCareServiceAfter);
       if (isFindADoctorPage(payload)) cleanFindADoctorAfter(element);
       if (isDepartmentsCentersPage(payload)) cleanDepartmentsCentersAfter(element);
-      if (isInternationalPage(payload)) cleanInternationalAfter(element);
+      if (isInternationalPage(payload)) cleanInternationalAfter(element, payload);
       if (isCarePage(payload)) element.querySelectorAll(careRootSelector(payload)).forEach(cleanCareAfter);
       element.querySelectorAll("img[src]").forEach((img) => {
         const local = daMediaUrl(img.getAttribute("src"));
