@@ -125,10 +125,32 @@ function formatReviewDate(iso) {
   return m ? `${MONTHS[Number(m[2]) - 1]} ${m[3]}, ${m[1]}` : '';
 }
 
-/** Copies of a rich-text cell's nodes (empty when the value is missing). */
-const clone = (cell) => (cell && cell.childNodes
-  ? [...cell.childNodes].map((n) => n.cloneNode(true))
-  : []);
+const BLOCK_TAGS = /^(P|H[1-6]|UL|OL|BLOCKQUOTE|DIV|PICTURE|TABLE)$/;
+
+/**
+ * Copies of a rich-text cell's nodes (empty when the value is missing). Edge Delivery delivers a
+ * value of a single paragraph as bare text (it unwraps a sole <p>), so loose text and inline
+ * elements are wrapped in a paragraph: section layout only places elements.
+ */
+const clone = (cell) => {
+  if (!cell || !cell.childNodes) return [];
+  const out = [];
+  let para = null;
+  [...cell.childNodes].forEach((n) => {
+    const isBlock = n.nodeType === Node.ELEMENT_NODE && BLOCK_TAGS.test(n.tagName);
+    if (isBlock) {
+      para = null;
+      out.push(n.cloneNode(true));
+    } else if (n.nodeType === Node.ELEMENT_NODE || n.textContent.trim()) {
+      if (!para) {
+        para = document.createElement('p');
+        out.push(para);
+      }
+      para.append(n.cloneNode(true));
+    }
+  });
+  return out;
+};
 
 /** "Request an appointment" button copied from the article text, if it has one. */
 function appointmentButton(cells) {
