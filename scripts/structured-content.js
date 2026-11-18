@@ -90,6 +90,8 @@ const SECTIONS = [
 // after "When to see a doctor"; any other after Prevention
 const EXTRA_AFTER = { types: 'Overview', 'when to get emergency help': 'When to see a doctor' };
 const SIDE_NAV = /^(diagnosis (and|&) treatment|doctors (and|&) departments|care at mayo clinic)$/i;
+// shared banner page shown at the end of every condition page (edit it once for all pages)
+const DONATION_BANNER = '/fragments/donation-banner';
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
   'September', 'October', 'November', 'December'];
 
@@ -247,7 +249,10 @@ export function renderMedicalCondition(main, { data }) {
   }
   children.push(authoredBlock('section-metadata', [['style', 'split']]));
 
-  main.replaceChildren(el('div', {}, children));
+  // the shared donation banner (navy band) closes every condition page
+  const banner = el('div', {}, authoredBlock('fragment', [[el('a', { href: DONATION_BANNER }, DONATION_BANNER)]]));
+
+  main.replaceChildren(el('div', {}, children), banner);
   if (d.name) document.title = `${d.name} - Symptoms and causes - Mayo Clinic`;
 }
 
