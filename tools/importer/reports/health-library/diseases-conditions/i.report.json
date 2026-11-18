@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=I",
   "path": "health-library/diseases-conditions/i",
-  "timestamp": "2026-11-18T06:08:36.197Z",
+  "timestamp": "2026-11-18T16:25:31.495Z",
   "title": "Diseases and Conditions that Start with I - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "169a1e3b442f"
+  "importScript": "474cf506ca78"
 }

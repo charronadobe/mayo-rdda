@@ -464,6 +464,9 @@ export default {
       WebImporter.rules.adjustImageUrls(element, url, params.originalURL);
     });
 
+    // This page is an intermediate step: tools/importer/structured/import-medical-conditions.sh runs
+    // this import into a staging folder (migration-work/condition-staging) and builds the site's
+    // medical-condition structured documents from it; the page itself is not published.
     // Condition pages mirror Mayo Clinic's paths without the content ID:
     // /diseases-conditions/<slug>/symptoms-causes/syc-... -> /health-library/diseases-conditions/<slug>/symptoms-causes
     const parts = new URL(params.originalURL).pathname.split('/').filter(Boolean);

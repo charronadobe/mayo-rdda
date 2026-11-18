@@ -1,0 +1,411 @@
+{
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "title": "Link",
+      "required": [
+        "name",
+        "url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Link text"
+        },
+        "url": {
+          "type": "string",
+          "title": "URL",
+          "pattern": "^(https?://|/)"
+        }
+      }
+    },
+    "NamedItem": {
+      "type": "object",
+      "title": "Item",
+      "description": "A short name (the lead-in of the list item on the page) and its explanation.",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "title": "Description",
+          "x-semantic-type": "long-text"
+        }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "title": "Image",
+      "description": "schema.org ImageObject.",
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "title": "Image URL",
+          "pattern": "^(https?://|/|\\./)"
+        },
+        "alt": {
+          "type": "string",
+          "title": "Alternative text"
+        },
+        "name": {
+          "type": "string",
+          "title": "Title"
+        },
+        "caption": {
+          "type": "string",
+          "title": "Caption",
+          "x-semantic-type": "long-text"
+        },
+        "section": {
+          "type": "string",
+          "title": "Section",
+          "description": "The article section the image illustrates.",
+          "enum": [
+            "Overview",
+            "Symptoms",
+            "When to see a doctor",
+            "Causes",
+            "Risk factors",
+            "Complications",
+            "Prevention",
+            "Other"
+          ]
+        }
+      }
+    },
+    "Video": {
+      "type": "object",
+      "title": "Video",
+      "description": "schema.org VideoObject (MedicalCondition.subjectOf).",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Title"
+        },
+        "url": {
+          "type": "string",
+          "title": "Video page URL",
+          "pattern": "^(https?://|/)"
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "title": "Thumbnail URL",
+          "pattern": "^(https?://|/|\\./)"
+        },
+        "transcript": {
+          "type": "string",
+          "title": "Transcript",
+          "x-semantic-type": "long-text"
+        },
+        "section": {
+          "type": "string",
+          "title": "Section",
+          "description": "The article section the video belongs to.",
+          "enum": [
+            "Overview",
+            "Symptoms",
+            "When to see a doctor",
+            "Causes",
+            "Risk factors",
+            "Complications",
+            "Prevention",
+            "Other"
+          ]
+        }
+      }
+    },
+    "MedicalCode": {
+      "type": "object",
+      "title": "Medical code",
+      "description": "schema.org MedicalCode.",
+      "required": [
+        "codeValue",
+        "codingSystem"
+      ],
+      "properties": {
+        "codeValue": {
+          "type": "string",
+          "title": "Code"
+        },
+        "codingSystem": {
+          "type": "string",
+          "title": "Coding system",
+          "enum": [
+            "SNOMED",
+            "ICD-10",
+            "ICD-9",
+            "MeSH",
+            "UMLS"
+          ],
+          "default": "SNOMED"
+        },
+        "name": {
+          "type": "string",
+          "title": "Concept name"
+        }
+      }
+    },
+    "Section": {
+      "type": "object",
+      "title": "Section",
+      "required": [
+        "heading"
+      ],
+      "properties": {
+        "heading": {
+          "type": "string",
+          "title": "Heading"
+        },
+        "body": {
+          "type": "string",
+          "title": "Body",
+          "x-semantic-type": "rich-text"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "title": "Medical Condition",
+  "description": "A disease or condition page (schema.org MedicalWebPage about a MedicalCondition). Field names follow schema.org.",
+  "required": [
+    "name",
+    "overview"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "title": "Condition name",
+      "description": "MedicalCondition.name",
+      "minLength": 2,
+      "maxLength": 120
+    },
+    "alternateName": {
+      "type": "array",
+      "title": "Alternate names",
+      "description": "MedicalCondition.alternateName",
+      "items": {
+        "type": "string",
+        "title": "Alternate name"
+      }
+    },
+    "description": {
+      "type": "string",
+      "title": "Summary",
+      "description": "MedicalWebPage / MedicalCondition description (search snippet).",
+      "maxLength": 400,
+      "x-semantic-type": "long-text"
+    },
+    "url": {
+      "type": "string",
+      "title": "Page path",
+      "description": "MedicalWebPage.url: the page on this site.",
+      "pattern": "^/"
+    },
+    "sameAs": {
+      "type": "string",
+      "title": "Source page",
+      "description": "The original page on mayoclinic.org.",
+      "pattern": "^https?://"
+    },
+    "image": {
+      "$ref": "#/$defs/Image",
+      "title": "Share image",
+      "description": "MedicalWebPage.primaryImageOfPage"
+    },
+    "lastReviewed": {
+      "type": "string",
+      "title": "Last reviewed",
+      "description": "MedicalWebPage.lastReviewed",
+      "format": "date"
+    },
+    "author": {
+      "type": "string",
+      "title": "Author",
+      "description": "MedicalWebPage.author (Organization)",
+      "default": "Mayo Clinic Staff"
+    },
+    "audience": {
+      "type": "string",
+      "title": "Audience",
+      "description": "MedicalWebPage.audience (MedicalAudience.audienceType)",
+      "enum": [
+        "Patient",
+        "Clinician",
+        "Caregiver",
+        "General public"
+      ],
+      "default": "Patient"
+    },
+    "code": {
+      "type": "array",
+      "title": "Medical codes",
+      "description": "MedicalCondition.code",
+      "items": {
+        "$ref": "#/$defs/MedicalCode"
+      }
+    },
+    "associatedAnatomy": {
+      "type": "array",
+      "title": "Body systems",
+      "description": "MedicalCondition.associatedAnatomy (AnatomicalSystem)",
+      "items": {
+        "type": "string",
+        "title": "Body system"
+      }
+    },
+    "signOrSymptom": {
+      "type": "array",
+      "title": "Signs and symptoms (short names)",
+      "description": "MedicalCondition.signOrSymptom (MedicalSymptom)",
+      "items": {
+        "type": "string",
+        "title": "Sign or symptom"
+      }
+    },
+    "typicalTest": {
+      "type": "array",
+      "title": "Typical tests",
+      "description": "MedicalCondition.typicalTest (MedicalTest)",
+      "items": {
+        "type": "string",
+        "title": "Test"
+      }
+    },
+    "overview": {
+      "type": "string",
+      "title": "Overview",
+      "description": "Overview section (MedicalCondition.description, long form).",
+      "x-semantic-type": "rich-text"
+    },
+    "symptoms": {
+      "type": "string",
+      "title": "Symptoms",
+      "description": "Symptoms section.",
+      "x-semantic-type": "rich-text"
+    },
+    "whenToSeeADoctor": {
+      "type": "string",
+      "title": "When to see a doctor",
+      "description": "When to see a doctor section.",
+      "x-semantic-type": "rich-text"
+    },
+    "causes": {
+      "type": "string",
+      "title": "Causes",
+      "description": "Causes section.",
+      "x-semantic-type": "rich-text"
+    },
+    "cause": {
+      "type": "array",
+      "title": "Causes (structured)",
+      "description": "MedicalCondition.cause (MedicalCause), from the Causes list.",
+      "items": {
+        "$ref": "#/$defs/NamedItem"
+      }
+    },
+    "riskFactors": {
+      "type": "string",
+      "title": "Risk factors",
+      "description": "Risk factors section.",
+      "x-semantic-type": "rich-text"
+    },
+    "riskFactor": {
+      "type": "array",
+      "title": "Risk factors (structured)",
+      "description": "MedicalCondition.riskFactor (MedicalRiskFactor), from the Risk factors list.",
+      "items": {
+        "$ref": "#/$defs/NamedItem"
+      }
+    },
+    "complications": {
+      "type": "string",
+      "title": "Complications",
+      "description": "Complications section.",
+      "x-semantic-type": "rich-text"
+    },
+    "possibleComplication": {
+      "type": "array",
+      "title": "Complications (structured)",
+      "description": "MedicalCondition.possibleComplication, from the Complications list.",
+      "items": {
+        "$ref": "#/$defs/NamedItem"
+      }
+    },
+    "prevention": {
+      "type": "string",
+      "title": "Prevention",
+      "description": "Prevention section.",
+      "x-semantic-type": "rich-text"
+    },
+    "primaryPrevention": {
+      "type": "array",
+      "title": "Prevention (structured)",
+      "description": "MedicalCondition.primaryPrevention (MedicalTherapy), from the Prevention list.",
+      "items": {
+        "$ref": "#/$defs/NamedItem"
+      }
+    },
+    "additionalSection": {
+      "type": "array",
+      "title": "Other sections",
+      "description": "Article sections beyond the standard ones (e.g. Types, When to get emergency help).",
+      "items": {
+        "$ref": "#/$defs/Section"
+      }
+    },
+    "illustration": {
+      "type": "array",
+      "title": "Illustrations",
+      "description": "Images in the article (ImageObject).",
+      "items": {
+        "$ref": "#/$defs/Image"
+      }
+    },
+    "video": {
+      "type": "array",
+      "title": "Videos",
+      "description": "MedicalCondition.subjectOf (VideoObject).",
+      "items": {
+        "$ref": "#/$defs/Video"
+      }
+    },
+    "citation": {
+      "type": "array",
+      "title": "References",
+      "description": "MedicalWebPage.citation",
+      "items": {
+        "type": "string",
+        "title": "Reference",
+        "x-semantic-type": "long-text"
+      }
+    },
+    "associatedProcedure": {
+      "type": "array",
+      "title": "Associated procedures",
+      "description": "MedicalWebPage.relatedLink: tests and procedures for the condition.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    },
+    "relatedLink": {
+      "type": "array",
+      "title": "Related pages",
+      "description": "MedicalWebPage.relatedLink: Diagnosis & treatment, Doctors & departments and related content.",
+      "items": {
+        "$ref": "#/$defs/Link"
+      }
+    }
+  }
+}

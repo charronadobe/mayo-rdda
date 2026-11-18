@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=L",
   "path": "health-library/diseases-conditions/l",
-  "timestamp": "2026-11-18T06:08:58.471Z",
+  "timestamp": "2026-11-18T16:25:50.869Z",
   "title": "Diseases and Conditions that Start with L - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "169a1e3b442f"
+  "importScript": "474cf506ca78"
 }

@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=B",
   "path": "health-library/diseases-conditions/b",
-  "timestamp": "2026-11-18T06:07:51.547Z",
+  "timestamp": "2026-11-18T16:24:45.110Z",
   "title": "Diseases and Conditions that Start with B - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "169a1e3b442f"
+  "importScript": "474cf506ca78"
 }

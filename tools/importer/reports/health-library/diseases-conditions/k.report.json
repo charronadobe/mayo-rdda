@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=K",
   "path": "health-library/diseases-conditions/k",
-  "timestamp": "2026-11-18T06:08:51.373Z",
+  "timestamp": "2026-11-18T16:25:44.508Z",
   "title": "Diseases and Conditions that Start with K - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "169a1e3b442f"
+  "importScript": "474cf506ca78"
 }
