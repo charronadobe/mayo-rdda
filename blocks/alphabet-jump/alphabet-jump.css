@@ -1,0 +1,123 @@
+/*
+ * Alphabet jump (source: /symptoms .cmp-departments-alphabet-facet and .cmp-alpha-list).
+ * Letter buttons: 50px circles, light-blue border, bold blue letter; letters without entries grey.
+ * The section's letter groups (styled here because the block owns that list layout): 32px bold
+ * letter headings and entries over grey rules, alias "See" lines small and grey.
+ */
+.alphabet-jump nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alphabet-jump nav li {
+  margin: 0;
+}
+
+.alphabet-jump nav a,
+.alphabet-jump nav span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #8cc5ff;
+  border-radius: 50%;
+  color: var(--link-color);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.alphabet-jump nav a:hover,
+.alphabet-jump nav a:focus-visible {
+  background-color: #e1f0ff;
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.alphabet-jump nav li.inactive span {
+  border-color: #d6d6d6;
+  color: #d6d6d6;
+}
+
+/* the section around the block: the list column is 832px wide, left-aligned with the page title */
+.alphabet-jump nav,
+.section.alphabet-jump-container > .default-content-wrapper > * {
+  max-width: 832px;
+}
+
+.section.alphabet-jump-container .alphabet-jump-wrapper {
+  margin-top: 0;
+}
+
+/* intro text under the letters */
+.section.alphabet-jump-container > .alphabet-jump-wrapper + .default-content-wrapper > p:first-child {
+  margin: 24px 0 0;
+  font-size: 24px;
+  line-height: 33.6px;
+}
+
+/* letter headings */
+.section.alphabet-jump-container > .alphabet-jump-wrapper + .default-content-wrapper > h2 {
+  margin: 24px 0 0;
+  padding: 20px 0;
+  border-bottom: 1px solid #d6d6d6;
+  font-family: var(--body-font-family);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+/* "Jump to a letter": small heading above the letters */
+.section.alphabet-jump-container > .default-content-wrapper:has(+ .alphabet-jump-wrapper) > h2:last-child {
+  margin: 0;
+  padding-bottom: 16px;
+  font-family: var(--body-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+/* entries */
+.section.alphabet-jump-container ul.alphabet-jump-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section.alphabet-jump-container ul.alphabet-jump-list > li {
+  margin: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid #d6d6d6;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.section.alphabet-jump-container .alphabet-jump-alias {
+  display: block;
+  line-height: 24px;
+}
+
+.section.alphabet-jump-container .alphabet-jump-see {
+  display: block;
+  color: #595959;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.section.alphabet-jump-container .alphabet-jump-see a:any-link {
+  color: #595959;
+}
+
+.section.alphabet-jump-container .alphabet-jump-top {
+  margin: 24px 0 0;
+  font-size: 16px;
+  line-height: 24px;
+}

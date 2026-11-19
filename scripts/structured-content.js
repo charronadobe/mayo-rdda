@@ -256,7 +256,89 @@ export function renderMedicalCondition(main, { data }) {
   if (d.name) document.title = `${d.name} - Symptoms and causes - Mayo Clinic`;
 }
 
-const RENDERERS = { 'medical-condition': renderMedicalCondition };
+/* ---------- medical-symptom: the symptom ("Causes and definition") page layout ---------- */
+
+const SYMPTOM_SECTIONS = [
+  ['definition', 'Definition'],
+  ['causes', 'Causes'],
+  ['whenToSeeADoctor', 'When to see a doctor'],
+];
+const APPOINTMENTS = 'https://www.mayoclinic.org/appointments';
+// shown after the causes on every symptom page (source boilerplate, not stored per document)
+const CAUSES_NOTE = 'Causes shown here are commonly associated with this symptom. Work with your '
+  + 'doctor or other health care professional for an accurate diagnosis.';
+
+/**
+ * Replaces the structured-content markup in `main` with a symptom page: title, byline, date,
+ * appointment button, "On this page", Definition, Causes, When to see a doctor (with its Self-care
+ * part), extra sections, references, related content, then the shared donation banner.
+ * @param {Element} main
+ * @param {{data: object}} doc result of readStructuredContent()
+ */
+export function renderMedicalSymptom(main, { data }) {
+  const d = data;
+  const article = [];
+  const toc = [];
+  const media = (sectionName) => (d.illustration || [])
+    .filter((i) => (i.section || 'Definition') === sectionName).flatMap(illustration);
+  const addSection = (heading, body, sectionName) => {
+    const id = toClassName(heading);
+    toc.push(el('li', {}, el('a', { href: `#${id}` }, heading)));
+    article.push(el('h2', { id }, heading), ...clone(body), ...media(sectionName || heading));
+  };
+  SYMPTOM_SECTIONS.forEach(([key, heading]) => {
+    if (!d[key] && !(key === 'whenToSeeADoctor' && d.selfCare)) return;
+    addSection(heading, d[key]);
+    if (key === 'causes') article.push(el('p', {}, el('strong', {}, CAUSES_NOTE)));
+    if (key === 'whenToSeeADoctor' && d.selfCare) {
+      // the self-care text keeps its source heading ("Self-care", "Self-care for ..."); add one
+      // if it is missing
+      const body = clone(d.selfCare);
+      const hasHeading = body[0] && /^H[2-6]$/.test(body[0].tagName);
+      if (!hasHeading) article.push(el('h3', { id: 'self-care' }, 'Self-care'));
+      article.push(...body, ...media('Self-care'));
+    }
+  });
+  (d.additionalSection || []).forEach((s, i) => addSection(s.heading, s.body, i ? `extra:${s.heading}` : 'Other'));
+
+  // every symptom page has the button above "On this page" and after the article (source)
+  const button = appointmentButton(SYMPTOM_SECTIONS.map(([key]) => d[key]).concat(d.selfCare))
+    || el('p', {}, el('strong', {}, el('a', { href: APPOINTMENTS }, 'Request an appointment')));
+  const citations = d.citation || [];
+  const related = d.relatedLink || [];
+  const procedures = d.associatedProcedure || [];
+
+  const children = [
+    el('h1', {}, d.name),
+    d.author ? el('p', {}, `By ${d.author}`) : null,
+    d.lastReviewed ? el('p', {}, formatReviewDate(d.lastReviewed)) : null,
+    button,
+    toc.length > 1 ? [el('p', {}, 'On this page'), el('ul', {}, toc)] : null,
+    article,
+    button.cloneNode(true),
+  ];
+  if (citations.length) {
+    const list = el('ol', {}, citations.map((c) => el('li', {}, c)));
+    children.push(authoredBlock('accordion-toggle', [['Show references', list]]));
+  }
+  if (related.length) {
+    children.push(el('h2', { id: 'related-content' }, 'Related content'), linkCards(related));
+  }
+  if (procedures.length) {
+    children.push(el('h2', { id: 'associated-procedures' }, 'Associated procedures'), linkCards(procedures));
+  }
+  children.push(authoredBlock('section-metadata', [['style', 'article']]));
+
+  const banner = el('div', {}, authoredBlock('fragment', [[el('a', { href: DONATION_BANNER }, DONATION_BANNER)]]));
+
+  main.replaceChildren(el('div', {}, children), banner);
+  if (d.name) document.title = `${d.name} - Causes and definition - Mayo Clinic`;
+}
+
+const RENDERERS = {
+  'medical-condition': renderMedicalCondition,
+  'medical-symptom': renderMedicalSymptom,
+};
 
 /**
  * Renders a structured-content document in `main` as a page, if there is a renderer for its schema.
