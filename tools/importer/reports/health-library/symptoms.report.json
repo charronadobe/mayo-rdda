@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.mayoclinic.org/symptoms",
+  "path": "health-library/symptoms",
+  "timestamp": "2026-11-19T19:52:52.897Z",
+  "title": "Symptoms - Mayo Clinic",
+  "template": "symptoms-index",
+  "blocks": [
+    "cards-action",
+    "columns-banner"
+  ],
+  "importScript": "1b9b923c15b1"
+}

@@ -1,0 +1,86 @@
+{
+  "$defs": {
+    "Link": {
+      "type": "object",
+      "title": "Link",
+      "required": ["name", "url"],
+      "properties": {
+        "name": { "type": "string", "title": "Link text" },
+        "url": { "type": "string", "title": "URL", "pattern": "^(https?://|/)" }
+      }
+    },
+    "Cause": {
+      "type": "object",
+      "title": "Cause",
+      "description": "schema.org MedicalCause: a condition that can cause the symptom.",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "title": "Name" },
+        "url": { "type": "string", "title": "Condition page", "description": "The condition's page, on this site or mayoclinic.org.", "pattern": "^(https?://|/)" },
+        "category": { "type": "string", "title": "Group", "description": "The cause group the page lists it under, e.g. \"Injuries that can cause foot pain\"." }
+      }
+    },
+    "Image": {
+      "type": "object",
+      "title": "Image",
+      "description": "schema.org ImageObject.",
+      "required": ["url"],
+      "properties": {
+        "url": { "type": "string", "title": "Image URL", "pattern": "^(https?://|/|\\./)" },
+        "alt": { "type": "string", "title": "Alternative text" },
+        "name": { "type": "string", "title": "Title" },
+        "caption": { "type": "string", "title": "Caption", "x-semantic-type": "long-text" },
+        "section": {
+          "type": "string",
+          "title": "Section",
+          "description": "The article section the image illustrates.",
+          "enum": ["Definition", "Causes", "When to see a doctor", "Self-care", "Other"]
+        }
+      }
+    },
+    "Section": {
+      "type": "object",
+      "title": "Section",
+      "required": ["heading"],
+      "properties": {
+        "heading": { "type": "string", "title": "Heading" },
+        "body": { "type": "string", "title": "Body", "x-semantic-type": "rich-text" }
+      }
+    }
+  },
+  "type": "object",
+  "title": "Medical Symptom",
+  "description": "A symptom page (schema.org MedicalWebPage about a MedicalSymptom). Field names follow schema.org.",
+  "required": ["name", "definition"],
+  "properties": {
+    "name": { "type": "string", "title": "Symptom name", "description": "MedicalSymptom.name", "minLength": 2, "maxLength": 120 },
+    "alternateName": {
+      "type": "array",
+      "title": "Alternate names",
+      "description": "MedicalSymptom.alternateName, e.g. the medical term (anosmia).",
+      "items": { "type": "string", "title": "Alternate name" }
+    },
+    "description": { "type": "string", "title": "Summary", "description": "MedicalWebPage / MedicalSymptom description (search snippet).", "maxLength": 400, "x-semantic-type": "long-text" },
+    "url": { "type": "string", "title": "Page path", "description": "MedicalWebPage.url: the page on this site.", "pattern": "^/" },
+    "sameAs": { "type": "string", "title": "Source page", "description": "The original page on mayoclinic.org.", "pattern": "^https?://" },
+    "image": { "$ref": "#/$defs/Image", "title": "Share image", "description": "MedicalWebPage.primaryImageOfPage" },
+    "lastReviewed": { "type": "string", "title": "Last reviewed", "description": "MedicalWebPage.lastReviewed", "format": "date" },
+    "author": { "type": "string", "title": "Author", "description": "MedicalWebPage.author (Organization)", "default": "Mayo Clinic Staff" },
+    "audience": { "type": "string", "title": "Audience", "description": "MedicalWebPage.audience (MedicalAudience.audienceType)", "enum": ["Patient", "Clinician", "Caregiver", "General public"], "default": "Patient" },
+    "definition": { "type": "string", "title": "Definition", "description": "Definition section (MedicalSymptom.description, long form).", "x-semantic-type": "rich-text" },
+    "causes": { "type": "string", "title": "Causes", "description": "Causes section, with its cause groups and lists.", "x-semantic-type": "rich-text" },
+    "cause": { "type": "array", "title": "Causes (structured)", "description": "MedicalSymptom.cause (MedicalCause), from the Causes lists.", "items": { "$ref": "#/$defs/Cause" } },
+    "whenToSeeADoctor": { "type": "string", "title": "When to see a doctor", "description": "When to see a doctor section: when to call 911, seek immediate care or schedule a visit.", "x-semantic-type": "rich-text" },
+    "selfCare": { "type": "string", "title": "Self-care", "description": "Self-care section (MedicalSymptom.possibleTreatment, self-care).", "x-semantic-type": "rich-text" },
+    "additionalSection": { "type": "array", "title": "Other sections", "description": "Article sections beyond the standard ones.", "items": { "$ref": "#/$defs/Section" } },
+    "illustration": { "type": "array", "title": "Illustrations", "description": "Images in the article (ImageObject).", "items": { "$ref": "#/$defs/Image" } },
+    "citation": {
+      "type": "array",
+      "title": "References",
+      "description": "MedicalWebPage.citation",
+      "items": { "type": "string", "title": "Reference", "x-semantic-type": "long-text" }
+    },
+    "associatedProcedure": { "type": "array", "title": "Associated procedures", "description": "MedicalWebPage.relatedLink: tests and procedures for the symptom.", "items": { "$ref": "#/$defs/Link" } },
+    "relatedLink": { "type": "array", "title": "Related content", "description": "MedicalWebPage.relatedLink: related articles and conditions.", "items": { "$ref": "#/$defs/Link" } }
+  }
+}

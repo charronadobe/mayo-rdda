@@ -1526,6 +1526,70 @@
         }
       ],
       "representativeUrl": "https://www.mayoclinic.org/giving-to-mayo-clinic/contact-us"
+    },
+    {
+      "name": "symptoms-index",
+      "urls": [
+        "https://www.mayoclinic.org/symptoms"
+      ],
+      "description": "Symptoms landing page: H1, Symptom Checker and First Aid tiles, A-Z list of symptoms linked to their medical-symptom documents, donation banner",
+      "blocks": [
+        {
+          "name": "cards-action",
+          "instances": [
+            "#main-content .symptoms-index-cards"
+          ]
+        },
+        {
+          "name": "columns-banner",
+          "instances": [
+            "#top-advertisement"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "sy1",
+          "name": "Title and tiles",
+          "selector": [
+            "#main-content .symptoms-index-intro"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-action"
+          ],
+          "defaultContent": [
+            ".symptoms-index-intro h1"
+          ]
+        },
+        {
+          "id": "sy2",
+          "name": "A-Z list of symptoms",
+          "selector": [
+            "#main-content .symptoms-index-az"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".symptoms-index-az h2",
+            ".symptoms-index-az p",
+            ".symptoms-index-az ul"
+          ]
+        },
+        {
+          "id": "sy3",
+          "name": "Donation banner (navy)",
+          "selector": [
+            ".cmp-container--background-color-donations"
+          ],
+          "style": "dark",
+          "blocks": [
+            "columns-banner"
+          ],
+          "defaultContent": []
+        }
+      ],
+      "representativeUrl": "https://www.mayoclinic.org/symptoms"
     }
   ],
   "metadata": {

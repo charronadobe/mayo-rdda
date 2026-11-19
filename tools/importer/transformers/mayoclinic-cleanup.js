@@ -1024,10 +1024,158 @@ function cleanInternationalAfter(root, payload) {
   });
 }
 
+// ---------------------------------------------------------------------------------------------
+// Symptoms landing page (template "symptoms-index": /symptoms -> /health-library/symptoms).
+// H1, the Symptom Checker and First Aid tiles (cards-action), and the A-Z list of symptoms, each
+// linked to its structured medical-symptom document (/health-library/symptoms/<slug>,
+// tools/importer/structured/build-medical-symptom.mjs). The ad column and breadcrumb are dropped.
+// ---------------------------------------------------------------------------------------------
+
+// Symptoms with a medical-symptom document (the 88 symptom pages listed on /symptoms)
+const MIGRATED_SYMPTOMS = new Set([
+  'abdominal-pain', 'anal-pain', 'ankle-pain', 'arm-pain', 'back-pain', 'bent-penis',
+  'bleeding-after-vaginal-sex', 'bleeding-during-pregnancy', 'blood-clots', 'blood-in-semen',
+  'brain-lesions', 'breast-calcifications', 'breast-lumps', 'breast-rash', 'burning-feet',
+  'cold-hands', 'cough', 'coughing-up-blood', 'dark-circles-under-eyes', 'diarrhea', 'dizziness',
+  'dry-orgasm', 'elbow-pain', 'elevated-liver-enzymes', 'eosinophilia', 'excessive-sweating',
+  'eye-pain', 'eye-twitching', 'fatigue', 'foot-pain', 'frequent-bowel-movements',
+  'frequent-urination', 'green-stool', 'groin-pain', 'headache', 'heel-pain', 'high-blood-protein',
+  'high-hemoglobin-count', 'high-red-blood-cell-count', 'high-uric-acid-level',
+  'high-white-blood-cell-count', 'hip-pain', 'hyperkalemia', 'hypoxemia', 'intestinal-gas',
+  'joint-pain', 'kidney-pain', 'knee-pain', 'leg-pain', 'leg-swelling', 'loss-of-smell',
+  'low-hemoglobin', 'low-potassium', 'low-white-blood-cell-count', 'lymphocytosis', 'muscle-pain',
+  'nasal-congestion', 'nausea', 'neck-pain', 'neutropenia', 'night-leg-cramps', 'night-sweats',
+  'nipple-discharge', 'nosebleeds', 'numbness', 'numbness-in-hands', 'painful-urination',
+  'peeling-skin', 'pelvic-pain', 'petechiae', 'protein-in-urine', 'rectal-bleeding', 'red-eye',
+  'runny-nose', 'shortness-of-breath', 'shoulder-pain', 'testicle-pain', 'unexplained-weight-loss',
+  'urine-odor', 'vaginal-bleeding', 'vaginal-discharge', 'vaginal-dryness', 'vaginal-odor',
+  'vomiting-blood', 'watery-eyes', 'wheezing', 'white-tongue', 'yellow-tongue',
+]);
+
+/**
+ * Local path of a symptom page that has a medical-symptom document, else null.
+ * /symptoms/<slug>/basics/causes/sym-... -> /health-library/symptoms/<slug>
+ * @param {string} href www.mayoclinic.org URL (absolute or root-relative)
+ */
+function migratedSymptomPath(href) {
+  let url;
+  try { url = new URL(href, MAYO_ORIGIN); } catch (e) { return null; }
+  if (url.hostname !== 'www.mayoclinic.org') return null;
+  const parts = url.pathname.split('/').filter(Boolean);
+  if (parts[0] !== 'symptoms' || !MIGRATED_SYMPTOMS.has(parts[1])) return null;
+  return `/health-library/symptoms/${parts[1]}`;
+}
+
+function isSymptomsIndexPage(payload) {
+  return !!(payload && payload.template && payload.template.name === 'symptoms-index');
+}
+
+// Symptom link: local document when there is one, else the absolute mayoclinic.org URL
+function symptomLink(doc, a) {
+  const href = a.getAttribute('href') || '';
+  const link = doc.createElement('a');
+  link.setAttribute('href', migratedSymptomPath(href) || new URL(href, MAYO_ORIGIN).href);
+  link.textContent = linkText(a);
+  return link;
+}
+
+// Rebuilds the page column as three wrappers the template's sections and blocks select:
+//   .symptoms-index-intro  H1 and .symptoms-index-cards (the two action tiles, cards-action)
+//   .symptoms-index-az     "Jump to a letter" H2 and text, an alphabet-jump block (the letters as
+//                          plain text: its script links them to the letter headings, so the page
+//                          has no #anchor links for Sync to break), then per letter an H2 and a
+//                          list. Alias entries: "Name<br>See: <a>Target</a>", as on the source.
+// "Back to top" links (anchors) are dropped; the block script adds them back.
+function cleanSymptomsIndexBefore(root) {
+  const doc = root.ownerDocument;
+  const main = root.querySelector('#main-content');
+  if (!main) return;
+  const h1 = main.querySelector('h1');
+  const alpha = main.querySelector('.cmp-alpha-list');
+  if (!h1 || !alpha) return;
+  const h1Control = h1.closest('.cmp-column-control');
+  const alphaControl = alpha.closest('.cmp-column-control');
+
+  const intro = doc.createElement('div');
+  intro.className = 'symptoms-index-intro';
+  const title = doc.createElement('h1');
+  title.textContent = h1.textContent.replace(/\s+/g, ' ').trim();
+  intro.append(title);
+  const cards = doc.createElement('div');
+  cards.className = 'symptoms-index-cards';
+  alphaControl.querySelectorAll('.cmp-action-card-simple').forEach((card) => {
+    // root-relative tile links (/first-aid) stay on www.mayoclinic.org
+    card.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((a) => {
+      a.setAttribute('href', `${MAYO_ORIGIN}${a.getAttribute('href')}`);
+    });
+    cards.append(card);
+  });
+  if (cards.children.length) intro.append(cards);
+
+  const az = doc.createElement('div');
+  az.className = 'symptoms-index-az';
+  // "Jump to a letter" H2, the facet's letters (all of A-Z: the block greys out the letters that
+  // have no heading on the page, as the source does), then the intro text
+  const facet = alpha.querySelector('.cmp-departments-alphabet-facet');
+  const jump = facet && facet.querySelector('h2');
+  if (jump) {
+    const h2 = doc.createElement('h2');
+    h2.textContent = jump.textContent.replace(/\s+/g, ' ').trim();
+    az.append(h2);
+  }
+  const groups = [...alpha.querySelectorAll('[id$="_section"]')].filter((g) => g.querySelector(':scope > h3'));
+  const letters = doc.createElement('ul');
+  const facetLetters = facet ? [...facet.querySelectorAll('li')].map((li) => li.textContent.trim()) : [];
+  (facetLetters.length ? facetLetters : groups.map((g) => g.querySelector(':scope > h3').textContent.trim()))
+    .filter(Boolean)
+    .forEach((letter) => {
+      const li = doc.createElement('li');
+      li.textContent = letter;
+      letters.append(li);
+    });
+  if (letters.children.length) {
+    az.append(WebImporter.Blocks.createBlock(doc, { name: 'alphabet-jump', cells: [[letters]] }));
+  }
+  alpha.querySelectorAll('.cmp-alpha-list-intro p').forEach((p) => {
+    if (p.textContent.trim()) az.append(paragraph(doc, doc.createTextNode(p.textContent.replace(/\s+/g, ' ').trim())));
+  });
+  groups.forEach((g) => {
+    const h2 = doc.createElement('h2');
+    h2.textContent = g.querySelector(':scope > h3').textContent.trim();
+    const ul = doc.createElement('ul');
+    g.querySelectorAll('li.cmp-alpha-list--items').forEach((item) => {
+      const li = doc.createElement('li');
+      const alias = item.querySelector('.cmp-alpha-list--alias-reference');
+      if (alias) {
+        const label = [...item.children].find((c) => c !== alias && !c.querySelector('a'));
+        const target = alias.querySelector('a[href]');
+        if (label) li.append(doc.createTextNode(label.textContent.replace(/\s+/g, ' ').trim()));
+        if (target) {
+          if (label) li.append(doc.createElement('br'));
+          li.append(doc.createTextNode('See: '), symptomLink(doc, target));
+        }
+      } else {
+        const a = item.querySelector('a[href]');
+        if (a) li.append(symptomLink(doc, a));
+      }
+      if (li.childNodes.length) ul.append(li);
+    });
+    az.append(h2, ul);
+  });
+
+  const anchor = h1Control || alphaControl;
+  anchor.parentNode.insertBefore(az, anchor);
+  anchor.parentNode.insertBefore(intro, az);
+  if (h1Control && h1Control !== alphaControl) h1Control.remove();
+  alphaControl.remove();
+}
+
 export default function transform(hookName, element, payload) {
   if (hookName === 'beforeTransform') {
     // International page: keep the article <aside>, drop the chat bubble (see cleanInternationalBefore)
     if (isInternationalPage(payload)) cleanInternationalBefore(element);
+    // Symptoms landing page: H1, tiles and the A-Z list (see cleanSymptomsIndexBefore)
+    if (isSymptomsIndexPage(payload)) cleanSymptomsIndexBefore(element);
 
     // Share image in the page metadata (read from these tags by createMetadata)
     const head = element.ownerDocument && element.ownerDocument.head;
