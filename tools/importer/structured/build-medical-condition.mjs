@@ -89,6 +89,10 @@ function sourceData(slug) {
 // themselves are uploaded to DA (media/mayoclinic, media/thumbnails) and previewed/published separately.
 const DA_MEDIA = 'https://content.da.live/charronadobe/mayo-rdda/media/mayoclinic';
 const DA_KALTURA = 'https://content.da.live/charronadobe/mayo-rdda/media/thumbnails';
+// different illustrations with the same file name: all but the first get their own DA name
+const ASSET_RENAMES = {
+  '/content/dam/hecs-ccms/global/images/hil-procedures/2024/07/18/healthy-liver-vs-liver-cirrhosis-en.jpg': 'healthy-liver-vs-liver-cirrhosis-en-2.jpg',
+};
 function mediaUrl(src) {
   if (!src) return src;
   let url;
@@ -98,8 +102,12 @@ function mediaUrl(src) {
     // no underscores: Edge Delivery can't preview a DA file whose name has "_"
     return entry ? `${DA_KALTURA}/kaltura-${entry.toLowerCase().replace(/[^a-z0-9-]/g, '-')}.jpg` : src;
   }
-  if (url.hostname !== 'www.mayoclinic.org') return src;
-  const name = decodeURIComponent(url.pathname.split('/').pop() || '').toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+  if (!['www.mayoclinic.org', 'assets.mayoclinic.org'].includes(url.hostname)) return src;
+  let name = decodeURIComponent(url.pathname.split('/').pop() || '').toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+  // illustrations (assets.mayoclinic.org) are hosted in DA media/mayoclinic too, without "_"
+  if (url.hostname === 'assets.mayoclinic.org') {
+    name = ASSET_RENAMES[url.pathname.toLowerCase()] || name.replace(/_/g, '-');
+  }
   return name ? `${DA_MEDIA}/${name}` : src;
 }
 

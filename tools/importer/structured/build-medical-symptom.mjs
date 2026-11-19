@@ -73,14 +73,16 @@ function siteHref(href) {
   return url.href;
 }
 // images from www.mayoclinic.org (bot-protected) are hosted in DA under media/mayoclinic (same rule as
-// the cleanup transformer's daMediaUrl)
+// the cleanup transformer's daMediaUrl). Illustrations from assets.mayoclinic.org are hosted there
+// too, with "_" turned into "-": Edge Delivery can't preview a media file whose name has "_".
 const DA_MEDIA = 'https://content.da.live/charronadobe/mayo-rdda/media/mayoclinic';
 function mediaUrl(src) {
   if (!src) return src;
   let url;
   try { url = new URL(src, MAYO); } catch (e) { return src; }
-  if (url.hostname !== 'www.mayoclinic.org') return url.href;
-  const name = decodeURIComponent(url.pathname.split('/').pop() || '').toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+  if (!['www.mayoclinic.org', 'assets.mayoclinic.org'].includes(url.hostname)) return url.href;
+  let name = decodeURIComponent(url.pathname.split('/').pop() || '').toLowerCase().replace(/[^a-z0-9._-]/g, '-');
+  if (url.hostname === 'assets.mayoclinic.org') name = name.replace(/_/g, '-');
   return name ? `${DA_MEDIA}/${name}` : src;
 }
 
