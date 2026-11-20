@@ -514,7 +514,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   const resp = await fetch(resolvedUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'text/plain',
     },
     body: JSON.stringify(resolvedPayload),
   });
