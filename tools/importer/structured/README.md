@@ -10,8 +10,12 @@ Authors edit them in da.live's form editor. The site renders them as condition p
 ## Importing conditions
 
 1. **Save the source pages.** Save each condition page from mayoclinic.org as a snapshot, laid out as
-   `<dir>/www.mayoclinic.org/diseases-conditions/<slug>/symptoms-causes/<id>.html`. The existing 257
-   are in `migration-work/cond-snapshots`.
+   `<dir>/www.mayoclinic.org/diseases-conditions/<slug>/symptoms-causes/<id>.html`. The first 257
+   were in `migration-work/cond-snapshots`; the 15 in Mayo's older layout
+   (`tools/importer/urls-condition-skipped.txt`) are in `migration-work/cond-snapshots-skipped`.
+   Both layouts go through the same pipeline: the cleanup transformer
+   (`rebuildLegacyCondition` in `transformers/mayoclinic-cleanup.js`) rewrites an older-layout page
+   into the content the current layout imports to.
 2. **Run the pipeline** with a file of their URLs (one
    `https://www.mayoclinic.org/diseases-conditions/<slug>/symptoms-causes/<id>` per line):
 

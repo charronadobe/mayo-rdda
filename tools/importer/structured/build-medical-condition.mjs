@@ -93,6 +93,9 @@ const DA_KALTURA = 'https://content.da.live/charronadobe/mayo-rdda/media/thumbna
 const ASSET_RENAMES = {
   '/content/dam/hecs-ccms/global/images/hil-procedures/2024/07/18/healthy-liver-vs-liver-cirrhosis-en.jpg': 'healthy-liver-vs-liver-cirrhosis-en-2.jpg',
 };
+// www.mayoclinic.org images hosted in DA before names dropped "_": the shared share image of the
+// current-layout documents
+const KEEP_DA_NAMES = new Set(['mc_twittercard_120x120.jpg']);
 function mediaUrl(src) {
   if (!src) return src;
   let url;
@@ -107,6 +110,9 @@ function mediaUrl(src) {
   // illustrations (assets.mayoclinic.org) are hosted in DA media/mayoclinic too, without "_"
   if (url.hostname === 'assets.mayoclinic.org') {
     name = ASSET_RENAMES[url.pathname.toLowerCase()] || name.replace(/_/g, '-');
+  } else if (!KEEP_DA_NAMES.has(name)) {
+    // www.mayoclinic.org images (older-layout illustrations) likewise, except names already in DA
+    name = name.replace(/_/g, '-');
   }
   return name ? `${DA_MEDIA}/${name}` : src;
 }
@@ -131,7 +137,8 @@ const SECTION_LABEL = {
   prevention: 'Prevention',
 };
 // article sections beyond the standard ones (kept as "Other sections")
-const EXTRA = /^(types|when to get emergency help)$/i;
+// ("When to seek emergency care" is the older layout's name for "When to get emergency help")
+const EXTRA = /^(types|when to get emergency help|when to seek emergency care)$/i;
 // link sections: their cards and link paragraphs become related links
 const LINKS = {
   'associated procedures': 'associatedProcedure',

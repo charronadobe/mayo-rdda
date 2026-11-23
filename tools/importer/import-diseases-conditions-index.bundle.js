@@ -455,7 +455,22 @@ var CustomImportScript = (() => {
     "https://www.mayoclinic.org/diseases-conditions/x-linked-agammaglobulinemia/symptoms-causes/syc-20361635",
     "https://www.mayoclinic.org/diseases-conditions/triple-x-syndrome/symptoms-causes/syc-20350977",
     "https://www.mayoclinic.org/diseases-conditions/yips/symptoms-causes/syc-20379021",
-    "https://www.mayoclinic.org/diseases-conditions/shingles/symptoms-causes/syc-20353054"
+    "https://www.mayoclinic.org/diseases-conditions/shingles/symptoms-causes/syc-20353054",
+    "https://www.mayoclinic.org/diseases-conditions/jaw-cancer/symptoms-causes/syc-20606732",
+    "https://www.mayoclinic.org/diseases-conditions/waldenstrom-macroglobulinemia/symptoms-causes/syc-20359967",
+    "https://www.mayoclinic.org/diseases-conditions/bladder-cancer/symptoms-causes/syc-20356104",
+    "https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217",
+    "https://www.mayoclinic.org/diseases-conditions/breast-cancer/symptoms-causes/syc-20352470",
+    "https://www.mayoclinic.org/diseases-conditions/dcis/symptoms-causes/syc-20371889",
+    "https://www.mayoclinic.org/diseases-conditions/ganglioglioma/symptoms-causes/syc-20598879",
+    "https://www.mayoclinic.org/diseases-conditions/stomach-cancer/symptoms-causes/syc-20352438",
+    "https://www.mayoclinic.org/diseases-conditions/invasive-ductal-carcinoma/symptoms-causes/syc-20602075",
+    "https://www.mayoclinic.org/diseases-conditions/left-bundle-branch-block/symptoms-causes/syc-20606559",
+    "https://www.mayoclinic.org/diseases-conditions/left-sided-heart-failure/symptoms-causes/syc-20607494",
+    "https://www.mayoclinic.org/diseases-conditions/undifferentiated-pleomorphic-sarcoma/symptoms-causes/syc-20389554",
+    "https://www.mayoclinic.org/diseases-conditions/sarcoma/symptoms-causes/syc-20351048",
+    "https://www.mayoclinic.org/diseases-conditions/soft-tissue-sarcoma/symptoms-causes/syc-20377725",
+    "https://www.mayoclinic.org/diseases-conditions/total-anomalous-pulmonary-venous-return/symptoms-causes/syc-20610017"
   ]);
   function migratedConditionPath(href) {
     let url;
@@ -1031,9 +1046,338 @@ var CustomImportScript = (() => {
       else wrapper.replaceWith(paragraph(doc, content));
     });
   }
+  var MIGRATED_SYMPTOMS = /* @__PURE__ */ new Set([
+    "abdominal-pain",
+    "anal-pain",
+    "ankle-pain",
+    "arm-pain",
+    "back-pain",
+    "bent-penis",
+    "bleeding-after-vaginal-sex",
+    "bleeding-during-pregnancy",
+    "blood-clots",
+    "blood-in-semen",
+    "brain-lesions",
+    "breast-calcifications",
+    "breast-lumps",
+    "breast-rash",
+    "burning-feet",
+    "cold-hands",
+    "cough",
+    "coughing-up-blood",
+    "dark-circles-under-eyes",
+    "diarrhea",
+    "dizziness",
+    "dry-orgasm",
+    "elbow-pain",
+    "elevated-liver-enzymes",
+    "eosinophilia",
+    "excessive-sweating",
+    "eye-pain",
+    "eye-twitching",
+    "fatigue",
+    "foot-pain",
+    "frequent-bowel-movements",
+    "frequent-urination",
+    "green-stool",
+    "groin-pain",
+    "headache",
+    "heel-pain",
+    "high-blood-protein",
+    "high-hemoglobin-count",
+    "high-red-blood-cell-count",
+    "high-uric-acid-level",
+    "high-white-blood-cell-count",
+    "hip-pain",
+    "hyperkalemia",
+    "hypoxemia",
+    "intestinal-gas",
+    "joint-pain",
+    "kidney-pain",
+    "knee-pain",
+    "leg-pain",
+    "leg-swelling",
+    "loss-of-smell",
+    "low-hemoglobin",
+    "low-potassium",
+    "low-white-blood-cell-count",
+    "lymphocytosis",
+    "muscle-pain",
+    "nasal-congestion",
+    "nausea",
+    "neck-pain",
+    "neutropenia",
+    "night-leg-cramps",
+    "night-sweats",
+    "nipple-discharge",
+    "nosebleeds",
+    "numbness",
+    "numbness-in-hands",
+    "painful-urination",
+    "peeling-skin",
+    "pelvic-pain",
+    "petechiae",
+    "protein-in-urine",
+    "rectal-bleeding",
+    "red-eye",
+    "runny-nose",
+    "shortness-of-breath",
+    "shoulder-pain",
+    "testicle-pain",
+    "unexplained-weight-loss",
+    "urine-odor",
+    "vaginal-bleeding",
+    "vaginal-discharge",
+    "vaginal-dryness",
+    "vaginal-odor",
+    "vomiting-blood",
+    "watery-eyes",
+    "wheezing",
+    "white-tongue",
+    "yellow-tongue"
+  ]);
+  function migratedSymptomPath(href) {
+    let url;
+    try {
+      url = new URL(href, MAYO_ORIGIN);
+    } catch (e) {
+      return null;
+    }
+    if (url.hostname !== "www.mayoclinic.org") return null;
+    const parts = url.pathname.split("/").filter(Boolean);
+    if (parts[0] !== "symptoms" || !MIGRATED_SYMPTOMS.has(parts[1])) return null;
+    return `/health-library/symptoms/${parts[1]}`;
+  }
+  function isSymptomsIndexPage(payload) {
+    return !!(payload && payload.template && payload.template.name === "symptoms-index");
+  }
+  function symptomLink(doc, a) {
+    const href = a.getAttribute("href") || "";
+    const link = doc.createElement("a");
+    link.setAttribute("href", migratedSymptomPath(href) || new URL(href, MAYO_ORIGIN).href);
+    link.textContent = linkText(a);
+    return link;
+  }
+  function cleanSymptomsIndexBefore(root) {
+    const doc = root.ownerDocument;
+    const main = root.querySelector("#main-content");
+    if (!main) return;
+    const h1 = main.querySelector("h1");
+    const alpha = main.querySelector(".cmp-alpha-list");
+    if (!h1 || !alpha) return;
+    const h1Control = h1.closest(".cmp-column-control");
+    const alphaControl = alpha.closest(".cmp-column-control");
+    const intro = doc.createElement("div");
+    intro.className = "symptoms-index-intro";
+    const title = doc.createElement("h1");
+    title.textContent = h1.textContent.replace(/\s+/g, " ").trim();
+    intro.append(title);
+    const cards = doc.createElement("div");
+    cards.className = "symptoms-index-cards";
+    alphaControl.querySelectorAll(".cmp-action-card-simple").forEach((card) => {
+      card.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((a) => {
+        a.setAttribute("href", `${MAYO_ORIGIN}${a.getAttribute("href")}`);
+      });
+      cards.append(card);
+    });
+    if (cards.children.length) intro.append(cards);
+    const az = doc.createElement("div");
+    az.className = "symptoms-index-az";
+    const facet = alpha.querySelector(".cmp-departments-alphabet-facet");
+    const jump = facet && facet.querySelector("h2");
+    if (jump) {
+      const h2 = doc.createElement("h2");
+      h2.textContent = jump.textContent.replace(/\s+/g, " ").trim();
+      az.append(h2);
+    }
+    const groups = [...alpha.querySelectorAll('[id$="_section"]')].filter((g) => g.querySelector(":scope > h3"));
+    const letters = doc.createElement("ul");
+    const facetLetters = facet ? [...facet.querySelectorAll("li")].map((li) => li.textContent.trim()) : [];
+    (facetLetters.length ? facetLetters : groups.map((g) => g.querySelector(":scope > h3").textContent.trim())).filter(Boolean).forEach((letter) => {
+      const li = doc.createElement("li");
+      li.textContent = letter;
+      letters.append(li);
+    });
+    if (letters.children.length) {
+      az.append(WebImporter.Blocks.createBlock(doc, { name: "alphabet-jump", cells: [[letters]] }));
+    }
+    alpha.querySelectorAll(".cmp-alpha-list-intro p").forEach((p) => {
+      if (p.textContent.trim()) az.append(paragraph(doc, doc.createTextNode(p.textContent.replace(/\s+/g, " ").trim())));
+    });
+    groups.forEach((g) => {
+      const h2 = doc.createElement("h2");
+      h2.textContent = g.querySelector(":scope > h3").textContent.trim();
+      const ul = doc.createElement("ul");
+      g.querySelectorAll("li.cmp-alpha-list--items").forEach((item) => {
+        const li = doc.createElement("li");
+        const alias = item.querySelector(".cmp-alpha-list--alias-reference");
+        if (alias) {
+          const label = [...item.children].find((c) => c !== alias && !c.querySelector("a"));
+          const target = alias.querySelector("a[href]");
+          if (label) li.append(doc.createTextNode(label.textContent.replace(/\s+/g, " ").trim()));
+          if (target) {
+            if (label) li.append(doc.createElement("br"));
+            li.append(doc.createTextNode("See: "), symptomLink(doc, target));
+          }
+        } else {
+          const a = item.querySelector("a[href]");
+          if (a) li.append(symptomLink(doc, a));
+        }
+        if (li.childNodes.length) ul.append(li);
+      });
+      az.append(h2, ul);
+    });
+    const anchor = h1Control || alphaControl;
+    anchor.parentNode.insertBefore(az, anchor);
+    anchor.parentNode.insertBefore(intro, az);
+    if (h1Control && h1Control !== alphaControl) h1Control.remove();
+    alphaControl.remove();
+  }
+  var LEGACY_CONDITION_ARTICLE = "article#main-content .content";
+  var LEGACY_CONDITION_HEADINGS = { "when to seek care": "When to see a doctor" };
+  function isLegacyConditionPage(payload, root) {
+    return !!(payload && payload.template && payload.template.name === "condition") && !root.querySelector(CONDITION_ROOT) && !!root.querySelector(LEGACY_CONDITION_ARTICLE);
+  }
+  function rebuildLegacyCondition(root) {
+    var _a;
+    const doc = root.ownerDocument;
+    const clean = (s) => (s || "").replace(/\s+/g, " ").trim();
+    const absolute = (href) => {
+      try {
+        return new URL(href, MAYO_ORIGIN).href;
+      } catch (e) {
+        return href;
+      }
+    };
+    const linkParagraph = (href, label) => {
+      const a = doc.createElement("a");
+      a.setAttribute("href", absolute(href));
+      a.textContent = label;
+      return paragraph(doc, a);
+    };
+    const content = root.querySelector(LEGACY_CONDITION_ARTICLE);
+    fixLazyImages(content);
+    const out = [];
+    const title = root.querySelector(".main > header h1");
+    if (title && clean(title.textContent)) {
+      const h1 = doc.createElement("h1");
+      h1.textContent = clean(title.textContent);
+      out.push(h1);
+    }
+    const navUrls = /* @__PURE__ */ new Set();
+    const navRows = [];
+    content.querySelectorAll(".tableofcontents a[href]").forEach((a) => {
+      if (a.classList.contains("on")) return;
+      a.querySelectorAll("br").forEach((br) => br.replaceWith(doc.createTextNode(" ")));
+      const label = clean(a.textContent).replace(/\s*&\s*/g, " and ");
+      const href = absolute(a.getAttribute("href"));
+      if (!label || navUrls.has(href)) return;
+      navUrls.add(href);
+      const link = doc.createElement("a");
+      link.setAttribute("href", href);
+      link.textContent = label;
+      navRows.push([link]);
+    });
+    if (navRows.length) out.push(WebImporter.Blocks.createBlock(doc, { name: "cards-side-nav", cells: navRows }));
+    const body = [...content.children].find((c) => c.tagName === "DIV" && !c.className && !c.id && c.querySelector("h2"));
+    const moreInfo = [];
+    const kids = body ? [...body.children] : [];
+    for (let i = 0; i < kids.length; i += 1) {
+      const el = kids[i];
+      const tag = el.tagName;
+      if (/^H[2-6]$/.test(tag)) {
+        const t = clean(el.textContent);
+        if (!t) continue;
+        const h = doc.createElement(tag.toLowerCase());
+        h.textContent = tag === "H2" ? LEGACY_CONDITION_HEADINGS[t.toLowerCase()] || t : t;
+        out.push(h);
+      } else if (/^(P|UL|OL|BLOCKQUOTE)$/.test(tag)) {
+        if (clean(el.textContent)) out.push(el);
+      } else if (el.matches(".video")) {
+        const name = clean((el.querySelector("h4, h3") || {}).textContent);
+        const next = kids[i + 1];
+        const transcript = next && next.querySelector(".transcript-content");
+        const iframe = el.querySelector("iframe");
+        const src = iframe ? iframe.getAttribute("src") || iframe.getAttribute("data-src") || "" : "";
+        const id = (src.match(/youtube(?:-nocookie)?\.com\/embed\/([\w-]{6,})/) || [])[1] || ((_a = (transcript && transcript.id || "").replace(/^transcript-youtube-video-/, "").match(/^[\w-]{6,}$/)) == null ? void 0 : _a[0]);
+        if (!id) continue;
+        const a = doc.createElement("a");
+        a.setAttribute("href", `https://www.youtube.com/watch?v=${id}`);
+        a.textContent = name || a.getAttribute("href");
+        out.push(WebImporter.Blocks.createBlock(doc, { name: "video-inline", cells: [[paragraph(doc, a)]] }));
+        if (transcript) {
+          const paras = [...transcript.children].filter((c) => clean(c.textContent)).map((c) => c.tagName === "P" ? c : paragraph(doc, doc.createTextNode(clean(c.textContent))));
+          if (paras.length) out.push(WebImporter.Blocks.createBlock(doc, { name: "accordion-toggle", cells: [["Show transcript", paras]] }));
+          i += 1;
+        }
+      } else if (el.matches(".access-modal")) {
+        const box = el.querySelector(".image-lightbox-container") || el;
+        const img = box.querySelector(":scope > img") || el.querySelector("img");
+        if (!img) continue;
+        const image = doc.createElement("img");
+        image.setAttribute("src", img.getAttribute("src"));
+        if (img.getAttribute("alt")) image.setAttribute("alt", clean(img.getAttribute("alt")));
+        out.push(paragraph(doc, image));
+        const text = el.querySelector(".lightbox-text");
+        const name = clean(text && text.querySelector("h3") ? text.querySelector("h3").textContent : "");
+        if (name) {
+          const strong = doc.createElement("strong");
+          strong.textContent = name;
+          out.push(paragraph(doc, strong));
+          const caption = text ? [...text.querySelectorAll("p")].map((p) => clean(p.textContent)).filter(Boolean).join(" ") : "";
+          if (caption) out.push(paragraph(doc, doc.createTextNode(caption)));
+        }
+      } else if (el.matches(".requestappt")) {
+        const a = el.querySelector("a[href]");
+        if (a) {
+          const strong = doc.createElement("strong");
+          strong.append(linkParagraph(a.getAttribute("href"), clean(a.textContent)).firstChild);
+          out.push(paragraph(doc, strong));
+        }
+      } else if (el.matches(".acces-list-container") && /^more information$/i.test(clean((el.querySelector("h3") || {}).textContent))) {
+        el.querySelectorAll("a[href]").forEach((a) => moreInfo.push(a));
+      }
+    }
+    const refs = content.querySelector(".references ol, .references ul");
+    if (refs) out.push(WebImporter.Blocks.createBlock(doc, { name: "accordion-toggle", cells: [["Show references", [refs]]] }));
+    const linkSection = (heading, links) => {
+      const paras = [];
+      links.forEach((a) => {
+        const label = clean(a.textContent);
+        const href = absolute(a.getAttribute("href"));
+        if (!label || navUrls.has(href)) return;
+        navUrls.add(href);
+        paras.push(linkParagraph(href, label));
+      });
+      if (!paras.length) return;
+      const h2 = doc.createElement("h2");
+      h2.textContent = heading;
+      out.push(h2, ...paras);
+    };
+    content.querySelectorAll(":scope > .acces-list-container .list-wrapper").forEach((wrapper) => {
+      const h3 = clean((wrapper.querySelector("h3") || {}).textContent);
+      if (!h3) linkSection("Related content", [...wrapper.querySelectorAll("a[href]")]);
+      else if (/^associated procedures$/i.test(h3)) linkSection("Associated procedures", [...wrapper.querySelectorAll("a[href]")]);
+    });
+    linkSection("More information", moreInfo);
+    const frag = doc.createDocumentFragment();
+    frag.append(...out);
+    frag.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((a) => {
+      const href = a.getAttribute("href");
+      if (href === "/health-library" || href.startsWith("/health-library/")) return;
+      a.setAttribute("href", `${MAYO_ORIGIN}${href}`);
+    });
+    frag.querySelectorAll("h1, h2, h3, h4, h5, h6, p, ul, ol, li").forEach((e) => {
+      [...e.attributes].forEach((attr) => e.removeAttribute(attr.name));
+    });
+    while (root.firstChild) root.firstChild.remove();
+    root.append(frag);
+  }
   function transform(hookName, element, payload) {
     if (hookName === "beforeTransform") {
+      if (isLegacyConditionPage(payload, element)) rebuildLegacyCondition(element);
       if (isInternationalPage(payload)) cleanInternationalBefore(element);
+      if (isSymptomsIndexPage(payload)) cleanSymptomsIndexBefore(element);
       const head = element.ownerDocument && element.ownerDocument.head;
       if (head) {
         head.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"], meta[property="twitter:image"]').forEach((meta) => {

@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=M",
   "path": "health-library/diseases-conditions/m",
-  "timestamp": "2026-11-18T16:25:57.738Z",
+  "timestamp": "2026-11-23T13:45:29.644Z",
   "title": "Diseases and Conditions that Start with M - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "474cf506ca78"
+  "importScript": "f799312adec6"
 }

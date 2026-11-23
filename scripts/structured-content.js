@@ -87,8 +87,12 @@ const SECTIONS = [
   ['prevention', 'Prevention'],
 ];
 // extra sections follow a standard one: "Types" after Overview, "When to get emergency help"
-// after "When to see a doctor"; any other after Prevention
-const EXTRA_AFTER = { types: 'Overview', 'when to get emergency help': 'When to see a doctor' };
+// (or "When to seek emergency care") after "When to see a doctor"; any other after Prevention
+const EXTRA_AFTER = {
+  types: 'Overview',
+  'when to get emergency help': 'When to see a doctor',
+  'when to seek emergency care': 'When to see a doctor',
+};
 const SIDE_NAV = /^(diagnosis (and|&) treatment|doctors (and|&) departments|care at mayo clinic)$/i;
 // shared banner page shown at the end of every condition page (edit it once for all pages)
 const DONATION_BANNER = '/fragments/donation-banner';

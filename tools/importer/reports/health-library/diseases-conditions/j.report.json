@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=J",
   "path": "health-library/diseases-conditions/j",
-  "timestamp": "2026-11-18T16:25:37.549Z",
+  "timestamp": "2026-11-23T13:45:09.442Z",
   "title": "Diseases and Conditions that Start with J - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "474cf506ca78"
+  "importScript": "f799312adec6"
 }

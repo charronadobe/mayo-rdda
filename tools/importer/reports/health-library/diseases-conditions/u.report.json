@@ -2,12 +2,12 @@
   "status": "success",
   "url": "https://www.mayoclinic.org/diseases-conditions/index?letter=U",
   "path": "health-library/diseases-conditions/u",
-  "timestamp": "2026-11-18T16:26:45.975Z",
+  "timestamp": "2026-11-23T13:45:53.343Z",
   "title": "Diseases and Conditions that Start with U - Mayo Clinic",
   "template": "diseases-conditions-index",
   "blocks": [
     "columns-intro-index",
     "columns-banner"
   ],
-  "importScript": "474cf506ca78"
+  "importScript": "f799312adec6"
 }

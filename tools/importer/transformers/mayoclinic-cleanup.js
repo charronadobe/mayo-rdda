@@ -260,6 +260,21 @@ const MIGRATED_CONDITION_URLS = new Set([
   'https://www.mayoclinic.org/diseases-conditions/triple-x-syndrome/symptoms-causes/syc-20350977',
   'https://www.mayoclinic.org/diseases-conditions/yips/symptoms-causes/syc-20379021',
   'https://www.mayoclinic.org/diseases-conditions/shingles/symptoms-causes/syc-20353054',
+  'https://www.mayoclinic.org/diseases-conditions/jaw-cancer/symptoms-causes/syc-20606732',
+  'https://www.mayoclinic.org/diseases-conditions/waldenstrom-macroglobulinemia/symptoms-causes/syc-20359967',
+  'https://www.mayoclinic.org/diseases-conditions/bladder-cancer/symptoms-causes/syc-20356104',
+  'https://www.mayoclinic.org/diseases-conditions/bone-cancer/symptoms-causes/syc-20350217',
+  'https://www.mayoclinic.org/diseases-conditions/breast-cancer/symptoms-causes/syc-20352470',
+  'https://www.mayoclinic.org/diseases-conditions/dcis/symptoms-causes/syc-20371889',
+  'https://www.mayoclinic.org/diseases-conditions/ganglioglioma/symptoms-causes/syc-20598879',
+  'https://www.mayoclinic.org/diseases-conditions/stomach-cancer/symptoms-causes/syc-20352438',
+  'https://www.mayoclinic.org/diseases-conditions/invasive-ductal-carcinoma/symptoms-causes/syc-20602075',
+  'https://www.mayoclinic.org/diseases-conditions/left-bundle-branch-block/symptoms-causes/syc-20606559',
+  'https://www.mayoclinic.org/diseases-conditions/left-sided-heart-failure/symptoms-causes/syc-20607494',
+  'https://www.mayoclinic.org/diseases-conditions/undifferentiated-pleomorphic-sarcoma/symptoms-causes/syc-20389554',
+  'https://www.mayoclinic.org/diseases-conditions/sarcoma/symptoms-causes/syc-20351048',
+  'https://www.mayoclinic.org/diseases-conditions/soft-tissue-sarcoma/symptoms-causes/syc-20377725',
+  'https://www.mayoclinic.org/diseases-conditions/total-anomalous-pulmonary-venous-return/symptoms-causes/syc-20610017',
 ]);
 // </migrated-conditions>
 
@@ -1170,8 +1185,180 @@ function cleanSymptomsIndexBefore(root) {
   alphaControl.remove();
 }
 
+// ---------------------------------------------------------------------------------------------
+// Condition pages in Mayo Clinic's older layout (template "condition"; 15 pages such as breast
+// cancer, sarcoma or left bundle branch block). The article is plain <h2> sections inside
+// article#main-content .content, with lightbox illustrations, YouTube videos and a transcript,
+// a references list and "Related" link lists. The page body is rebuilt into the content the
+// current layout imports to (H1, section nav, article sections, video-inline and accordion-toggle
+// blocks, link sections), so build-medical-condition.mjs reads both layouts the same way.
+// Runs only when the current layout (CONDITION_ROOT) is absent, so other pages are unchanged.
+// ---------------------------------------------------------------------------------------------
+const LEGACY_CONDITION_ARTICLE = 'article#main-content .content';
+// Older-layout heading -> current-layout heading of the same section (document field)
+const LEGACY_CONDITION_HEADINGS = { 'when to seek care': 'When to see a doctor' };
+
+function isLegacyConditionPage(payload, root) {
+  return !!(payload && payload.template && payload.template.name === 'condition')
+    && !root.querySelector(CONDITION_ROOT) && !!root.querySelector(LEGACY_CONDITION_ARTICLE);
+}
+
+function rebuildLegacyCondition(root) {
+  const doc = root.ownerDocument;
+  const clean = (s) => (s || '').replace(/\s+/g, ' ').trim();
+  const absolute = (href) => {
+    try { return new URL(href, MAYO_ORIGIN).href; } catch (e) { return href; }
+  };
+  const linkParagraph = (href, label) => {
+    const a = doc.createElement('a');
+    a.setAttribute('href', absolute(href));
+    a.textContent = label;
+    return paragraph(doc, a);
+  };
+  const content = root.querySelector(LEGACY_CONDITION_ARTICLE);
+  fixLazyImages(content);
+  const out = [];
+
+  // H1: <h1><a href="(this page)">Bladder cancer</a></h1> in the page header
+  const title = root.querySelector('.main > header h1');
+  if (title && clean(title.textContent)) {
+    const h1 = doc.createElement('h1');
+    h1.textContent = clean(title.textContent);
+    out.push(h1);
+  }
+
+  // Section nav: the condition's other tabs ("Diagnosis<br>&<br>treatment" -> "Diagnosis and
+  // treatment", as the current layout names them)
+  const navUrls = new Set();
+  const navRows = [];
+  content.querySelectorAll('.tableofcontents a[href]').forEach((a) => {
+    if (a.classList.contains('on')) return;
+    a.querySelectorAll('br').forEach((br) => br.replaceWith(doc.createTextNode(' ')));
+    const label = clean(a.textContent).replace(/\s*&\s*/g, ' and ');
+    const href = absolute(a.getAttribute('href'));
+    if (!label || navUrls.has(href)) return;
+    navUrls.add(href);
+    const link = doc.createElement('a');
+    link.setAttribute('href', href);
+    link.textContent = label;
+    navRows.push([link]);
+  });
+  if (navRows.length) out.push(WebImporter.Blocks.createBlock(doc, { name: 'cards-side-nav', cells: navRows }));
+
+  // Article: <h2> sections. Ads, newsletter sign-up, "care at Mayo Clinic" link (also a nav tab),
+  // "Products & Services" store links, byline and empty trailing heading are left out.
+  const body = [...content.children].find((c) => c.tagName === 'DIV' && !c.className && !c.id && c.querySelector('h2'));
+  const moreInfo = [];
+  const kids = body ? [...body.children] : [];
+  for (let i = 0; i < kids.length; i += 1) {
+    const el = kids[i];
+    const tag = el.tagName;
+    if (/^H[2-6]$/.test(tag)) {
+      const t = clean(el.textContent);
+      if (!t) continue;
+      const h = doc.createElement(tag.toLowerCase());
+      h.textContent = tag === 'H2' ? (LEGACY_CONDITION_HEADINGS[t.toLowerCase()] || t) : t;
+      out.push(h);
+    } else if (/^(P|UL|OL|BLOCKQUOTE)$/.test(tag)) {
+      if (clean(el.textContent)) out.push(el);
+    } else if (el.matches('.video')) {
+      // YouTube video: title (h4), then the transcript in the next element
+      const name = clean((el.querySelector('h4, h3') || {}).textContent);
+      const next = kids[i + 1];
+      const transcript = next && next.querySelector('.transcript-content');
+      const iframe = el.querySelector('iframe');
+      const src = iframe ? iframe.getAttribute('src') || iframe.getAttribute('data-src') || '' : '';
+      const id = (src.match(/youtube(?:-nocookie)?\.com\/embed\/([\w-]{6,})/) || [])[1]
+        || ((transcript && transcript.id) || '').replace(/^transcript-youtube-video-/, '').match(/^[\w-]{6,}$/)?.[0];
+      if (!id) continue;
+      const a = doc.createElement('a');
+      a.setAttribute('href', `https://www.youtube.com/watch?v=${id}`);
+      a.textContent = name || a.getAttribute('href');
+      out.push(WebImporter.Blocks.createBlock(doc, { name: 'video-inline', cells: [[paragraph(doc, a)]] }));
+      if (transcript) {
+        const paras = [...transcript.children].filter((c) => clean(c.textContent)).map((c) => (c.tagName === 'P' ? c : paragraph(doc, doc.createTextNode(clean(c.textContent)))));
+        if (paras.length) out.push(WebImporter.Blocks.createBlock(doc, { name: 'accordion-toggle', cells: [['Show transcript', paras]] }));
+        i += 1;
+      }
+    } else if (el.matches('.access-modal')) {
+      // Lightbox illustration: image, bold title, caption (as .cmp-image-with-title imports)
+      const box = el.querySelector('.image-lightbox-container') || el;
+      const img = box.querySelector(':scope > img') || el.querySelector('img');
+      if (!img) continue;
+      const image = doc.createElement('img');
+      image.setAttribute('src', img.getAttribute('src'));
+      if (img.getAttribute('alt')) image.setAttribute('alt', clean(img.getAttribute('alt')));
+      out.push(paragraph(doc, image));
+      const text = el.querySelector('.lightbox-text');
+      const name = clean((text && text.querySelector('h3')) ? text.querySelector('h3').textContent : '');
+      if (name) {
+        const strong = doc.createElement('strong');
+        strong.textContent = name;
+        out.push(paragraph(doc, strong));
+        const caption = text ? [...text.querySelectorAll('p')].map((p) => clean(p.textContent)).filter(Boolean).join(' ') : '';
+        if (caption) out.push(paragraph(doc, doc.createTextNode(caption)));
+      }
+    } else if (el.matches('.requestappt')) {
+      // "Request an appointment" pill, kept in its section as the current layout does
+      const a = el.querySelector('a[href]');
+      if (a) {
+        const strong = doc.createElement('strong');
+        strong.append(linkParagraph(a.getAttribute('href'), clean(a.textContent)).firstChild);
+        out.push(paragraph(doc, strong));
+      }
+    } else if (el.matches('.acces-list-container') && /^more information$/i.test(clean((el.querySelector('h3') || {}).textContent))) {
+      el.querySelectorAll('a[href]').forEach((a) => moreInfo.push(a));
+    }
+  }
+
+  // References (current layout: accordion-toggle block)
+  const refs = content.querySelector('.references ol, .references ul');
+  if (refs) out.push(WebImporter.Blocks.createBlock(doc, { name: 'accordion-toggle', cells: [['Show references', [refs]]] }));
+
+  // Link sections, as the current layout's headings: "Related content", "Associated procedures",
+  // "More information" (each link once; links without a label, filled in by script, are left out)
+  const linkSection = (heading, links) => {
+    const paras = [];
+    links.forEach((a) => {
+      const label = clean(a.textContent);
+      const href = absolute(a.getAttribute('href'));
+      if (!label || navUrls.has(href)) return;
+      navUrls.add(href);
+      paras.push(linkParagraph(href, label));
+    });
+    if (!paras.length) return;
+    const h2 = doc.createElement('h2');
+    h2.textContent = heading;
+    out.push(h2, ...paras);
+  };
+  // "Related" lists: an unlabelled list of related pages, then "Associated Procedures"; its "News
+  // from Mayo Clinic" and "Products & Services" (store) lists are left out, as on the current layout
+  content.querySelectorAll(':scope > .acces-list-container .list-wrapper').forEach((wrapper) => {
+    const h3 = clean((wrapper.querySelector('h3') || {}).textContent);
+    if (!h3) linkSection('Related content', [...wrapper.querySelectorAll('a[href]')]);
+    else if (/^associated procedures$/i.test(h3)) linkSection('Associated procedures', [...wrapper.querySelectorAll('a[href]')]);
+  });
+  linkSection('More information', moreInfo);
+
+  // Links to pages that are not on this site point back to mayoclinic.org
+  const frag = doc.createDocumentFragment();
+  frag.append(...out);
+  frag.querySelectorAll('a[href^="/"]:not([href^="//"])').forEach((a) => {
+    const href = a.getAttribute('href');
+    if (href === '/health-library' || href.startsWith('/health-library/')) return;
+    a.setAttribute('href', `${MAYO_ORIGIN}${href}`);
+  });
+  frag.querySelectorAll('h1, h2, h3, h4, h5, h6, p, ul, ol, li').forEach((e) => {
+    [...e.attributes].forEach((attr) => e.removeAttribute(attr.name));
+  });
+  while (root.firstChild) root.firstChild.remove();
+  root.append(frag);
+}
+
 export default function transform(hookName, element, payload) {
   if (hookName === 'beforeTransform') {
+    // Condition pages in the older layout: rebuilt as the current layout imports (see rebuildLegacyCondition)
+    if (isLegacyConditionPage(payload, element)) rebuildLegacyCondition(element);
     // International page: keep the article <aside>, drop the chat bubble (see cleanInternationalBefore)
     if (isInternationalPage(payload)) cleanInternationalBefore(element);
     // Symptoms landing page: H1, tiles and the A-Z list (see cleanSymptomsIndexBefore)
