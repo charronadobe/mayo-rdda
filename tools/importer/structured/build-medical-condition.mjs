@@ -291,6 +291,11 @@ function toData(slug, r, src) {
   const shareImage = mediaUrl(r.meta.image || src.ogImage);
   r.illustration.forEach((im) => { im.url = mediaUrl(im.url); });
   r.video.forEach((v) => { v.thumbnailUrl = mediaUrl(v.thumbnailUrl); });
+  // A video with no thumbnail whose link is only this condition's own source page has nothing to
+  // show or play (e.g. the Kaltura playlist "Videos: Resistance-tubing exercises" Mayo embeds by
+  // mistake on the E. coli page): it is left out
+  const samePage = (u) => (u || '').replace(/\/$/, '') === (src.sourceUrl || '').replace(/\/$/, '');
+  r.video = r.video.filter((v) => v.thumbnailUrl || !samePage(v.url));
   const doc = {
     // the page title is the name readers see; the source's schema.org name is an alternate name
     name,
