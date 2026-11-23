@@ -165,10 +165,26 @@ function appointmentButton(cells) {
   return a ? el('p', {}, el('strong', {}, el('a', { href: a.getAttribute('href') }, a.textContent.trim()))) : null;
 }
 
+/** YouTube's own thumbnail of a YouTube video URL (watch, youtu.be or embed), or null. */
+function youtubeThumbnail(url) {
+  let u;
+  try { u = new URL(url); } catch (e) { return null; }
+  const host = u.hostname.replace(/^(www|m)\./, '');
+  let id = '';
+  if (host === 'youtu.be') [, id] = u.pathname.split('/');
+  else if (['youtube.com', 'youtube-nocookie.com'].includes(host)) {
+    id = u.searchParams.get('v') || (u.pathname.match(/^\/(?:embed|shorts)\/([^/]+)/) || [])[1] || '';
+  }
+  return /^[\w-]{6,}$/.test(id) ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : null;
+}
+
 /** Video block, the title as H3 and the transcript accordion, as on a condition page. */
 function video(v) {
+  // poster: the stored thumbnail, else YouTube's; none at all (the block then shows the player
+  // or a text link) rather than an image without a source
+  const poster = v.thumbnailUrl || youtubeThumbnail(v.url);
   const nodes = [authoredBlock('video-inline', [[[
-    el('p', {}, image(v.thumbnailUrl, v.name)),
+    poster ? el('p', {}, image(poster, v.name)) : null,
     el('p', {}, v.url ? el('a', { href: v.url }, v.name) : v.name),
   ]]])];
   nodes.push(el('h3', { id: toClassName(v.name) }, v.name));

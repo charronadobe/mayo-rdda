@@ -47,6 +47,8 @@ function getLabel(link, picture) {
 
 export default function decorate(block) {
   let picture = block.querySelector('picture');
+  // a poster without an image source would show as a broken image: treat it as no poster
+  if (picture && !picture.querySelector('img')?.getAttribute('src')?.trim()) picture = null;
   const link = block.querySelector('a[href]');
   const label = getLabel(link, picture);
 
