@@ -111,8 +111,9 @@ function mediaUrl(src) {
   if (url.hostname === 'assets.mayoclinic.org') {
     name = ASSET_RENAMES[url.pathname.toLowerCase()] || name.replace(/_/g, '-');
   } else if (!KEEP_DA_NAMES.has(name)) {
-    // www.mayoclinic.org images (older-layout illustrations) likewise, except names already in DA
-    name = name.replace(/_/g, '-');
+    // www.mayoclinic.org images (older-layout illustrations) likewise, except names already in DA;
+    // "--" collapsed too, as Edge Delivery does when previewing ("ds00328_-ds00771" -> "ds00328-ds00771")
+    name = name.replace(/_/g, '-').replace(/-{2,}/g, '-');
   }
   return name ? `${DA_MEDIA}/${name}` : src;
 }
