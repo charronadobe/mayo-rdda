@@ -712,15 +712,15 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     }),
     fetchPageTitle(org, repo, path, token),
   ]);
-  //**alert in invokeExternalService */
-  alert("invokeExternalService 01");
+
   const resolvedUrl = config.externalServiceUrl;
   if (!resolvedUrl) {
     throw new Error(
       'External service URL is not configured. Add an "external-service-url" entry to /config/placeholders.json.',
     );
   }
-
+  //**alert in invokeExternalService */
+  alert("invokeExternalService 01");
   let resolvedPayload;
   if (config.externalServicePayload) {
     try {
