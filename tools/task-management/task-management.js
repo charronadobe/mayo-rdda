@@ -745,7 +745,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
 
   resolvedPayload.aemPageUrl = buildAemPageUrl(org, repo, path);
   resolvedPayload["page-title"] = pageTitle;
-  //**alert in invokeExternalService */
+  //**alert in invokeExternalService  */
   alert("invokeExternalService 04");
 
   onProgress("Creating project in Workfront…");
