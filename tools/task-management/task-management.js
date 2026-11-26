@@ -749,13 +749,6 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   onProgress("Creating project in Workfront…");
   // eslint-disable-next-line no-console
   console.log("[task-management] Calling service →", resolvedUrl);
-  //**alert in invokeExternalService */
-  alert(
-    "invokeExternalService 01 " +
-      resolvedUrl +
-      " " +
-      JSON.stringify(resolvedPayload),
-  );
   // ** Note: The alert below is for demonstration purposes only. In a production environment, you would typically remove such alerts to avoid interrupting the user experience. **
   // alert(
   //   "About to fetch with resolvedPayload: " + JSON.stringify(resolvedPayload),
@@ -768,17 +761,20 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     body: JSON.stringify(resolvedPayload),
   });
   //**alert in invokeExternalService */
-  alert("invokeExternalService 02");
+  alert("invokeExternalService 01");
 
   if (!resp.ok) {
     const errorBody = await resp.text();
     throw new Error(`External service error: ${resp.status} – ${errorBody}`);
   }
+  alert("invokeExternalService 02");
 
   onProgress("Creating review task…");
   const result = await resp.json();
   onProgress("Assigning it to the user…");
+  alert("invokeExternalService 03");
   onProgress("Nearly completed…");
+  alert("invokeExternalService 04");
   return result;
 }
 
