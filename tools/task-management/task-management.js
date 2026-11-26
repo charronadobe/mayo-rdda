@@ -501,6 +501,11 @@ async function updateWorkfrontTask(url, task, action, token) {
     target.searchParams.set("url", url);
     target.searchParams.set("action", action.wfAction);
     target.searchParams.set("id", task.id);
+  } else if (action.key === "REQ") {
+    // ***Here is where to call the webhook to create a new task
+    alert(
+      "Request Review action triggered. This is where you would call the webhook to create a new task.",
+    );
   } else {
     // Fallback: direct status write (used until the work-action name is known).
     target.searchParams.set("url", `${url}/${task.id}`);
@@ -1416,17 +1421,16 @@ class RefDemoTaskManagement extends LitElement {
             : html` ${TASK_ACTIONS.map((a) => {
                 const disabled = isActionDisabled(task.status, a.key);
                 return html` <button
-                    class="icon-btn ${a.variant || "primary"}"
-                    title=${disabled ? `${a.label} (unavailable)` : a.label}
-                    aria-label=${a.label}
-                    ?disabled=${disabled}
-                    @click=${() => {
-                      if (!disabled) this.runTaskAction(task, a);
-                    }}
-                  >
-                    ${ACTION_ICONS[a.icon]()}
-                  </button>
-                  <p>${task.id}</p>`;
+                  class="icon-btn ${a.variant || "primary"}"
+                  title=${disabled ? `${a.label} (unavailable)` : a.label}
+                  aria-label=${a.label}
+                  ?disabled=${disabled}
+                  @click=${() => {
+                    if (!disabled) this.runTaskAction(task, a);
+                  }}
+                >
+                  ${ACTION_ICONS[a.icon]()}
+                </button>`;
               })}`}
           <button
             class="icon-btn comment-btn ${commentsOpen
