@@ -1426,7 +1426,7 @@ class RefDemoTaskManagement extends LitElement {
                   >
                     ${ACTION_ICONS[a.icon]()}
                   </button>
-                  <p>asdf</p>`;
+                  <p>${task.id}</p>`;
               })}`}
           <button
             class="icon-btn comment-btn ${commentsOpen
