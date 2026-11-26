@@ -501,11 +501,6 @@ async function updateWorkfrontTask(url, task, action, token) {
     target.searchParams.set("url", url);
     target.searchParams.set("action", action.wfAction);
     target.searchParams.set("id", task.id);
-  } else if (action.key === "REQ") {
-    // ***Here is where to call the webhook to create a new task
-    alert(
-      "Request Review action triggered. This is where you would call the webhook to create a new task.",
-    );
   } else {
     // Fallback: direct status write (used until the work-action name is known).
     target.searchParams.set("url", `${url}/${task.id}`);
@@ -1103,16 +1098,23 @@ class RefDemoTaskManagement extends LitElement {
           'Workfront instance URL is not configured. Add a "workfront-instance-url" entry to /config/placeholders.json.',
         );
       }
-      await updateWorkfrontTask(cfg.actionUrl, task, action, this.token);
-      // "Work On It" (acceptWork) only accepts the work; follow it with a status
-      // write to move the task to In Progress so it shows just the Complete action.
-      if (action.wfAction === "acceptWork") {
-        await updateWorkfrontTask(
-          cfg.actionUrl,
-          task,
-          { key: "INP" },
-          this.token,
+      if (action.key === "REQ") {
+        // ***Here is where to call the webhook to create a new task
+        alert(
+          "Request Review action triggered. This is where you would call the webhook to create a new task.",
         );
+      } else {
+        await updateWorkfrontTask(cfg.actionUrl, task, action, this.token);
+        // "Work On It" (acceptWork) only accepts the work; follow it with a status
+        // write to move the task to In Progress so it shows just the Complete action.
+        if (action.wfAction === "acceptWork") {
+          await updateWorkfrontTask(
+            cfg.actionUrl,
+            task,
+            { key: "INP" },
+            this.token,
+          );
+        }
       }
       await this.loadTasks(); // refresh after a successful transition
     } catch (err) {
