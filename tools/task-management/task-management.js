@@ -731,8 +731,6 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
         e,
       );
     }
-    //**alert in invokeExternalService */
-    alert("invokeExternalService 01");
   }
 
   if (!resolvedPayload) {
@@ -744,6 +742,8 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
       "user-email": profile.userEmail,
     };
   }
+  //**alert in invokeExternalService */
+  alert("invokeExternalService 01");
 
   resolvedPayload.aemPageUrl = buildAemPageUrl(org, repo, path);
   resolvedPayload["page-title"] = pageTitle;
@@ -755,6 +755,8 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   // alert(
   //   "About to fetch with resolvedPayload: " + JSON.stringify(resolvedPayload),
   // );
+  //**alert in invokeExternalService */
+  alert("invokeExternalService 02");
   const resp = await fetch(resolvedUrl, {
     method: "POST",
     headers: {
