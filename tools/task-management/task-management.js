@@ -185,9 +185,9 @@ const ACTION_ICONS = {
       stroke-linejoin="round"
     >
       <path
-        d="M4 8H12V4L22 12L12 20V16H4a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z"
+        d="M4 6H12V2L22 12L12 22V18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"
       ></path>
-      </path><path d="M9 12.5l2.5 2.5 4.5-5.5" stroke-width="2.5"></path>
+      <path d="M9 12.5l2.5 2.5 4.5-5.5" stroke-width="2.5"></path>
     </svg>`,
 };
 
