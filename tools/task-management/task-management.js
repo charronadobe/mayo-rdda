@@ -1391,9 +1391,7 @@ class RefDemoTaskManagement extends LitElement {
             title=${project}
             >${project}</a
           >`
-        : html`<span class="task-project" title=${project}
-            >HEY!${project}</span
-          >`;
+        : html`<span class="task-project" title=${project}>${project}</span>`;
     }
     const due = formatTaskDate(task.plannedCompletionDate || task.commitDate);
     const overdue = isTaskOverdue(task);
@@ -1411,7 +1409,7 @@ class RefDemoTaskManagement extends LitElement {
               title=${task.name}
               ><span class="task-name">${task.name}</span></a
             >`
-          : html`<p class="task-name" title=${task.name}>${task.name}</p>`}
+          : html`<p class="task-name" title=${task.name}>TASK!${task.name}</p>`}
         <div class="task-actions">
           ${busy
             ? html`<div class="spinner" aria-hidden="true"></div>`
