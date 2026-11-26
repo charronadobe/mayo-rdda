@@ -745,16 +745,17 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
 
   resolvedPayload.aemPageUrl = buildAemPageUrl(org, repo, path);
   resolvedPayload["page-title"] = pageTitle;
-  //**alert in invokeExternalService  */
-  alert("invokeExternalService 04");
 
   onProgress("Creating project in Workfront…");
-  //**alert in invokeExternalService */
-  alert("invokeExternalService 05");
   // eslint-disable-next-line no-console
   console.log("[task-management] Calling service →", resolvedUrl);
   //**alert in invokeExternalService */
-  alert("invokeExternalService 06");
+  alert(
+    "invokeExternalService 01 " +
+      resolvedUrl +
+      " " +
+      JSON.stringify(resolvedPayload),
+  );
   // ** Note: The alert below is for demonstration purposes only. In a production environment, you would typically remove such alerts to avoid interrupting the user experience. **
   // alert(
   //   "About to fetch with resolvedPayload: " + JSON.stringify(resolvedPayload),
@@ -766,6 +767,8 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     },
     body: JSON.stringify(resolvedPayload),
   });
+  //**alert in invokeExternalService */
+  alert("invokeExternalService 02");
 
   if (!resp.ok) {
     const errorBody = await resp.text();
