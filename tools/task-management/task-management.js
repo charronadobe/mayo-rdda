@@ -719,8 +719,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
       'External service URL is not configured. Add an "external-service-url" entry to /config/placeholders.json.',
     );
   }
-  //**alert in invokeExternalService */
-  alert("invokeExternalService 01");
+
   let resolvedPayload;
   if (config.externalServicePayload) {
     try {
@@ -732,6 +731,8 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
         e,
       );
     }
+    //**alert in invokeExternalService */
+    alert("invokeExternalService 01");
   }
 
   if (!resolvedPayload) {
