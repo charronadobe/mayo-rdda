@@ -761,7 +761,12 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     body: JSON.stringify(resolvedPayload),
   });
   //**alert in invokeExternalService */
-  alert("invokeExternalService ERR" + errorBody);
+  alert(
+    "invokeExternalService 01" +
+      resolvedUrl +
+      " payload: " +
+      JSON.stringify(resolvedPayload),
+  );
   if (!resp.ok) {
     const errorBody = await resp.text();
     throw new Error(`External service error: ${resp.status} – ${errorBody}`);
