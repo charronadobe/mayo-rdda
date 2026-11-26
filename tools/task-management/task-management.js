@@ -761,8 +761,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     body: JSON.stringify(resolvedPayload),
   });
   //**alert in invokeExternalService */
-  alert("invokeExternalService 01");
-  alert("invokeExternalService 02");
+  alert("invokeExternalService 01" + resp);
   if (!resp.ok) {
     const errorBody = await resp.text();
     throw new Error(`External service error: ${resp.status} – ${errorBody}`);
@@ -772,9 +771,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   onProgress("Creating review task…");
   const result = await resp.json();
   onProgress("Assigning it to the user…");
-  alert("invokeExternalService 03");
   onProgress("Nearly completed…");
-  alert("invokeExternalService 04");
   return result;
 }
 
