@@ -731,8 +731,6 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
         e,
       );
     }
-    //**alert in invokeExternalService */
-    alert("invokeExternalService 01");
   }
 
   if (!resolvedPayload) {
