@@ -749,7 +749,10 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   onProgress("Creating project in Workfront…");
   // eslint-disable-next-line no-console
   console.log("[task-management] Calling service →", resolvedUrl);
-
+  // ** Note: The alert below is for demonstration purposes only. In a production environment, you would typically remove such alerts to avoid interrupting the user experience. **
+  alert(
+    "About to fetch with resolvedPayload: " + JSON.stringify(resolvedPayload),
+  );
   const resp = await fetch(resolvedUrl, {
     method: "POST",
     headers: {
