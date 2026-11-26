@@ -743,10 +743,12 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     };
   }
   //**alert in invokeExternalService */
-  alert("invokeExternalService 02");
+  alert("invokeExternalService 03");
 
   resolvedPayload.aemPageUrl = buildAemPageUrl(org, repo, path);
   resolvedPayload["page-title"] = pageTitle;
+  //**alert in invokeExternalService */
+  alert("invokeExternalService 04");
 
   onProgress("Creating project in Workfront…");
   // eslint-disable-next-line no-console
