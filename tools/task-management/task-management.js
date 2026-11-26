@@ -1409,23 +1409,24 @@ class RefDemoTaskManagement extends LitElement {
               title=${task.name}
               ><span class="task-name">${task.name}</span></a
             >`
-          : html`<p class="task-name" title=${task.name}>TASK!${task.name}</p>`}
+          : html`<p class="task-name" title=${task.name}>${task.name}</p>`}
         <div class="task-actions">
           ${busy
             ? html`<div class="spinner" aria-hidden="true"></div>`
             : html` ${TASK_ACTIONS.map((a) => {
                 const disabled = isActionDisabled(task.status, a.key);
                 return html` <button
-                  class="icon-btn ${a.variant || "primary"}"
-                  title=${disabled ? `${a.label} (unavailable)` : a.label}
-                  aria-label=${a.label}
-                  ?disabled=${disabled}
-                  @click=${() => {
-                    if (!disabled) this.runTaskAction(task, a);
-                  }}
-                >
-                  ${ACTION_ICONS[a.icon]()}
-                </button>`;
+                    class="icon-btn ${a.variant || "primary"}"
+                    title=${disabled ? `${a.label} (unavailable)` : a.label}
+                    aria-label=${a.label}
+                    ?disabled=${disabled}
+                    @click=${() => {
+                      if (!disabled) this.runTaskAction(task, a);
+                    }}
+                  >
+                    ${ACTION_ICONS[a.icon]()}
+                  </button>
+                  <p>asdf</p>`;
               })}`}
           <button
             class="icon-btn comment-btn ${commentsOpen
