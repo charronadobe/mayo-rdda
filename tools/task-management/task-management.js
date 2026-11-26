@@ -1016,6 +1016,8 @@ class RefDemoTaskManagement extends LitElement {
   /* ── Service tab ── */
 
   async run() {
+    //**alert */
+    alert("run()");
     this._view = "loading";
     this.startProgressSequence();
     try {
