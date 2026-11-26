@@ -764,10 +764,10 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   alert("invokeExternalService 01");
 
   if (!resp.ok) {
-    alert("invokeExternalService ERR");
     const errorBody = await resp.text();
     throw new Error(`External service error: ${resp.status} – ${errorBody}`);
   }
+  alert("invokeExternalService 02");
 
   onProgress("Creating review task…");
   const result = await resp.json();
