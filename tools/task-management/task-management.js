@@ -697,7 +697,8 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
     "[task-management] DA SDK context →",
     JSON.stringify(context, null, 2),
   );
-
+  //**alert in invokeExternalService 01 */
+  alert("invokeExternalService 01");
   const { org, repo, path } = resolveOrgRepo(context);
   // eslint-disable-next-line no-console
   console.log("[task-management] Resolved →", { org, repo, path });
