@@ -836,12 +836,21 @@ class RefDemoTaskManagement extends LitElement {
       if (!cfg.actionUrl) {
         throw new Error('Workfront instance URL is not configured. Add a "workfront-instance-url" entry to /config/placeholders.json.');
       }
-      await updateWorkfrontTask(cfg.actionUrl, task, action, this.token);
-      // "Work On It" (acceptWork) only accepts the work; follow it with a status
-      // write to move the task to In Progress so it shows just the Complete action.
-      if (action.wfAction === 'acceptWork') {
-        await updateWorkfrontTask(cfg.actionUrl, task, { key: 'INP' }, this.token);
+      // AJC BEGIN - Add if block for REQ (Request Approval) action
+      if (action.key === "REQ") {
+        // ***Here is where to call the webhook to create a new task
+        alert(
+          "Request Approval action triggered. This is where you would call the webhook to create a new task."
+        );
+      } else {
+        await updateWorkfrontTask(cfg.actionUrl, task, action, this.token);
+        // "Work On It" (acceptWork) only accepts the work; follow it with a status
+        // write to move the task to In Progress so it shows just the Complete action.
+        if (action.wfAction === 'acceptWork') {
+          await updateWorkfrontTask(cfg.actionUrl, task, { key: 'INP' }, this.token);
+        }
       }
+      // AJC END - Add if block for REQ (Request Approval) action
       await this.loadTasks(); // refresh after a successful transition
     } catch (err) {
       // eslint-disable-next-line no-console
