@@ -3,7 +3,7 @@ import DA_SDK from 'https://da.live/nx/utils/sdk.js';
 // eslint-disable-next-line import/no-unresolved
 import { LitElement, html, nothing } from 'da-lit';
 
-// Super Lite components (sl-button, etc.)
+// SuperLite components (sl-button, etc.)
 import 'https://da.live/nx/public/sl/components.js';
 
 // Application styles (adopted into the shadow root)
