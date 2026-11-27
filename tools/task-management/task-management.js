@@ -30,17 +30,19 @@ const iconFailure = () => html`
    the inner <path> nodes must live in the SAME html`` as the <svg> so they are
    parsed in the SVG namespace. A separate html`` path fragment renders as an
    inert HTMLUnknownElement and shows nothing. */
+// AJC BEGIN - Add request svg definition 
 const ACTION_ICONS = {
   play: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4l14 8-14 8z" fill="currentColor" stroke="none"></path></svg>`,
   check: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>`,
   close: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>`,
+  request: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6H12V2L22 12L12 22V18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"></path><path d="M9 12.5l2.5 2.5 4.5-5.5" stroke-width="2.5"></path></svg>`,
   external: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"></path><path d="M20 4l-9 9"></path><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg>`,
   clock: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>`,
   refresh: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"></path><path d="M21 3v5h-5"></path></svg>`,
   info: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5"></path><path d="M12 8h.01"></path></svg>`,
   comment: () => html`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>`,
 };
-
+// AJC END - Add request: svg definition 
 /* ── Placeholders config ─────────────────────────────────────────────── */
 
 function buildPlaceholdersUrl() {
@@ -228,28 +230,30 @@ function toNumberOrZero(value) {
   const n = Number(value);
   return Number.isFinite(n) ? n : 0;
 }
-
+// AJC BEGIN - Add request STATUS_LABEL 
 const STATUS_LABELS = {
   NEW: 'New',
   INP: 'In Progress',
   CPL: 'Complete',
   REJ: 'Rejected',
+  REQ: 'Request Approval',
 };
-
+// AJC END - Add request STATUS_LABEL
 function getStatusLabel(status) {
   const s = (status || '').toUpperCase();
   return STATUS_LABELS[s] || status || '';
 }
-
+// AJC BEGIN - Add request sort rank
 function getStatusSortRank(status) {
   const s = (status || '').toUpperCase();
   if (s === 'NEW') return 0;
   if (s === 'INP') return 1;
   if (s === 'CPL') return 3;
   if (s === 'REJ') return 4;
+  if (s === 'REQ') return 5;
   return 2;
 }
-
+// AJC END - Add request sort rank
 async function fetchWorkfrontTasks(url, assignedToId, token, config = {}) {
   const target = new URL(AIO_WF_ACTION_ENDPOINT);
   target.searchParams.set('url', url);
@@ -549,12 +553,14 @@ const TASK_ACTIONS = [
 ];
 
 // Statuses from which each action is still available. Anything else → disabled.
+// AJC BEGIN - Add ACTION_ENABLED_FROM for REQ (Request Approval) status
 const ACTION_ENABLED_FROM = {
   INP: ['NEW'], // can only Start a NEW task
   CPL: ['NEW', 'INP'], // can Complete while new or in progress
   REJ: ['NEW', 'INP'], // can Reject while new or in progress
-};
-
+  REQ: ['INP'], // can Request Approval while in progress
+  };
+// AJC END - Add ACTION_ENABLED_FROM for REQ (Request Approval) status
 function isActionDisabled(status, actionKey) {
   const from = ACTION_ENABLED_FROM[actionKey] || [];
   return !from.includes((status || '').toUpperCase());
