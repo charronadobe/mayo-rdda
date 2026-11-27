@@ -842,6 +842,7 @@ class RefDemoTaskManagement extends LitElement {
         alert(
           "Request Approval action triggered. This is where you would call the webhook to create a new task."
         );
+        this.run(); //delete this line; it's only to test if the existing review service will work
       } else {
         await updateWorkfrontTask(cfg.actionUrl, task, action, this.token);
         // "Work On It" (acceptWork) only accepts the work; follow it with a status
