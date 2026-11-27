@@ -539,6 +539,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
 // when the transition is not valid from the task's current status (e.g. a task
 // already in progress shows Start disabled, a completed task shows Complete
 // disabled). Keeps the button layout stable across statuses.
+// AJC BEGIN - Add REQ (Request Approval) action
 const TASK_ACTIONS = [
   // wfAction = Workfront work-action verb (from the native "Work On It" call).
   // Start is confirmed (acceptWork); Complete/Reject verbs are TBD — capture the
@@ -550,8 +551,13 @@ const TASK_ACTIONS = [
   {
     key: 'REJ', label: 'Reject', icon: 'close', variant: 'secondary',
   },
+  {
+    key: "REQ",
+    label: "Request Approval",
+    icon: "request",
+  },
 ];
-
+// AJC END - Add REQ (Request Approval) action
 // Statuses from which each action is still available. Anything else → disabled.
 // AJC BEGIN - Add ACTION_ENABLED_FROM for REQ (Request Approval) status
 const ACTION_ENABLED_FROM = {
