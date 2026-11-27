@@ -514,7 +514,7 @@ async function invokeExternalService(token, context, onProgress = () => {}) {
   onProgress('Creating project in Workfront…');
   // eslint-disable-next-line no-console
   console.log('[task-management] Calling service →', resolvedUrl);
-alert("config.externalServiceUrl: " + config.externalServiceUrl + "\nconfig.externalServicePayload: " + config.externalServicePayload + "\nresolvedPayload: " + JSON.stringify(resolvedPayload));
+
   const resp = await fetch(resolvedUrl, {
     method: 'POST',
     headers: {
